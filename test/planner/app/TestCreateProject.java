@@ -36,18 +36,38 @@ public class TestCreateProject {
 		assertFalse(planner.adminLoggedIn());
 		
 		
-		
 	}
 
 	@Test
-	public void createProject() {
+	public void createProject() throws Exception {
 		
 		Planner planner = new Planner();
 		
-		
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
 		
 		planner.adminLogIn("admin");
 		assertTrue(planner.adminLoggedIn());
+		
+		String projectName = "Software 1 projekt";
+		String projectLeader = "Kevin den foerste"; 
+				
+		Project project = new Project(projectName, projectLeader);
+		
+		planner.createProject(project);
+		
+		List<Project> projects = planner.getProjects();
+		assertEquals(1, projects.size());
+		assertEquals(projectLeader, projects.get(0).getProjectLeader());
+		assertEquals(projectName, projects.get(0).getProjectName());	
+		
+		
+	}
+	
+	@Test
+	public void createProjectNotLoggedIn() throws Exception{
+		
+		Planner planner = new Planner()
 		
 	}
 
