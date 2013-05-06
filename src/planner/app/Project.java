@@ -6,10 +6,10 @@ import java.util.List;
 public class Project {
 	
 	private String projectName;
-	private String projectLeader;
+	private User projectLeader;
 	private List<Activity> activities = new ArrayList<Activity>();
 
-	public Project(String projectName, String projectLeader) {
+	public Project(String projectName, User projectLeader) {
 	
 		this.projectName = projectName;
 		this.projectLeader = projectLeader;
@@ -24,11 +24,11 @@ public class Project {
 		this.projectName = projectName;
 	}
 
-	public String getProjectLeader() {
+	public User getProjectLeader() {
 		return projectLeader;
 	}
 
-	public void setProjectLeader(String projectLeader) {
+	public void setProjectLeader(User projectLeader) {
 		this.projectLeader = projectLeader;
 	}
 	
@@ -38,6 +38,10 @@ public class Project {
 
 	public List<Activity> getActivities() {
 		return activities;
+	}
+	
+	public void setNewProjectLeader(User newProjectLeader){
+		this.projectLeader = newProjectLeader;
 	}
 
 }

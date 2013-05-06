@@ -50,8 +50,10 @@ public class TestCreateProject {
 		assertTrue(planner.adminLoggedIn());
 		
 		String projectName = "Software 1 projekt";
-		String projectLeader = "Kevin den foerste"; 
-				
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+
+		planner.register(projectLeader);
+		
 		Project project = new Project(projectName, projectLeader);
 		
 		planner.createProject(project);
@@ -67,13 +69,19 @@ public class TestCreateProject {
 	@Test
 	public void createProjectNotLoggedIn() throws Exception{
 		
+		
+		
 		Planner planner = new Planner();
+		
+		planner.adminLogIn("admin");
 		
 		assertFalse(planner.adminLoggedIn());
 		
 		String projectName = "Software 1 projekt";
-		String projectLeader = "Kevin den foerste"; 
-				
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+
+		planner.register(projectLeader);
+		
 		Project project = new Project(projectName, projectLeader);
 		
 		try{
@@ -87,6 +95,15 @@ public class TestCreateProject {
 		}
 		
 		assertEquals(0, planner.getProjects().size());
+		
+	}
+	
+	@Test
+	public void assignStartDate(){
+		//TODO: assign dates to project.
+		
+		
+		
 		
 	}
 

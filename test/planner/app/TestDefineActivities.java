@@ -13,16 +13,18 @@ public class TestDefineActivities extends SampleData{
 	
 	
 	@Test
-	public void testAddActivities(){
+	public void testAddActivities() throws OperationNotAllowedException{
 		
 		planner.getProjects().isEmpty();
-		assertFalse(planner.adminLoggedIn());
 		
 		planner.adminLogIn("admin");
 		assertTrue(planner.adminLoggedIn());
 		
 		String projectName = "Software 1 projekt";
-		String projectLeader = "Kevin den foerste";
+		
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+
+		planner.register(projectLeader);
 		
 		Project project = new Project(projectName, projectLeader);
 
@@ -39,10 +41,43 @@ public class TestDefineActivities extends SampleData{
 		assertEquals(1, activities.size());
 		assertEquals(activityName, activities.get(0).getActivityName());
 		assertEquals(activityDescription, activities.get(0).getActivityDescription());
+			
+	}
+	
+	@Test
+	public void testAssignDeveloperActivity() throws OperationNotAllowedException{
 		
+		assertTrue(planner.adminLoggedIn());
 		
+		planner.getUsers().clear();
+		
+		assertTrue(planner.getUsers().isEmpty());
+		
+		User developer = new User("User user", "1234", "fk@fk.dk");
+		planner.register(developer);
+		
+		assertEquals(developer, planner.getUsers().get(0));
+		
+		Project project = new Project("Testproject", developer);
+		
+		String activityName = "Create users";
+		String activityDescription = "Allow creation of users";
+		
+		Activity activity = new Activity(activityName, activityDescription);
+		
+		project.addActivity(activity);
+		
+		developer.assignActivity(activity);
+		
+		assertEquals(project.getActivities().get(0), developer.getActivities().get(0));
+		assertEquals(activity, developer.getActivities().get(0));
 		
 	}
 	
+	@Test
+	public void testAssignStartEndDate(){
+		//TODO: Add start and end date to activity
+
+	}
 
 }
