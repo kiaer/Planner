@@ -7,7 +7,7 @@ public class Planner {
 
 	private boolean adminLoggedIn = false;
 	private List<Project> projects = new ArrayList<Project>();
-
+	private List<User> users = new ArrayList<User>();
 	public boolean adminLoggedIn() {
 		return adminLoggedIn;
 
@@ -24,6 +24,27 @@ public class Planner {
 		return adminLoggedIn = false;
 
 	}
+	
+	public void setUsers(List<User> user) {
+		this.users = user;
+
+	}
+
+	public List<User> getUsers() {
+
+		return users;
+	}
+
+	public void register(User user) throws OperationNotAllowedException {
+
+		if (!adminLoggedIn())
+			throw new OperationNotAllowedException("Register user",
+					"Cannot register new user if not admin.");
+		else {
+			users.add(user);
+		}
+
+	}
 
 	public List<Project> getProjects() {
 		return projects;
@@ -38,14 +59,14 @@ public class Planner {
 					"Admin not logged in.");
 
 	}
-
-	public void setProjects(List<Project> projects2) {
-		this.projects = projects2;
-	}
-
-	public void addActivity(String activity, ) {
-		// TODO Auto-generated method stub
-		
-	}
+//
+//	public void setProjects(List<Project> projects2) {
+//		this.projects = projects2;
+//	}
+//
+//	public void addActivity(String activity, ) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

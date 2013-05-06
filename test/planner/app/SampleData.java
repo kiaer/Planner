@@ -17,7 +17,7 @@ public class SampleData {
 			projects.add(new Project("Project " + i, "Leader" + i));
 		}
 		
-		planner.setProjects(projects);
+	//	planner.setProjects(projects);
 	
 	}
 

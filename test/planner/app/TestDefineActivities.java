@@ -15,7 +15,7 @@ public class TestDefineActivities {
 	@Test
 	public void testAddActivities(){
 		
-		Planner.addActivity();
+		//Planner.addActivity();
 		
 		
 	}
