@@ -1,9 +1,13 @@
 package planner.app;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Project {
 	
 	private String projectName;
 	private String projectLeader;
+	private List<Activity> activities = new ArrayList<Activity>();
 
 	public Project(String projectName, String projectLeader) {
 	
@@ -26,6 +30,14 @@ public class Project {
 
 	public void setProjectLeader(String projectLeader) {
 		this.projectLeader = projectLeader;
+	}
+	
+	public void addActivity(Activity activity) {
+		activities.add(activity);
+	}
+
+	public List<Activity> getActivities() {
+		return activities;
 	}
 
 }

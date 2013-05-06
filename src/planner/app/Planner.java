@@ -59,14 +59,9 @@ public class Planner {
 					"Admin not logged in.");
 
 	}
-//
-//	public void setProjects(List<Project> projects2) {
-//		this.projects = projects2;
-//	}
-//
-//	public void addActivity(String activity, ) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
+	public void setProjects(List<Project> projects2) {
+		this.projects = projects2;
+	}
 
 }

@@ -9,13 +9,37 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class TestDefineActivities {
+public class TestDefineActivities extends SampleData{
 	
 	
 	@Test
 	public void testAddActivities(){
 		
-		//Planner.addActivity();
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
+		
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+		
+		String projectName = "Software 1 projekt";
+		String projectLeader = "Kevin den foerste";
+		
+		Project project = new Project(projectName, projectLeader);
+
+		
+		String activityName = "Create users";
+		String activityDescription = "Allow creation of users";
+		
+		Activity activity = new Activity(activityName, activityDescription);
+		
+		project.addActivity(activity);
+		
+		List<Activity> activities = project.getActivities();	
+		
+		assertEquals(1, activities.size());
+		assertEquals(activityName, activities.get(0).getActivityName());
+		assertEquals(activityDescription, activities.get(0).getActivityDescription());
+		
 		
 		
 	}
