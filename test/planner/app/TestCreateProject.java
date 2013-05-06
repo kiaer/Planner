@@ -67,7 +67,26 @@ public class TestCreateProject {
 	@Test
 	public void createProjectNotLoggedIn() throws Exception{
 		
-		Planner planner = new Planner()
+		Planner planner = new Planner();
+		
+		assertFalse(planner.adminLoggedIn());
+		
+		String projectName = "Software 1 projekt";
+		String projectLeader = "Kevin den foerste"; 
+				
+		Project project = new Project(projectName, projectLeader);
+		
+		try{
+			planner.createProject(project);
+			fail("OperationNotAllowedException exception should have been thrown");
+		} catch (OperationNotAllowedException e){
+			
+			assertEquals("Create project", e.getOperation());
+			assertEquals("Admin not logged in.", e.getMessage());
+			
+		}
+		
+		assertEquals(0, planner.getProjects().size());
 		
 	}
 

@@ -39,4 +39,8 @@ public class Planner {
 
 	}
 
+	public void setProjects(List<Project> projects2) {
+		this.projects = projects2;
+	}
+
 }
