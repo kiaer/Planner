@@ -9,14 +9,16 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class testModifyProject {
+public class TestDefineActivities {
+	
 	
 	@Test
-	public void testChangeProjectLeader(){
+	public void testAddActivities(){
 		
-		
+		Planner.addActivity();
 		
 		
 	}
+	
 
 }

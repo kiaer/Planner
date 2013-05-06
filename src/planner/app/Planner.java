@@ -43,4 +43,9 @@ public class Planner {
 		this.projects = projects2;
 	}
 
+	public void addActivity(String activity, ) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
