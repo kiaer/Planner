@@ -6,16 +6,11 @@ public class OperationNotAllowedException extends Exception {
 
 	public OperationNotAllowedException(String operation, String message) {
 		super(message);
-		this.setOperation(operation);
-
+		this.operation = operation;
 	}
 
 	public String getOperation() {
 		return operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
 	}
 
 }

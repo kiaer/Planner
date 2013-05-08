@@ -15,7 +15,7 @@ public class TestCreateUser {
 	@Test
 	public void testRegisterUser() throws Exception {
 		Planner planner = new Planner();
-		
+
 		// Step 1)
 		List<User> users = planner.getUsers();
 		assertEquals(0, users.size());
@@ -25,7 +25,6 @@ public class TestCreateUser {
 		assertTrue(planner.adminLoggedIn());
 
 		// Step 3)
-		
 		User user = new User("Karl", "1234", "fk@mail.dk");
 
 		planner.register(user);
@@ -35,10 +34,9 @@ public class TestCreateUser {
 		assertEquals(1, users.size());
 
 		User registeredUser = users.get(0);
-		assertEquals("Karl", registeredUser.getUserName());
+		assertEquals("Karl", registeredUser.getUsername());
 		assertEquals("1234", registeredUser.getPassword());
 		assertEquals("fk@mail.dk", registeredUser.getEmail());
-
 	}
 
 	/**
@@ -66,7 +64,6 @@ public class TestCreateUser {
 			planner.register(user);
 			fail("An OperationNotAllowedException should have been thrown");
 		} catch (OperationNotAllowedException e) {
-			
 			// Step 3
 			assertEquals("Cannot register new user if not admin.", e
 					.getMessage());

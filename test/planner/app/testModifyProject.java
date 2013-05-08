@@ -12,8 +12,7 @@ import org.junit.Test;
 public class testModifyProject extends SampleData {
 	
 	@Test
-	public void testChangeProjectLeader(){
-		
+	public void testChangeProjectLeader() {
 		planner.adminLogIn("admin");
 		assertTrue(planner.adminLoggedIn());
 		
@@ -26,17 +25,16 @@ public class testModifyProject extends SampleData {
 		
 		assertEquals(projectLeader, project.getProjectLeader());
 		
-		project.setNewProjectLeader(newProjectLeader);
+		project.setProjectLeader(newProjectLeader);
 		
 		assertFalse(projectLeader == project.getProjectLeader());
 		assertEquals(newProjectLeader, project.getProjectLeader());
-		
 	}
-	
+
 	@Test
-	public void testChangeStartDate(){
+	public void testChangeStartDate() {
 		//TODO: make it possible to change startdate
 		
 	}
-	
+
 }

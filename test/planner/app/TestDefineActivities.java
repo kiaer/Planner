@@ -10,11 +10,9 @@ import java.util.List;
 import org.junit.Test;
 
 public class TestDefineActivities extends SampleData{
-	
-	
+
 	@Test
 	public void testAddActivities() throws OperationNotAllowedException{
-		
 		planner.getProjects().isEmpty();
 		
 		planner.adminLogIn("admin");
@@ -28,7 +26,6 @@ public class TestDefineActivities extends SampleData{
 		
 		Project project = new Project(projectName, projectLeader);
 
-		
 		String activityName = "Create users";
 		String activityDescription = "Allow creation of users";
 		
@@ -41,12 +38,10 @@ public class TestDefineActivities extends SampleData{
 		assertEquals(1, activities.size());
 		assertEquals(activityName, activities.get(0).getActivityName());
 		assertEquals(activityDescription, activities.get(0).getActivityDescription());
-			
 	}
-	
+
 	@Test
 	public void testAssignDeveloperActivity() throws OperationNotAllowedException{
-		
 		assertTrue(planner.adminLoggedIn());
 		
 		planner.getUsers().clear();
@@ -71,9 +66,8 @@ public class TestDefineActivities extends SampleData{
 		
 		assertEquals(project.getActivities().get(0), developer.getActivities().get(0));
 		assertEquals(activity, developer.getActivities().get(0));
-		
 	}
-	
+
 	@Test
 	public void testAssignStartEndDate(){
 		//TODO: Add start and end date to activity
