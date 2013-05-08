@@ -23,12 +23,15 @@ public class testModifyProject extends SampleData {
 		
 		Project project = new Project(projectName, projectLeader);
 		
+		assertTrue(project.hasProjectLeader());
 		assertEquals(projectLeader, project.getProjectLeader());
 		
 		project.setProjectLeader(newProjectLeader);
 		
 		assertFalse(projectLeader == project.getProjectLeader());
 		assertEquals(newProjectLeader, project.getProjectLeader());
+		project.removeProjectLeader();
+		assertFalse(project.hasProjectLeader());
 	}
 
 	@Test

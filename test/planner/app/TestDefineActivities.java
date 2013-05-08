@@ -36,8 +36,8 @@ public class TestDefineActivities extends SampleData{
 		List<Activity> activities = project.getActivities();	
 		
 		assertEquals(1, activities.size());
-		assertEquals(activityName, activities.get(0).getActivityName());
-		assertEquals(activityDescription, activities.get(0).getActivityDescription());
+		assertEquals(activityName, activities.get(0).getName());
+		assertEquals(activityDescription, activities.get(0).getDescription());
 	}
 
 	@Test
@@ -69,7 +69,19 @@ public class TestDefineActivities extends SampleData{
 	}
 
 	@Test
-	public void testAssignStartEndDate(){
+	public void testAssignUsers() {
+		Activity activity = new Activity("Activity");
+		assertTrue(activity.getUsers().isEmpty());
+		User user = new User("Adam", "1234", "adam@mail.dk");
+		activity.assignUser(user);
+		assertTrue(activity.containsUser(user));
+		assertFalse(activity.getUsers().isEmpty());
+		activity.removeUser(user);
+		assertFalse(activity.containsUser(user));
+	}
+
+	@Test
+	public void testAssignStartEndDate() {
 		//TODO: Add start and end date to activity
 
 	}

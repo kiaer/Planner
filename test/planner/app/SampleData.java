@@ -19,7 +19,7 @@ public class SampleData {
 		planner.register(user);
 		
 		projects.add(new Project("Planner", user));
-		
+
 		for (int i = 1; i <= 10; i++) {
 			projects.add(new Project("Project " + i, new User("User " + i, "1234", "fk@mail.dk")));
 		}

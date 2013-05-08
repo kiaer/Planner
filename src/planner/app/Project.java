@@ -5,13 +5,18 @@ import java.util.List;
 
 public class Project {
 	
-	private String projectName;
+	private String name;
 	private User projectLeader;
 	private List<Activity> activities = new ArrayList<Activity>();
 
-	public Project(String projectName, User projectLeader) {
-		this.projectName = projectName;
-		this.projectLeader = projectLeader;	
+	public Project(String name, User projectLeader) {
+		setName(name);
+		setProjectLeader(projectLeader);
+	}
+
+	//Untested
+	public Project(String name) {
+		this(name, null);
 	}
 
 	public void addActivity(Activity activity) {
@@ -26,16 +31,24 @@ public class Project {
 		return projectLeader;
 	}
 
-	public String getProjectName() {
-		return projectName;
+	public String getName() {
+		return name;
+	}
+
+	public boolean hasProjectLeader() {
+		return projectLeader != null;
+	}
+
+	public void removeProjectLeader() {
+		setProjectLeader(null);
 	}
 
 	public void setProjectLeader(User projectLeader) {
 		this.projectLeader = projectLeader;
 	}
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

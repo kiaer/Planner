@@ -55,7 +55,7 @@ public class TestCreateProject {
 		List<Project> projects = planner.getProjects();
 		assertEquals(1, projects.size());
 		assertEquals(projectLeader, projects.get(0).getProjectLeader());
-		assertEquals(projectName, projects.get(0).getProjectName());	
+		assertEquals(projectName, projects.get(0).getName());	
 	}
 	
 	@Test
