@@ -1,2 +1,13 @@
-SUPPE
+TODO:
+	Faste aktiviteter (Sygdom, ferie, kurser, etc.)
+	indtasting af arbejdstimer
+		skal kunne læses af både aktiviteter og users
+		Users skal kunne se hvilke timer går til hvilke aktiviteter
+		Aktiviteter skal kunne se hvilke timer er fra hvilke Userss
+		skal kunne indskrives på forskellige dage
+		skal kunne checke om ens arbejdstimer stemmer overens med alle aktiviteternes registrerede arbejdstimer
+	Lukning af projekter?
+	Forudsigelser af arbejdstimer
 
+	GUI?
+	Persistency?
