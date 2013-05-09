@@ -67,4 +67,17 @@ public class Work {
 		return hours;
 	}
 
+	public int compareTo(Work work) {
+		int compare = date.compareTo(work.getDate());
+		if(compare == 0) {
+			if(hours > work.getHours())
+				return 1;
+			else if(hours < work.getHours())
+				return -1;
+			else
+				return 0;
+		} else
+			return compare;
+	}
+
 }
