@@ -7,6 +7,7 @@ public class User {
 
 	private String username, password, email;
 	private List<Activity> activities = new ArrayList<Activity>();
+	private List<Work> workList = new ArrayList<Work>();
 
 	public User(String userName, String password, String email) {
 		this.username = userName;

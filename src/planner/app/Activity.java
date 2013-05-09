@@ -6,14 +6,22 @@ import java.util.List;
 
 public class Activity {
 
-	public static final int DEFAULT_ALL_WORK_HOURS = 0;
+	public static final double DEFAULT_ALL_WORK_HOURS = 0;
+	public static final String
+			OPERATION_REG_WORK = "Set work hours",
+			OPERATION_SET_END_DATE = "Set end date",
+			OPERATION_SET_START_DATE = "Set start date",
+			MSG_EARLY_END_DATE = "End date must be after start date.",
+			MSG_LATE_START_DATE = "Start date must be before end date.",
+			MSG_NEG_WORK_HOURS = "Work hours must be positive.";
 
-	private int allocatedWorkHours;
+
+	private double allocatedWorkHours, workHours = 0;
 	private String name, description;
 	private Date startDate, endDate;
 	private List<User> users = new ArrayList<User>();
 
-	public Activity(String name, String description, int allocatedWorkHours) {
+	public Activity(String name, String description, double allocatedWorkHours) {
 		setDescription(description);
 		setName(name);
 		setAllocatedWorkHours(allocatedWorkHours);
@@ -41,7 +49,7 @@ public class Activity {
 	}
 
 	//Untested
-	public int getAllocatedWorkHours() {
+	public double getAllocatedWorkHours() {
 		return allocatedWorkHours;
 	}
 
@@ -66,6 +74,11 @@ public class Activity {
 	}
 
 	//Untested
+	public double getWorkHours() {
+		return workHours;
+	}
+
+	//Untested
 	public boolean hasEndDate() {
 		return endDate != null;
 	}
@@ -80,7 +93,7 @@ public class Activity {
 	}
 
 	//Should this throw an exception?
-	public void setAllocatedWorkHours(int allocatedWorkHours) {
+	public void setAllocatedWorkHours(double allocatedWorkHours) {
 		if(allocatedWorkHours >= 0)
 			this.allocatedWorkHours = allocatedWorkHours;
 	}
@@ -89,9 +102,14 @@ public class Activity {
 		this.description = description;
 	}
 
-	//Should this throw an exception?
-	public void setEndDate(Date endDate) {
-		if(hasStartDate() && getStartDate().before(endDate))
+	//Untested
+	public void setEndDate(Date endDate) throws OperationNotAllowedException {
+		if(hasStartDate()) {
+			if(getStartDate().before(endDate))
+				this.endDate = endDate;
+			else
+				throw new OperationNotAllowedException(OPERATION_SET_END_DATE, MSG_EARLY_END_DATE);
+		} else
 			this.endDate = endDate;
 	}
 
@@ -101,10 +119,23 @@ public class Activity {
 			this.name = name;
 	}
 
-	//Should this throw an exception?
-	public void setStartDate(Date startDate) {
-		if(hasEndDate() && getEndDate().after(startDate))
+	//Untested
+	public void setStartDate(Date startDate) throws OperationNotAllowedException {
+		if(hasEndDate()) {
+			if (getEndDate().after(startDate))
+				this.startDate = startDate;
+			else
+				throw new OperationNotAllowedException(OPERATION_SET_START_DATE, MSG_LATE_START_DATE);
+		} else
 			this.startDate = startDate;
+	}
+
+	//Untested
+	public void setWorkHours(double workHours) throws OperationNotAllowedException {
+		if(workHours > 0)
+			this.workHours += workHours;
+		else
+			throw new OperationNotAllowedException(OPERATION_REG_WORK, MSG_NEG_WORK_HOURS);
 	}
 
 }
