@@ -23,14 +23,14 @@ public class Work {
 			setActivity(activity);
 		} catch (OperationNotAllowedException e) {
 			e.printStackTrace();
-			switch(e.getOperation()) {
-				case(OPERATION_SET_ACT):
-					activity = ConstantActivities.NONE.getActivity();
-				case(OPERATION_SET_DATE):
-					//Set date to todays date (need dateserver)
-				case(OPERATION_SET_HOURS):
-					this.hours = 0;
-			}
+//			switch(e.getOperation()) {
+//				case(OPERATION_SET_ACT):
+//					activity = ConstantActivities.NONE.getActivity();
+//				case(OPERATION_SET_DATE):
+//					//Set date to todays date (need dateserver)
+//				case(OPERATION_SET_HOURS):
+//					this.hours = 0;
+//			}
 		}
 	}
 
