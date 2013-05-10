@@ -1,6 +1,7 @@
 package planner.app;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Planner {
@@ -8,7 +9,8 @@ public class Planner {
 	private boolean adminLoggedIn = false;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<User> users = new ArrayList<User>();
-
+	private DateServer dateServer = new DateServer();
+	
 	public boolean adminLoggedIn() {
 		return adminLoggedIn;
 	}
@@ -51,6 +53,14 @@ public class Planner {
 
 	public void setUsers(List<User> user) {
 		this.users = user;
+	}
+	public void setDateServer(DateServer dateServer) {
+		this.dateServer = dateServer;
+
+	}
+	
+	public Calendar getDate(){
+		return dateServer.getDate();
 	}
 
 }
