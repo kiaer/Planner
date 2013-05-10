@@ -25,7 +25,7 @@ public class Work {
 			e.printStackTrace();
 			switch(e.getOperation()) {
 				case(OPERATION_SET_ACT):
-					//Set activity to one of the constant activities
+					activity = ConstantActivities.NONE.getActivity();
 				case(OPERATION_SET_DATE):
 					//Set date to todays date (need dateserver)
 				case(OPERATION_SET_HOURS):
