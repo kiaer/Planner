@@ -9,10 +9,11 @@ public class Activity {
 	public static final double DEFAULT_ALL_WORK_HOURS = 0;
 	public static final String
 			DEFAULT_NAME = "Unnamed",
-			MSG_NULL_NAME = "Name must not be null",
 			MSG_EARLY_END_DATE = "End date must be after start date.",
 			MSG_LATE_START_DATE = "Start date must be before end date.",
-			MSG_NEG_WORK_HOURS = "Work hours must be positive.";
+			MSG_NEG_WORK_HOURS = "Work hours must be positive.",
+			MSG_NULL_NAME = "Name must not be null",
+			MSG_USER_DUPLICATE = "The list already contains this user.";
 
 	private double allocatedWorkHours, workHours = 0;
 	private String name, description;
@@ -40,9 +41,11 @@ public class Activity {
 		this(name, null, DEFAULT_ALL_WORK_HOURS);
 	}
 
-	public void assignUser(User user) {
+	public void assignUser(User user) throws OperationNotAllowedException {
 		if(!containsUser(user))
 			users.add(user);
+		else
+			throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_USER_DUPLICATE);
 	}
 
 	public boolean containsUser(User user) {
