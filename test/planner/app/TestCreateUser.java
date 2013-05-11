@@ -28,6 +28,7 @@ public class TestCreateUser {
 
 		planner.register(user);
 		users = planner.getUsers();
+		
 
 		// Step 4)
 		assertEquals(1, users.size());
@@ -59,6 +60,7 @@ public class TestCreateUser {
 
 		// Step 2)
 		User user = new User("Karl", "1234", "fk@mail.dk");
+		
 
 		try {
 			planner.register(user);
