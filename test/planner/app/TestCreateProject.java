@@ -29,7 +29,7 @@ public class TestCreateProject {
 		
 		boolean login = planner.adminLogIn("hej");
 
-		assertFalse(login);
+		assertFalse(login); 
 		assertFalse(planner.adminLoggedIn());
 	}
 
