@@ -2,6 +2,7 @@ package planner.app;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Planner {
@@ -62,8 +63,12 @@ public class Planner {
 //		this.dateServer = dateServer;
 //	}
 
-	public static Calendar getDate(){
+	public static Calendar getCalendar() {
 		return dateServer.getDate();
+	}
+
+	public static Date getDate() {
+		return getCalendar().getTime();
 	}
 
 }
