@@ -22,7 +22,6 @@ public class Work implements Comparable<Work> {
 			setToDate(toDate);
 			setActivity(activity);
 		} catch (OperationNotAllowedException e) {
-			e.printStackTrace(); 
 			switch(e.getOperation()) {
 				case WORK_SET_ACT:
 					activity = ConstantActivities.NONE.getActivity();

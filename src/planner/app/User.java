@@ -22,7 +22,6 @@ public class User {
 		try {
 			setUsername(username);
 		} catch (OperationNotAllowedException e) {
-			e.printStackTrace();
 			this.username = DEFAULT_USERNAME;
 		}
 		this.password = password;

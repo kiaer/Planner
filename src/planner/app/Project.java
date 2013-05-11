@@ -18,7 +18,6 @@ public class Project {
 		try {
 			setName(name);
 		} catch (OperationNotAllowedException e) {
-			e.printStackTrace();
 			this.name = DEFAULT_NAME;
 		}
 		setProjectLeader(projectLeader);

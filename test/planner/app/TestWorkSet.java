@@ -12,14 +12,16 @@ public class TestWorkSet extends SampleData {
 	@Test
 	public void testRegisterWork() {
 		User user = createTempUser();
-		assertTrue(user.getWorkSet().isEmpty());
 		Work work = createTempWork();
+		//Testing registering
+		assertTrue(user.getWorkSet().isEmpty());
 		try {
 			user.registerWork(work);
 		} catch (OperationNotAllowedException e) {
 			fail("An OperationNotAllowedException should not have been thrown.");
 		}
 		assertTrue(user.getWorkSet().contains(work));
+		//Testing double registering
 		try {
 			user.registerWork(work);
 			fail("An OperationNotAllowedException should have been thrown.");
@@ -28,6 +30,7 @@ public class TestWorkSet extends SampleData {
 			assertEquals(e.getMessage(), User.MSG_WORK_OVERLAP);
 			assertTrue(user.getWorkSet().size() == 1);
 		}
+		//Testing removing
 		user.removeWork(work);
 		assertFalse(user.getWorkSet().contains(work));
 	}
