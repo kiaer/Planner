@@ -19,7 +19,7 @@ public class TestDateServer {
 		assertEquals(expected.get(Calendar.DAY_OF_MONTH),
 				result.get(Calendar.DAY_OF_MONTH));
 	}
-
+ 
 	/***
 	 * Tests that the getDate function of the library application returns the
 	 * current date.

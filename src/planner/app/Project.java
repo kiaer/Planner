@@ -14,9 +14,8 @@ public class Project {
 		setProjectLeader(projectLeader);
 	}
 
-	//Untested
 	public Project(String name) {
-		this(name, null);
+		this(name, null); 
 	}
 
 	public void addActivity(Activity activity) {
@@ -28,7 +27,7 @@ public class Project {
 	}
 
 	public User getProjectLeader() {
-		return projectLeader;
+		return projectLeader; 
 	}
 
 	public String getName() {

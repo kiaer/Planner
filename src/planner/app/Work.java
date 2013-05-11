@@ -21,7 +21,7 @@ public class Work {
 			setToDate(toDate);
 			setActivity(activity);
 		} catch (OperationNotAllowedException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 			switch(e.getOperation()) {
 				case WORK_SET_ACT:
 					activity = ConstantActivities.NONE.getActivity();
@@ -72,7 +72,7 @@ public class Work {
 	}
 
 	public Activity getActivity() {
-		return activity;
+		return activity; 
 	}
 
 	public Date getFromDate() {

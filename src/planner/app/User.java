@@ -23,11 +23,7 @@ public class User {
 
 	public void assignActivity(Activity activity) {
 		activities.add(activity);
-	}
-
-	public boolean contains(String cprNumber) {
-		return username.contains(cprNumber);
-	}
+	} 
 
 	public List<Activity> getActivities() {
 		return activities;

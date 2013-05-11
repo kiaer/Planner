@@ -105,7 +105,7 @@ public class Activity {
 				this.endDate = endDate;
 			else
 				throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_EARLY_END_DATE);
-		} else
+		} else 
 			this.endDate = endDate;
 	}
 
@@ -123,7 +123,7 @@ public class Activity {
 			else
 				throw new OperationNotAllowedException(Operation.ACT_SET_START_DATE, MSG_LATE_START_DATE);
 		} else
-			this.startDate = startDate;
+			this.startDate = startDate; 
 	}
 
 	//Untested

@@ -88,6 +88,27 @@ public class TestCreateProject {
 	}
 
 	@Test
+	public void createProjectNoLeader() throws OperationNotAllowedException{
+		
+		Planner planner = new Planner();
+		
+		planner.adminLogIn("admin");
+		
+		assertTrue(planner.adminLoggedIn());
+		
+		String projectName = "Software 1 Projekt";
+		
+		Project project = new Project(projectName);
+		planner.createProject(project);
+		
+		
+		assertEquals(1, planner.getProjects().size());
+		assertEquals(projectName, planner.getProjects().get(0).getName());
+		
+	}
+	
+	
+	@Test
 	public void assignStartDate(){
 		//TODO: assign dates to project.
 		
