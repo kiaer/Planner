@@ -15,12 +15,11 @@ public class Project {
 
 	//Untested catch block
 	public Project(String name, User projectLeader) {
-		try {
-			setName(name);
-		} catch (OperationNotAllowedException e) {
+		if(name != null)
+			this.name = name;
+		else
 			this.name = DEFAULT_NAME;
-		}
-		setProjectLeader(projectLeader);
+		this.projectLeader = projectLeader;
 	}
 
 	public Project(String name) {

@@ -20,13 +20,12 @@ public class Activity {
 	private List<User> users = new ArrayList<User>();
 
 	public Activity(String name, String description, double allocatedWorkHours) {
-		try {
-			setName(name);
-		} catch (OperationNotAllowedException e) {
+		if(name != null)
+			this.name = name;
+		else
 			this.name = DEFAULT_NAME;
-		}
-		setDescription(description);
-		setAllocatedWorkHours(allocatedWorkHours);
+		this.description = description;
+		this.allocatedWorkHours = allocatedWorkHours;
 	}
 
 	public Activity(String name, String description) {

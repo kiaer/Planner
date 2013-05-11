@@ -17,31 +17,24 @@ public class Work implements Comparable<Work> {
 	private Activity activity;
 
 	public Work(Date fromDate, Date toDate, Activity activity) {
-		try {
-			setFromDate(fromDate);
-			setToDate(toDate);
-			setActivity(activity);
-		} catch (OperationNotAllowedException e) {
-			switch(e.getOperation()) {
-				case WORK_SET_ACT:
-					activity = ConstantActivities.NONE.getActivity();
-					break;
-				case WORK_SET_NULL_FROM_DATE:
-					if(toDate != null) {
-						fromDate = new Date();
-						fromDate.setTime(fromDate.getTime() - DAY_TO_MILISECONDS);
-					} else
-						fromDate = Planner.getDate();
-					break;
-				case WORK_SET_NULL_TO_DATE:
-				case WORK_DATE_MISMATCH:
-					toDate = new Date();
-					toDate.setTime(fromDate.getTime() + DAY_TO_MILISECONDS);
-					break;
-				default:
-					break;
-			}
+		if(fromDate != null)
+			this.fromDate = fromDate;
+		else {
+			if(toDate != null) {
+				fromDate = new Date();
+				fromDate.setTime(fromDate.getTime() - DAY_TO_MILISECONDS);
+			} else
+				fromDate = Planner.getDate();
+		} if(toDate != null && toDate.after(fromDate))
+			this.toDate = toDate;
+		else {
+			toDate = new Date();
+			toDate.setTime(fromDate.getTime() + DAY_TO_MILISECONDS);
 		}
+		if(activity != null)
+			this.activity = activity;
+		else
+			activity = ConstantActivities.NONE.getActivity();
 	}
 
 	public void setActivity(Activity activity) throws OperationNotAllowedException {
