@@ -1,9 +1,7 @@
 package planner.app;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -68,11 +66,15 @@ public class User {
 		}
 	}
 
-	public void registerWork(Date fromDate, Date toDate, Activity activity) throws OperationNotAllowedException {
-		if(isWorking(fromDate, toDate))
+	public void registerWork(Work work) throws OperationNotAllowedException {
+		if(isWorking(work.getFromDate(), work.getToDate()))
 			throw new OperationNotAllowedException(Operation.USER_REGISTER_WORK, MSG_WORK_OVERLAP);
 		else
-			workSet.add(new Work(fromDate, toDate, activity));
+			workSet.add(work);
+	}
+
+	public void registerWork(Date fromDate, Date toDate, Activity activity) throws OperationNotAllowedException {
+		registerWork(new Work(fromDate, toDate, activity));
 	}
 
 	public void removeWork(Work work) {

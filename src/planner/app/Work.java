@@ -2,7 +2,7 @@ package planner.app;
 
 import java.util.Date;
 
-public class Work {
+public class Work implements Comparable<Work> {
 
 	private static final long
 			HOURS_TO_MILISECONDS = 1000 * 60 * 60,
@@ -85,7 +85,9 @@ public class Work {
 		return (double) (toDate.getTime() - fromDate.getTime()) / HOURS_TO_MILISECONDS;
 	}
 
+	@Override
 	public int compareTo(Work work) {
+		// TODO Auto-generated method stub
 		return fromDate.compareTo(work.getFromDate());
 	}
 
