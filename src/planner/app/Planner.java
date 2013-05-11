@@ -10,12 +10,12 @@ public class Planner {
 			MSG_REGISTER_USER_AUTH = "Only admin can register users.",
 			MSG_CREATE_PROJECT_AUTH = "Only admin can create projects.";
 
+	public static DateServer dateServer = new DateServer();
+
 	private boolean adminLoggedIn = false;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<User> users = new ArrayList<User>();
-	private DateServer dateServer = new DateServer();
-	
-	
+
 	public boolean adminLoggedIn() {
 		return adminLoggedIn;
 	}
@@ -57,12 +57,12 @@ public class Planner {
 	public void setUsers(List<User> user) {
 		this.users = user;
 	}
-	public void setDateServer(DateServer dateServer) {
-		this.dateServer = dateServer;
 
-	}
-	
-	public Calendar getDate(){
+//	public static void setDateServer(DateServer dateServer) {
+//		this.dateServer = dateServer;
+//	}
+
+	public static Calendar getDate(){
 		return dateServer.getDate();
 	}
 

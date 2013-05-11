@@ -4,13 +4,14 @@ import java.util.Date;
 
 public class Work {
 
-	private static final double MILISECONDS_TO_HOURS = 1./(1000 * 60 * 60);
+	private static final long
+			HOURS_TO_MILISECONDS = 1000 * 60 * 60,
+			DAY_TO_MILISECONDS = 1000 * 60 * 60 * 24;
 
 	public static final String
 			MSG_NULL_ACT = "Activity can't be null.",
 			MSG_NULL_DATE = "Date can't be null.",
-			MSG_EARLY_TO_DATE = "To date must be after from date.",
-			MSG_LATE_FROM_DATE = "from date must be before to date.";
+			MSG_DATE_MISMATCH = "To date must be after from date.";
 
 	private Date fromDate, toDate;
 	private Activity activity;
@@ -27,16 +28,16 @@ public class Work {
 					activity = ConstantActivities.NONE.getActivity();
 					break;
 				case WORK_SET_NULL_FROM_DATE:
-					//Set date to todays date
-					break;
-				case WORK_SET_LATE_FROM_DATE:
-					//Set date to before to date
+					if(toDate != null) {
+						fromDate = new Date();
+						fromDate.setTime(fromDate.getTime() - DAY_TO_MILISECONDS);
+					} else
+						fromDate = Planner.getDate().getTime();
 					break;
 				case WORK_SET_NULL_TO_DATE:
-					//set date to tomorrow date
-					break;
-				case WORK_SET_EARLY_TO_DATE:
-					//Set date to after from date
+				case WORK_DATE_MISMATCH:
+					toDate = new Date();
+					toDate.setTime(fromDate.getTime() + DAY_TO_MILISECONDS);
 					break;
 				default:
 					break;
@@ -53,10 +54,7 @@ public class Work {
 
 	public void setFromDate(Date fromDate) throws OperationNotAllowedException {
 		if(fromDate != null)
-			if(toDate != null && toDate.before(fromDate))
-				throw new OperationNotAllowedException(Operation.WORK_SET_LATE_FROM_DATE, MSG_LATE_FROM_DATE);
-			else
-				this.fromDate = fromDate;
+			this.fromDate = fromDate;
 		else
 			throw new OperationNotAllowedException(Operation.WORK_SET_NULL_FROM_DATE, MSG_NULL_DATE);
 	}
@@ -64,7 +62,7 @@ public class Work {
 	public void setToDate(Date toDate) throws OperationNotAllowedException {
 		if(toDate != null)
 			if(fromDate != null && fromDate.after(toDate))
-				throw new OperationNotAllowedException(Operation.WORK_SET_EARLY_TO_DATE, MSG_EARLY_TO_DATE);
+				throw new OperationNotAllowedException(Operation.WORK_DATE_MISMATCH, MSG_DATE_MISMATCH);
 			else
 				this.toDate = toDate;
 		else
@@ -84,7 +82,7 @@ public class Work {
 	}
 
 	public double getHours() {
-		return (toDate.getTime() - fromDate.getTime()) * MILISECONDS_TO_HOURS;
+		return (double) (toDate.getTime() - fromDate.getTime()) / HOURS_TO_MILISECONDS;
 	}
 
 	public int compareTo(Work work) {
