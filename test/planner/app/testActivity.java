@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class testActivity {
 
-	
+	 
 		@Test
 		public void testAssignActivity() throws Exception {
 			Planner planner = new Planner();
@@ -25,7 +25,7 @@ public class testActivity {
 			// Step 2
 			Activity activity1 = new Activity("sten", "venstre ben");
 			user.assignActivity(activity1);
-			assertEquals(user.getActivities().size(), 1);
+			assertEquals(user.getActivities().size(), 1); 
 			Activity activity2 = user.getActivities().get(0);
 			assertEquals("sten", activity2.getName());
 			assertEquals("venstre ben", activity2.getDescription());

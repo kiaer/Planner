@@ -24,6 +24,8 @@ public class TestDefineActivities extends SampleData {
 
 		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
 
+		assertTrue(projectLeader.getActivities().size() == 0);
+
 		planner.register(projectLeader);
 
 		Project project = new Project(projectName, projectLeader);
@@ -126,7 +128,7 @@ public class TestDefineActivities extends SampleData {
 		GregorianCalendar newCal = new GregorianCalendar();
 		newCal.setTime(cal.getTime());
 
-		try { 
+		try {
 			activity.setEndDate(newCal.getTime());
 			fail("Should throw OperationNotAllowedException");
 		} catch (OperationNotAllowedException e) {
@@ -167,10 +169,10 @@ public class TestDefineActivities extends SampleData {
 		assertEquals(cal.getTime(), activity.getEndDate());
 
 	}
-	
+
 	@Test
-	public void testAssignEndStartDate() throws OperationNotAllowedException{
-		
+	public void testAssignEndStartDate() throws OperationNotAllowedException {
+
 		Activity activity = new Activity("Activity");
 
 		assertTrue(activity.getStartDate() == null);
@@ -190,9 +192,9 @@ public class TestDefineActivities extends SampleData {
 		assertEquals(newcal.getTime(), activity.getStartDate());
 		assertTrue(activity.hasStartDate());
 		assertTrue(activity.hasEndDate());
-		
+
 	}
-	
+
 	@Test
 	public void testAssignSameEndStart() throws OperationNotAllowedException {
 
@@ -210,7 +212,7 @@ public class TestDefineActivities extends SampleData {
 		GregorianCalendar newCal = new GregorianCalendar();
 		newCal.setTime(cal.getTime());
 
-		try { 
+		try {
 			activity.setStartDate(newCal.getTime());
 			fail("Should throw OperationNotAllowedException");
 		} catch (OperationNotAllowedException e) {
@@ -220,5 +222,16 @@ public class TestDefineActivities extends SampleData {
 		assertTrue(activity.hasEndDate());
 		assertFalse(activity.hasStartDate());
 
+	}
+
+	@Test
+	public void testSetAllocatedWorkHours() {
+		
+		Activity activity = new Activity("Activity");
+		
+		activity.setAllocatedWorkHours(10.0);
+		
+		assertEquals(10.0, activity.getAllocatedWorkHours(), 1e-15);
+		
 	}
 }

@@ -56,7 +56,7 @@ public class Activity {
 
 	public String getDescription() {
 		return description;
-	}
+	} 
 
 	public Date getEndDate() {
 		return endDate;
@@ -118,7 +118,7 @@ public class Activity {
 		else
 			throw new OperationNotAllowedException(Operation.ACT_SET_NAME, MSG_NULL_NAME);
 	}
-
+ 
 	public void setStartDate(Date startDate) throws OperationNotAllowedException {
 		if(hasEndDate()) {
 			if (getEndDate().after(startDate))
