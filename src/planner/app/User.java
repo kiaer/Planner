@@ -67,10 +67,10 @@ public class User {
 	}
 
 	public void registerWork(Work work) throws OperationNotAllowedException {
-		if (isWorking(work.getFromDate(), work.getToDate()))
+		if (isWorking(work.getFromDate(), work.getToDate())) {
 			throw new OperationNotAllowedException(
 					Operation.USER_REGISTER_WORK, MSG_WORK_OVERLAP);
-		else
+		} else
 			workSet.add(work);
 	}
 

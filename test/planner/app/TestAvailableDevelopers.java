@@ -1,7 +1,9 @@
 package planner.app;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -10,9 +12,61 @@ import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
+import com.sun.accessibility.internal.resources.accessibility;
+
 import java.util.List;
 
 public class TestAvailableDevelopers extends SampleData {
+
+	@Test
+	public void testRegisterWork() throws OperationNotAllowedException {
+
+		GregorianCalendar cal = new GregorianCalendar();
+		Date toDate = new Date();
+		toDate.setTime(cal.getTime().getTime() + 1);
+
+		assertTrue(planner.adminLoggedIn());
+
+		Activity activity = createTempAct();
+		User user = createTempUser();
+
+		Work work = new Work(cal.getTime(), toDate, activity);
+		user.registerWork(work);
+
+		assertTrue(user.getWorkSet().contains(work));
+
+	}
+
+	@Test
+	public void testRegisterWorkSameDate() throws OperationNotAllowedException {
+
+		GregorianCalendar cal = new GregorianCalendar();
+		Date toDate = new Date();
+		toDate.setTime(cal.getTime().getTime() + 100);
+
+		Activity activity = createTempAct();
+		Activity activity2 = new Activity("Aktivitet");
+		User user = createTempUser();
+
+		Work work1 = new Work(cal.getTime(), toDate, activity);
+		Work work2 = new Work(cal.getTime(), toDate, activity2);
+
+		user.registerWork(work1);
+
+		assertTrue(user.getWorkSet().contains(work1));
+
+		try {
+			user.registerWork(work2);
+			fail("OperationNotAllowedException should've been thrown");
+
+		} catch (OperationNotAllowedException e) {
+			assertEquals(user.MSG_WORK_OVERLAP, e.getMessage());
+			System.out.println(user.getWorkSet().contains(work2));
+			assertFalse(user.getWorkSet().contains(work2));
+
+		}
+
+	}
 
 	@Test
 	public void testFindAvailableDevelopers()
