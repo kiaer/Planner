@@ -109,8 +109,32 @@ public class TestCreateProject {
 	
 	
 	@Test
-	public void assignStartDate(){
-		//TODO: assign dates to project.
+	public void testSetName() throws OperationNotAllowedException{
+		Planner planner = new Planner();
+		
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
+		
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+		
+		String projectName = "Software 1 projekt";
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+
+		planner.register(projectLeader);
+		
+		Project project = new Project(null, projectLeader);
+		
+		planner.createProject(project);
+		List<Project> projects = planner.getProjects();
+		project.setName(projectName);
+		
+		try {
+			project.setName(null);
+		} catch (OperationNotAllowedException e) {
+			assertEquals(Project.MSG_NULL_NAME, e.getMessage());
+			assertEquals(Operation.PROJ_SET_NAME, e.getOperation());
+		}
 		
 		
 		
