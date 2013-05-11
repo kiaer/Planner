@@ -33,7 +33,7 @@ public class Activity {
 		this(name, description, DEFAULT_ALL_WORK_HOURS);
 	}
 
-	public Activity(String name, int allocatedWorkHours) {
+	public Activity(String name, double allocatedWorkHours) {
 		this(name, null, allocatedWorkHours);
 	}
 

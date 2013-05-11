@@ -78,7 +78,7 @@ public class TestDefineActivities extends SampleData {
 	public void testAssignUsers() {
 		Activity activity = createTempAct();
 		User user = createTempUser();
-		//Tests adding users.
+		// Tests adding users.
 		assertTrue(activity.getUsers().isEmpty());
 		try {
 			activity.assignUser(user);
@@ -87,14 +87,14 @@ public class TestDefineActivities extends SampleData {
 		}
 		assertTrue(activity.containsUser(user));
 		assertFalse(activity.getUsers().isEmpty());
-		//Tests duplicate user error.
+		// Tests duplicate user error.
 		try {
 			activity.assignUser(user);
 			fail("An OperationNotAllowedException should have been thrown.");
 		} catch (OperationNotAllowedException e) {
 			assertEquals(1, activity.getUsers().size());
 		}
-		//Tests removing users.
+		// Tests removing users.
 		activity.removeUser(user);
 		assertFalse(activity.containsUser(user));
 	}
@@ -229,7 +229,7 @@ public class TestDefineActivities extends SampleData {
 			activity.setStartDate(newCal.getTime());
 			fail("Should throw OperationNotAllowedException");
 		} catch (OperationNotAllowedException e) {
-			assertEquals(activity.MSG_LATE_START_DATE, e.getMessage());
+			assertEquals(activity.MSG_LATE_START_DATE, e.getMessage()); 
 			assertTrue(activity.getStartDate() == null);
 		}
 		assertTrue(activity.hasEndDate());
@@ -237,14 +237,27 @@ public class TestDefineActivities extends SampleData {
 
 	}
 
-	@Test
+	@Test 
 	public void testSetAllocatedWorkHours() {
-		
+
 		Activity activity = new Activity("Activity");
-		
+
 		activity.setAllocatedWorkHours(10.0);
-		
+
 		assertEquals(10.0, activity.getAllocatedWorkHours(), 1e-15);
-		
+
+	}
+
+	@Test
+	public void testCreateActivitiesWithAllocatedWorkHours() {
+
+		double workhours = 10.0;
+		String name = "Aktivitet";
+
+		Activity activity = new Activity(name, workhours);
+
+		assertEquals(workhours, activity.getAllocatedWorkHours(), 1e-15);
+		assertEquals(name, activity.getName());
+
 	}
 }
