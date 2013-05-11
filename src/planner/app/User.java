@@ -61,7 +61,7 @@ public class User {
 			if(border != null && border.getFromDate().before(toDate))
 				return true;
 			else
-				return false;
+				return false; 
 		}
 	}
 
@@ -98,7 +98,7 @@ public class User {
 //		}
 	//
 //		void setStartWork(Calendar date) {
-//			startWork = date;
+//			startWork = date; 
 	//
 //		}
 	//

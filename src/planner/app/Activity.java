@@ -64,13 +64,13 @@ public class Activity {
 	}
 
 	public String getName() {
-		return name;
+		return name; 
 	}
 
 	public Date getStartDate() {
 		return startDate;
 	}
-
+ 
 	public List<User> getUsers() {
 		return users;
 	}
@@ -80,17 +80,15 @@ public class Activity {
 		return workHours;
 	}
 
-	//Untested
 	public boolean hasEndDate() {
 		return endDate != null;
-	}
+	} 
 
-	//Untested
 	public boolean hasStartDate() {
 		return startDate != null;
 	}
 
-	public void removeUser(User user) {
+	public void removeUser(User user) { 
 		users.remove(user);
 	}
 
@@ -104,7 +102,6 @@ public class Activity {
 		this.description = description;
 	}
 
-	//Untested
 	public void setEndDate(Date endDate) throws OperationNotAllowedException {
 		if(hasStartDate()) {
 			if(getStartDate().before(endDate))
@@ -112,7 +109,7 @@ public class Activity {
 			else
 				throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_EARLY_END_DATE);
 		} else 
-			this.endDate = endDate;
+			this.endDate = endDate; 
 	}
 
 	//Should this throw an exception?
@@ -123,7 +120,6 @@ public class Activity {
 			throw new OperationNotAllowedException(Operation.ACT_SET_NAME, MSG_NULL_NAME);
 	}
 
-	//Untested
 	public void setStartDate(Date startDate) throws OperationNotAllowedException {
 		if(hasEndDate()) {
 			if (getEndDate().after(startDate))

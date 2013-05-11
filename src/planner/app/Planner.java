@@ -52,7 +52,7 @@ public class Planner {
 	}
 
 	public void setProjects(List<Project> projects) {
-		this.projects = projects;
+		this.projects = projects; 
 	}
 
 	public void setUsers(List<User> user) {

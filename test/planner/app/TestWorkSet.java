@@ -21,10 +21,10 @@ public class TestWorkSet extends SampleData {
 			fail("An OperationNotAllowedException should not have been thrown.");
 		}
 		assertTrue(user.getWorkSet().contains(work));
-		//Testing double registering
+		//Testing double registering 
 		try {
 			user.registerWork(work);
-			fail("An OperationNotAllowedException should have been thrown.");
+			fail("An OperationNotAllowedException should have been thrown."); 
 		} catch (OperationNotAllowedException e) {
 			assertEquals(e.getOperation(), Operation.USER_REGISTER_WORK);
 			assertEquals(e.getMessage(), User.MSG_WORK_OVERLAP);
