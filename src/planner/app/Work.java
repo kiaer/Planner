@@ -32,7 +32,7 @@ public class Work {
 						fromDate = new Date();
 						fromDate.setTime(fromDate.getTime() - DAY_TO_MILISECONDS);
 					} else
-						fromDate = Planner.getDate().getTime();
+						fromDate = Planner.getDate();
 					break;
 				case WORK_SET_NULL_TO_DATE:
 				case WORK_DATE_MISMATCH:

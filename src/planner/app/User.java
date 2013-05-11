@@ -5,18 +5,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TreeSet;
 
 public class User {
 
 	public static final String
 			DEFAULT_USERNAME = "Unnamed",
+			MSG_WORK_OVERLAP = "Work is already registered in the desired interval.",
 			MSG_NULL_USERNAME = "Username must not be null.";
 
 	private String username, password, email;
 	private List<Activity> activities = new ArrayList<Activity>();
-	private List<Work> workList = new ArrayList<Work>();
-	private Calendar startWork;
-	private Calendar endWork;
+	private TreeSet<Work> workSet = new TreeSet<Work>();
+//	private Calendar startWork;
+//	private Calendar endWork;
 
 	public User(String username, String password, String email) {
 		try {
@@ -31,10 +33,6 @@ public class User {
 
 	public void assignActivity(Activity activity) {
 		activities.add(activity);
-	}
-
-	public boolean contains(String userName) {
-		return username.contains(userName);
 	}
 
 	public List<Activity> getActivities() {
@@ -53,16 +51,32 @@ public class User {
 		return username;
 	}
 
-	public List<Work> getWorkList() {
-		return workList;
+	public TreeSet<Work> getWorkSet() {
+		return workSet;
 	}
 
-	public void registerWork(Date fromDate, Date toDate, Activity activity) {
-		workList.add(new Work(fromDate, toDate, activity));
+	public boolean isWorking(Date fromDate, Date toDate) {
+		Work work = new Work(fromDate, toDate, ConstantActivities.NONE.getActivity()), border = workSet.floor(work);
+		if(border != null && border.getToDate().after(fromDate))
+			return true;
+		else {
+			border = workSet.ceiling(work);
+			if(border != null && border.getFromDate().before(toDate))
+				return true;
+			else
+				return false;
+		}
+	}
+
+	public void registerWork(Date fromDate, Date toDate, Activity activity) throws OperationNotAllowedException {
+		if(isWorking(fromDate, toDate))
+			throw new OperationNotAllowedException(Operation.USER_REGISTER_WORK, MSG_WORK_OVERLAP);
+		else
+			workSet.add(new Work(fromDate, toDate, activity));
 	}
 
 	public void removeWork(Work work) {
-		workList.remove(work);
+		workSet.remove(work);
 	}
 
 	public void setActivities(ArrayList<Activity> activities) {
