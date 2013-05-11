@@ -15,6 +15,7 @@ public class Planner {
 	private List<User> users = new ArrayList<User>();
 	private DateServer dateServer = new DateServer();
 	
+	
 	public boolean adminLoggedIn() {
 		return adminLoggedIn;
 	}
