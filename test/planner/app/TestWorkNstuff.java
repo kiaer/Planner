@@ -111,5 +111,26 @@ public class TestWorkNstuff {
 		}
 		
 	}
+	@Test
+	public void testWorkEqual() {
+		Planner planner = new Planner();
+		User user = new User("Sten", "123", "j@j.dk");
+		Date toDate1 = new Date();
+		Date fromDat1 = new Date();
+		Date toDate2 = new Date();
+		Date fromDat2 = new Date();
+		Activity act= new Activity("test", "testDis");
+		Work work1 = new Work(fromDat1, toDate1, act);
+		Work work2 = new Work(fromDat2, toDate2, act);
+		toDate1.setTime(10);
+		toDate2.setTime(10);
+		fromDat1.setTime(1);
+		fromDat2.setTime(1);
+		System.out.println("2");
+		work1.equals(work2);
+		
+		
+	}
+
 	
 }

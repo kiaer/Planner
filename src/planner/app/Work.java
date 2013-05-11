@@ -4,12 +4,10 @@ import java.util.Date;
 
 public class Work implements Comparable<Work> {
 
-	public static final long
-			HOURS_TO_MILISECONDS = 1000 * 60 * 60,
+	public static final long HOURS_TO_MILISECONDS = 1000 * 60 * 60,
 			DAY_TO_MILISECONDS = 1000 * 60 * 60 * 24;
 
-	public static final String
-			MSG_NULL_ACT = "Activity can't be null.",
+	public static final String MSG_NULL_ACT = "Activity can't be null.",
 			MSG_NULL_DATE = "Date can't be null.",
 			MSG_DATE_MISMATCH = "To date must be after from date.";
 
@@ -17,21 +15,22 @@ public class Work implements Comparable<Work> {
 	private Activity activity;
 
 	public Work(Date fromDate, Date toDate, Activity activity) {
-		if(fromDate != null)
+		if (fromDate != null)
 			this.fromDate = fromDate;
 		else {
-			if(toDate != null) {
+			if (toDate != null) {
 				fromDate = new Date();
 				fromDate.setTime(fromDate.getTime() - DAY_TO_MILISECONDS);
 			} else
 				fromDate = Planner.getDate();
-		} if(toDate != null && toDate.after(fromDate))
+		}
+		if (toDate != null && toDate.after(fromDate))
 			this.toDate = toDate;
 		else {
 			toDate = new Date();
 			toDate.setTime(fromDate.getTime() + DAY_TO_MILISECONDS);
 		}
-		if(activity != null)
+		if (activity != null)
 			this.activity = activity;
 		else
 			activity = ConstantActivities.NONE.getActivity();
@@ -40,9 +39,9 @@ public class Work implements Comparable<Work> {
 	@Override
 	public int compareTo(Work work) {
 		int compare = fromDate.compareTo(work.getFromDate());
-		if(compare == 0) {
+		if (compare == 0) {
 			compare = toDate.compareTo(work.getToDate());
-			if(compare == 0) {
+			if (compare == 0) {
 				return activity.compareTo(work.getActivity());
 			} else
 				return compare;
@@ -52,39 +51,46 @@ public class Work implements Comparable<Work> {
 
 	@Override
 	public boolean equals(Object o) {
-		if(o.getClass() == Work.class) {
+		if (o.getClass() == Work.class) {
 			Work work = (Work) o;
-			return fromDate.equals(work.getFromDate()) && toDate.equals(work.getToDate()) && activity.equals(work.getActivity());
+			return fromDate.equals(work.getFromDate())
+					&& toDate.equals(work.getToDate())
+					&& activity.equals(work.getActivity());
 		} else
 			return false;
 	}
 
-	public void setActivity(Activity activity) throws OperationNotAllowedException {
-		if(activity != null)
+	public void setActivity(Activity activity)
+			throws OperationNotAllowedException {
+		if (activity != null)
 			this.activity = activity;
 		else
-			throw new OperationNotAllowedException(Operation.WORK_SET_ACT, MSG_NULL_ACT);
+			throw new OperationNotAllowedException(Operation.WORK_SET_ACT,
+					MSG_NULL_ACT);
 	}
 
 	public void setFromDate(Date fromDate) throws OperationNotAllowedException {
-		if(fromDate != null)
+		if (fromDate != null)
 			this.fromDate = fromDate;
 		else
-			throw new OperationNotAllowedException(Operation.WORK_SET_NULL_FROM_DATE, MSG_NULL_DATE);
+			throw new OperationNotAllowedException(
+					Operation.WORK_SET_NULL_FROM_DATE, MSG_NULL_DATE);
 	}
 
 	public void setToDate(Date toDate) throws OperationNotAllowedException {
-		if(toDate != null)
-			if(fromDate != null && fromDate.after(toDate))
-				throw new OperationNotAllowedException(Operation.WORK_DATE_MISMATCH, MSG_DATE_MISMATCH);
+		if (toDate != null)
+			if (fromDate != null && fromDate.after(toDate))
+				throw new OperationNotAllowedException(
+						Operation.WORK_DATE_MISMATCH, MSG_DATE_MISMATCH);
 			else
 				this.toDate = toDate;
 		else
-			throw new OperationNotAllowedException(Operation.WORK_SET_NULL_TO_DATE, MSG_NULL_DATE);
+			throw new OperationNotAllowedException(
+					Operation.WORK_SET_NULL_TO_DATE, MSG_NULL_DATE);
 	}
 
 	public Activity getActivity() {
-		return activity; 
+		return activity;
 	}
 
 	public Date getFromDate() {
@@ -96,7 +102,8 @@ public class Work implements Comparable<Work> {
 	}
 
 	public double getHours() {
-		return (double) (toDate.getTime() - fromDate.getTime()) / HOURS_TO_MILISECONDS;
+		return (double) (toDate.getTime() - fromDate.getTime())
+				/ HOURS_TO_MILISECONDS;
 	}
 
 }
