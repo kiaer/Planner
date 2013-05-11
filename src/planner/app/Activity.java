@@ -96,12 +96,12 @@ public class Activity implements Comparable<Activity> {
 		return startDate != null;
 	}
 
-//	public void registerWorkHours(double hours) throws OperationNotAllowedException {
-//		if(hours > 0)
-//			workHours += hours;
-//		else
-//			throw new OperationNotAllowedException(Operation.ACT_REG_HOURS, MSG_NON_POS_HOURS);
-//	}
+	public void registerWorkHours(double hours) throws OperationNotAllowedException {
+		if(hours > 0)
+			workHours += hours;
+		else
+			throw new OperationNotAllowedException(Operation.ACT_REG_HOURS, MSG_NON_POS_HOURS);
+	}
  
 	public void removeUser(User user) { 
 		users.remove(user);
@@ -125,7 +125,7 @@ public class Activity implements Comparable<Activity> {
 			else
 				throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_EARLY_END_DATE);
 		} else 
-			this.endDate = endDate; 
+			this.endDate = endDate;
 	}
 
 	//Should this throw an exception?
@@ -146,10 +146,9 @@ public class Activity implements Comparable<Activity> {
 			this.startDate = startDate; 
 	}
 
-	//Untested
 	public void setWorkHours(double workHours) throws OperationNotAllowedException {
 		if(workHours > 0)
-			this.workHours += workHours;
+			this.workHours = workHours;
 		else
 			throw new OperationNotAllowedException(Operation.ACT_SET_WORK_HOURS, MSG_NEG_WORK_HOURS);
 	}
