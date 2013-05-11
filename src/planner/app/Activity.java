@@ -11,7 +11,8 @@ public class Activity {
 			DEFAULT_NAME = "Unnamed",
 			MSG_EARLY_END_DATE = "End date must be after start date.",
 			MSG_LATE_START_DATE = "Start date must be before end date.",
-			MSG_NEG_WORK_HOURS = "Work hours must be positive.",
+			MSG_NEG_WORK_HOURS = "Work hours must be non-negative.",
+			MSG_NON_POS_HOURS = "Registered work hours must be positive.",
 			MSG_NULL_NAME = "Name must not be null",
 			MSG_USER_DUPLICATE = "The list already contains this user.";
 
@@ -77,7 +78,6 @@ public class Activity {
 		return users;
 	}
 
-	//Untested
 	public double getWorkHours() {
 		return workHours;
 	}
@@ -90,11 +90,17 @@ public class Activity {
 		return startDate != null;
 	}
 
+	public void registerWorkHours(double hours) throws OperationNotAllowedException {
+		if(hours > 0)
+			workHours += hours;
+		else
+			throw new OperationNotAllowedException(Operation.ACT_REG_HOURS, MSG_NON_POS_HOURS);
+	}
+
 	public void removeUser(User user) { 
 		users.remove(user);
 	}
 
-	//Should this throw an exception?
 	public void setAllocatedWorkHours(double allocatedWorkHours) {
 		if(allocatedWorkHours >= 0)
 			this.allocatedWorkHours = allocatedWorkHours;
