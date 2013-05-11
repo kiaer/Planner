@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Work implements Comparable<Work> {
 
-	private static final long
+	public static final long
 			HOURS_TO_MILISECONDS = 1000 * 60 * 60,
 			DAY_TO_MILISECONDS = 1000 * 60 * 60 * 24;
 
