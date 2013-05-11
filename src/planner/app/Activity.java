@@ -11,6 +11,7 @@ public class Activity {
 			DEFAULT_NAME = "Unnamed",
 			MSG_EARLY_END_DATE = "End date must be after start date.",
 			MSG_LATE_START_DATE = "Start date must be before end date.",
+			MSG_NEG_ALL_HOURS = "Allocated work hours must be non-negative.",
 			MSG_NEG_WORK_HOURS = "Work hours must be non-negative.",
 			MSG_NON_POS_HOURS = "Registered work hours must be positive.",
 			MSG_NULL_NAME = "Name must not be null",
@@ -101,9 +102,11 @@ public class Activity {
 		users.remove(user);
 	}
 
-	public void setAllocatedWorkHours(double allocatedWorkHours) {
+	public void setAllocatedWorkHours(double allocatedWorkHours) throws OperationNotAllowedException {
 		if(allocatedWorkHours >= 0)
 			this.allocatedWorkHours = allocatedWorkHours;
+		else
+			throw new OperationNotAllowedException(Operation.ACT_SET_ALL_HOURS, MSG_NEG_ALL_HOURS);
 	}
 
 	public void setDescription(String description) {

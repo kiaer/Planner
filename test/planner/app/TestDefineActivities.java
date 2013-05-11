@@ -145,7 +145,7 @@ public class TestDefineActivities extends SampleData {
 			activity.setEndDate(newCal.getTime());
 			fail("Should throw OperationNotAllowedException");
 		} catch (OperationNotAllowedException e) {
-			assertEquals(activity.MSG_EARLY_END_DATE, e.getMessage());
+			assertEquals(Activity.MSG_EARLY_END_DATE, e.getMessage());
 			assertTrue(activity.getEndDate() == null);
 		}
 		assertTrue(activity.hasStartDate());
@@ -229,7 +229,7 @@ public class TestDefineActivities extends SampleData {
 			activity.setStartDate(newCal.getTime());
 			fail("Should throw OperationNotAllowedException");
 		} catch (OperationNotAllowedException e) {
-			assertEquals(activity.MSG_LATE_START_DATE, e.getMessage()); 
+			assertEquals(Activity.MSG_LATE_START_DATE, e.getMessage()); 
 			assertTrue(activity.getStartDate() == null);
 		}
 		assertTrue(activity.hasEndDate());
@@ -239,13 +239,21 @@ public class TestDefineActivities extends SampleData {
 
 	@Test 
 	public void testSetAllocatedWorkHours() {
-
-		Activity activity = new Activity("Activity");
-
-		activity.setAllocatedWorkHours(10.0);
-
-		assertEquals(10.0, activity.getAllocatedWorkHours(), 1e-15);
-
+		Activity activity = createTempAct();
+		try {
+			activity.setAllocatedWorkHours(10.0);
+			assertEquals(10.0, activity.getAllocatedWorkHours(), 1e-15);
+		} catch (OperationNotAllowedException e) {
+			fail("An OperationNotAllowedException should not have been thrown.");
+		}
+		try {
+			activity.setAllocatedWorkHours(-10.0);
+			fail("An OperationNotAllowedException should have been thrown.");
+		} catch (OperationNotAllowedException e) {
+			assertEquals(Operation.ACT_SET_ALL_HOURS, e.getOperation());
+			assertEquals(Activity.MSG_NEG_ALL_HOURS, e.getMessage());
+			assertEquals(10.0, activity.getAllocatedWorkHours(), 1e-15);
+		}
 	}
 
 	@Test
