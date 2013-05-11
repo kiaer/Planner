@@ -15,10 +15,10 @@ public class SampleData {
 	@Before
 	public void setUp() throws Exception {
 		
-		planner.adminLogIn("admin");
+		planner.adminLogIn("admin"); 
 		
 		List<Project> projects = new ArrayList<Project>();
-		User user = new User("Karl", "1234", "fk@mail.dk");
+		User user = new User("Karl", "1234", "fk@mail.dk"); 
 		planner.register(user);
 		
 		projects.add(new Project("Planner", user));

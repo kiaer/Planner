@@ -11,7 +11,7 @@ public enum ConstantActivities {
 	}
 
 	public Activity getActivity() {
-		return activity;
+		return activity; 
 	}
 
 }

@@ -9,12 +9,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sun.source.tree.AssertTree;
 
 public class TestModifyActivity {
 
 	@Test
-	public void testChangeDescription() {
+	public void testChangeDescription() { 
 
 		String descript1 = "Description";
 		String descript2 = "Description2";

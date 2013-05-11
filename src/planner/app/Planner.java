@@ -39,10 +39,10 @@ public class Planner {
 	public List<User> getAvailableUsers(Date fromDate, Date toDate) {
 		List<User> availableUsers = new ArrayList<User>();
 		for(User user : users) {
-			if(user.isWorking(fromDate, toDate))
+			if(!user.isWorking(fromDate, toDate))
 				availableUsers.add(user);
 		}
-		return availableUsers;
+		return availableUsers; 
 	}
 
 	public List<Project> getProjects() {
@@ -60,13 +60,13 @@ public class Planner {
 			throw new OperationNotAllowedException(Operation.PLANNER_REGISTER_USER, MSG_REGISTER_USER_AUTH);
 	}
 
-	public void setProjects(List<Project> projects) {
-		this.projects = projects; 
-	}
-
-	public void setUsers(List<User> user) {
-		this.users = user;
-	}
+//	public void setProjects(List<Project> projects) {
+//		this.projects = projects; 
+//	}
+//
+//	public void setUsers(List<User> user) {
+//		this.users = user;
+//	}
 
 //	public static void setDateServer(DateServer dateServer) {
 //		this.dateServer = dateServer;
