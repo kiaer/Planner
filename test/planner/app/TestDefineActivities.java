@@ -74,12 +74,25 @@ public class TestDefineActivities extends SampleData {
 
 	@Test
 	public void testAssignUsers() {
-		Activity activity = new Activity("Activity");
+		Activity activity = createTempAct();
+		User user = createTempUser();
+		//Tests adding users.
 		assertTrue(activity.getUsers().isEmpty());
-		User user = new User("Adam", "1234", "adam@mail.dk");
-		activity.assignUser(user);
+		try {
+			activity.assignUser(user);
+		} catch (OperationNotAllowedException e) {
+			fail("An OperationNotAllowedException should not have been thrown.");
+		}
 		assertTrue(activity.containsUser(user));
 		assertFalse(activity.getUsers().isEmpty());
+		//Tests duplicate user error.
+		try {
+			activity.assignUser(user);
+			fail("An OperationNotAllowedException should have been thrown.");
+		} catch (OperationNotAllowedException e) {
+			assertEquals(1, activity.getUsers().size());
+		}
+		//Tests removing users.
 		activity.removeUser(user);
 		assertFalse(activity.containsUser(user));
 	}

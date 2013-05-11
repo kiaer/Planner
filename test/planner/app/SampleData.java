@@ -31,6 +31,10 @@ public class SampleData {
 
 	}
 
+	public Activity createTempAct() {
+		return new Activity("Activity");
+	}
+
 	public User createTempUser() {
 		return new User("Adam", "1234", "mail@Mail.dk");
 	}
