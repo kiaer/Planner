@@ -24,15 +24,12 @@ public class TestWorkNstuff {
 		try {
 			work3.setActivity(act);
 		} catch (OperationNotAllowedException e) {
-			e.printStackTrace();
 			assertEquals(Work.MSG_NULL_ACT, e.getMessage());
 			assertEquals(Operation.WORK_SET_ACT, e.getOperation());
 		}
-		
 		try {
-				work2.setActivity(null);
+			work2.setActivity(null);
 		} catch (OperationNotAllowedException e) {
-			e.printStackTrace();
 			assertEquals(Work.MSG_NULL_ACT, e.getMessage());
 			assertEquals(Operation.WORK_SET_ACT, e.getOperation());
 		}

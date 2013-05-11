@@ -36,6 +36,15 @@ public class Planner {
 			throw new OperationNotAllowedException(Operation.PLANNER_CREATE_PROJECT, MSG_CREATE_PROJECT_AUTH);
 	}
 
+	public List<User> getAvailableUsers(Date fromDate, Date toDate) {
+		List<User> availableUsers = new ArrayList<User>();
+		for(User user : users) {
+			if(user.isWorking(fromDate, toDate))
+				availableUsers.add(user);
+		}
+		return availableUsers;
+	}
+
 	public List<Project> getProjects() {
 		return projects;
 	}

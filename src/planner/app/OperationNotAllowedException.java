@@ -1,5 +1,6 @@
 package planner.app;
 
+@SuppressWarnings("serial")
 public class OperationNotAllowedException extends Exception {
 
 	private Operation operation;
