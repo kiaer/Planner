@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Activity {
+public class Activity implements Comparable<Activity> {
 
 	public static final double DEFAULT_ALL_WORK_HOURS = 0;
 	public static final String
@@ -147,6 +147,11 @@ public class Activity {
 			this.workHours += workHours;
 		else
 			throw new OperationNotAllowedException(Operation.ACT_SET_WORK_HOURS, MSG_NEG_WORK_HOURS);
+	}
+
+	@Override
+	public int compareTo(Activity activity) {
+		return name.compareTo(activity.getName());
 	}
 
 }

@@ -39,31 +39,24 @@ public class TestAvailableDevelopers extends SampleData {
 
 	@Test
 	public void testRegisterWorkSameDate() throws OperationNotAllowedException {
-
 		GregorianCalendar cal = new GregorianCalendar();
 		Date toDate = new Date();
 		toDate.setTime(cal.getTime().getTime() + 100);
-
 		Activity activity = createTempAct();
-		Activity activity2 = new Activity("Aktivitet");
+		Activity activity2 = new Activity("Testes");
 		User user = createTempUser();
-
 		Work work1 = new Work(cal.getTime(), toDate, activity);
 		Work work2 = new Work(cal.getTime(), toDate, activity2);
-
 		user.registerWork(work1);
-
 		assertTrue(user.getWorkSet().contains(work1));
-
 		try {
 			user.registerWork(work2);
 			fail("OperationNotAllowedException should've been thrown");
-
 		} catch (OperationNotAllowedException e) {
-			assertEquals(user.MSG_WORK_OVERLAP, e.getMessage());
-			System.out.println(user.getWorkSet().contains(work2));
+			assertEquals(User.MSG_WORK_OVERLAP, e.getMessage());
+			System.out.println(user.getWorkSet().size());
+			assertTrue(user.getWorkSet().contains(work1));
 			assertFalse(user.getWorkSet().contains(work2));
-
 		}
 
 	}

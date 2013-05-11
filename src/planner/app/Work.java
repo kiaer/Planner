@@ -78,9 +78,25 @@ public class Work implements Comparable<Work> {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if(o.getClass() == Work.class) {
+			Work work = (Work) o;
+			return fromDate.equals(work.getFromDate()) && toDate.equals(work.getToDate()) && activity.equals(work.getActivity());
+		} else
+			return false;
+	}
+
+	@Override
 	public int compareTo(Work work) {
-		// TODO Auto-generated method stub
-		return fromDate.compareTo(work.getFromDate());
+		int compare = fromDate.compareTo(work.getFromDate());
+		if(compare == 0) {
+			compare = toDate.compareTo(work.getToDate());
+			if(compare == 0) {
+				return activity.compareTo(work.getActivity());
+			} else
+				return compare;
+		} else
+			return compare;
 	}
 
 }
