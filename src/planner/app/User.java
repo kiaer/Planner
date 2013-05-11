@@ -19,11 +19,10 @@ public class User {
 //	private Calendar endWork;
 
 	public User(String username, String password, String email) {
-		try {
-			setUsername(username);
-		} catch (OperationNotAllowedException e) {
+		if(username!=null)
+			this.username = username;
+		else
 			this.username = DEFAULT_USERNAME;
-		}
 		this.password = password;
 		this.email = email;
 	}

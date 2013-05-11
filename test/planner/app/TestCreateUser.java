@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-
 import java.util.List;
 
 import org.junit.Test;
@@ -53,7 +52,7 @@ public class TestCreateUser {
 	 */
 	@Test
 	public void testRegisterUserIfNotLoggedIn() throws Exception {
-		Planner planner = new Planner();
+		Planner planner = new Planner();	
 
 		// Step 1)
 		assertFalse(planner.adminLoggedIn());
@@ -69,6 +68,33 @@ public class TestCreateUser {
 			assertEquals(Planner.MSG_REGISTER_USER_AUTH, e.getMessage());
 			assertEquals(Operation.PLANNER_REGISTER_USER, e.getOperation());
 		}
+	}
+
+	@Test
+	public void testNullUsername() {
+		Planner planner = new Planner();
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+		User user = new User("Karl", "1234", "fk@mail.dk");
+
+		try {
+			user.setUsername(null);
+			fail("An OperationNotAllowedException should have been thrown");
+		} catch (OperationNotAllowedException e) {
+			// Step 3
+			assertEquals(User.MSG_NULL_USERNAME, e.getMessage());
+			assertEquals(Operation.USER_NULL_USERNAME, e.getOperation());
+		}
+	}
+
+	@Test
+	public void testDefaultUsername() throws OperationNotAllowedException {
+		Planner planner = new Planner();
+		planner.adminLogIn("admin");
+		User user = new User(null, "1234", "fk@mail.dk");
+		assertTrue(planner.adminLoggedIn());
+		assertEquals(User.DEFAULT_USERNAME, user.getUsername());
+
 	}
 
 	@Test
@@ -89,8 +115,7 @@ public class TestCreateUser {
 		assertEquals("sten", activity2.getName());
 		assertEquals("venstre ben", activity2.getDescription());
 		double d = 10;
-		
-		
+
 	}
 
 }
