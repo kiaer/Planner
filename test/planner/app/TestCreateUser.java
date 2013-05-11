@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class TestCreateUser {
+public class TestCreateUser extends SampleData {
 
 	@Test
 	public void testRegisterUser() throws Exception {
@@ -28,7 +28,6 @@ public class TestCreateUser {
 
 		planner.register(user);
 		users = planner.getUsers();
-		
 
 		// Step 4)
 		assertEquals(1, users.size());
@@ -53,14 +52,13 @@ public class TestCreateUser {
 	 */
 	@Test
 	public void testRegisterUserIfNotLoggedIn() throws Exception {
-		Planner planner = new Planner();	
+		Planner planner = new Planner();
 
 		// Step 1)
 		assertFalse(planner.adminLoggedIn());
 
 		// Step 2)
 		User user = new User("Karl", "1234", "fk@mail.dk");
-		
 
 		try {
 			planner.register(user);
@@ -120,4 +118,37 @@ public class TestCreateUser {
 
 	}
 
+	@Test
+	public void testChangeUsername() throws OperationNotAllowedException {
+
+		String name = "Carsten";
+		String name2 = "Christian";
+
+		assertTrue(planner.adminLoggedIn());
+
+		User user = new User(name, "1234", "carsten@plannerteam.dk");
+		assertEquals(name, user.getUsername());
+		user.setUsername(name2);
+		assertEquals(name2, user.getUsername());
+
+	}
+
+	@Test
+	public void testChangeUsernameNull() throws OperationNotAllowedException {
+
+		String name = "Carsten";
+
+		assertTrue(planner.adminLoggedIn());
+
+		User user = new User(name, "1234", "carsten@plannerteam.dk");
+		assertEquals(name, user.getUsername());
+
+		try {
+			user.setUsername(null);
+			fail("OperationNotAllowedException should've been thrown");
+		} catch (OperationNotAllowedException e) {
+			assertEquals(user.MSG_NULL_USERNAME, e.getMessage());
+			assertTrue(user.getUsername() == name);
+		}
+	}
 }

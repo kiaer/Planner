@@ -16,6 +16,8 @@ import com.sun.accessibility.internal.resources.accessibility;
 
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 public class TestAvailableDevelopers extends SampleData {
 
 	@Test
@@ -54,11 +56,23 @@ public class TestAvailableDevelopers extends SampleData {
 			fail("OperationNotAllowedException should've been thrown");
 		} catch (OperationNotAllowedException e) {
 			assertEquals(User.MSG_WORK_OVERLAP, e.getMessage());
-			System.out.println(user.getWorkSet().size());
 			assertTrue(user.getWorkSet().contains(work1));
 			assertFalse(user.getWorkSet().contains(work2));
 		}
 
+	}
+	
+	@Test
+	public void testAddWorkFromDate() throws OperationNotAllowedException{
+		
+		GregorianCalendar cal = new GregorianCalendar();
+		Date toDate = new Date();
+		toDate.setTime(cal.getTime().getTime() + 100);
+		Activity activity = createTempAct();
+		User Carsten = new User("Carsten", "carsten", "carsten@plannerteam.dk");
+		Carsten.registerWork(cal.getTime(), toDate, activity);
+		assertEquals(1, Carsten.getWorkSet().size());
+		
 	}
 
 	@Test

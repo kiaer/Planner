@@ -83,9 +83,9 @@ public class User {
 		workSet.remove(work);
 	}
 
-	public void setActivities(ArrayList<Activity> activities) {
-		this.activities = activities;
-	}
+//	public void setActivities(ArrayList<Activity> activities) {
+//		this.activities = activities;
+//	}
 
 	public void setUsername(String username)
 			throws OperationNotAllowedException {

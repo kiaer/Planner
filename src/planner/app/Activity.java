@@ -19,7 +19,7 @@ public class Activity implements Comparable<Activity> {
 
 	private double allocatedWorkHours, workHours = 0;
 	private String name, description;
-	private Date startDate, endDate;
+	private Date startDate, endDate; 
 	private List<User> users = new ArrayList<User>();
 
 	public Activity(String name, String description, double allocatedWorkHours) {
@@ -91,12 +91,12 @@ public class Activity implements Comparable<Activity> {
 		return startDate != null;
 	}
 
-	public void registerWorkHours(double hours) throws OperationNotAllowedException {
-		if(hours > 0)
-			workHours += hours;
-		else
-			throw new OperationNotAllowedException(Operation.ACT_REG_HOURS, MSG_NON_POS_HOURS);
-	}
+//	public void registerWorkHours(double hours) throws OperationNotAllowedException {
+//		if(hours > 0)
+//			workHours += hours;
+//		else
+//			throw new OperationNotAllowedException(Operation.ACT_REG_HOURS, MSG_NON_POS_HOURS);
+//	}
 
 	public void removeUser(User user) { 
 		users.remove(user);
@@ -130,7 +130,7 @@ public class Activity implements Comparable<Activity> {
 		else
 			throw new OperationNotAllowedException(Operation.ACT_SET_NAME, MSG_NULL_NAME);
 	}
- 
+  
 	public void setStartDate(Date startDate) throws OperationNotAllowedException {
 		if(hasEndDate()) {
 			if (getEndDate().after(startDate))

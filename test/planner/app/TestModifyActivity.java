@@ -28,7 +28,7 @@ public class TestModifyActivity {
 		assertEquals(descript2, activity.getDescription());
 		assertFalse(descript1 == activity.getDescription());
 
-	}
+	} 
 
 	@Test
 	public void testChangeName() throws OperationNotAllowedException {
