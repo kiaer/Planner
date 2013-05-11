@@ -37,6 +37,28 @@ public class Work implements Comparable<Work> {
 			activity = ConstantActivities.NONE.getActivity();
 	}
 
+	@Override
+	public int compareTo(Work work) {
+		int compare = fromDate.compareTo(work.getFromDate());
+		if(compare == 0) {
+			compare = toDate.compareTo(work.getToDate());
+			if(compare == 0) {
+				return activity.compareTo(work.getActivity());
+			} else
+				return compare;
+		} else
+			return compare;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(o.getClass() == Work.class) {
+			Work work = (Work) o;
+			return fromDate.equals(work.getFromDate()) && toDate.equals(work.getToDate()) && activity.equals(work.getActivity());
+		} else
+			return false;
+	}
+
 	public void setActivity(Activity activity) throws OperationNotAllowedException {
 		if(activity != null)
 			this.activity = activity;
@@ -75,28 +97,6 @@ public class Work implements Comparable<Work> {
 
 	public double getHours() {
 		return (double) (toDate.getTime() - fromDate.getTime()) / HOURS_TO_MILISECONDS;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if(o.getClass() == Work.class) {
-			Work work = (Work) o;
-			return fromDate.equals(work.getFromDate()) && toDate.equals(work.getToDate()) && activity.equals(work.getActivity());
-		} else
-			return false;
-	}
-
-	@Override
-	public int compareTo(Work work) {
-		int compare = fromDate.compareTo(work.getFromDate());
-		if(compare == 0) {
-			compare = toDate.compareTo(work.getToDate());
-			if(compare == 0) {
-				return activity.compareTo(work.getActivity());
-			} else
-				return compare;
-		} else
-			return compare;
 	}
 
 }

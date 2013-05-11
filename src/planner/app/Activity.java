@@ -50,6 +50,11 @@ public class Activity implements Comparable<Activity> {
 			throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_USER_DUPLICATE);
 	}
 
+	@Override
+	public int compareTo(Activity activity) {
+		return name.compareTo(activity.getName());
+	}
+
 	public boolean containsUser(User user) {
 		return users.contains(user);
 	}
@@ -97,7 +102,7 @@ public class Activity implements Comparable<Activity> {
 //		else
 //			throw new OperationNotAllowedException(Operation.ACT_REG_HOURS, MSG_NON_POS_HOURS);
 //	}
-
+ 
 	public void removeUser(User user) { 
 		users.remove(user);
 	}
@@ -147,11 +152,6 @@ public class Activity implements Comparable<Activity> {
 			this.workHours += workHours;
 		else
 			throw new OperationNotAllowedException(Operation.ACT_SET_WORK_HOURS, MSG_NEG_WORK_HOURS);
-	}
-
-	@Override
-	public int compareTo(Activity activity) {
-		return name.compareTo(activity.getName());
 	}
 
 }
