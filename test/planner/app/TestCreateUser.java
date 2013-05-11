@@ -65,9 +65,9 @@ public class TestCreateUser {
 			fail("An OperationNotAllowedException should have been thrown");
 		} catch (OperationNotAllowedException e) {
 			// Step 3
-			assertEquals("Cannot register new user if not admin.", e
+			assertEquals(Planner.MSG_REGISTER_USER_AUTH, e
 					.getMessage());
-			assertEquals("Register user", e.getOperation());
+			assertEquals(Operation.PLANNER_REGISTER_USER, e.getOperation());
 		}
 	}
 	

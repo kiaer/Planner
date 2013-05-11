@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Planner {
 
+	public static final String
+			MSG_REGISTER_USER_AUTH = "Only admin can register users.",
+			MSG_CREATE_PROJECT_AUTH = "Only admin can create projects.";
+
 	private boolean adminLoggedIn = false;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<User> users = new ArrayList<User>();
@@ -27,8 +31,7 @@ public class Planner {
 		if (adminLoggedIn)
 			projects.add(project);
 		else
-			throw new OperationNotAllowedException("Create project",
-					"Admin not logged in.");
+			throw new OperationNotAllowedException(Operation.PLANNER_CREATE_PROJECT, MSG_CREATE_PROJECT_AUTH);
 	}
 
 	public List<Project> getProjects() {
@@ -43,8 +46,7 @@ public class Planner {
 		if (adminLoggedIn)
 			users.add(user);
 		else
-			throw new OperationNotAllowedException("Register user", 
-					"Cannot register new user if not admin.");
+			throw new OperationNotAllowedException(Operation.PLANNER_REGISTER_USER, MSG_REGISTER_USER_AUTH);
 	}
 
 	public void setProjects(List<Project> projects) {

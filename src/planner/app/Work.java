@@ -4,33 +4,43 @@ import java.util.Date;
 
 public class Work {
 
-	public static final String
-			OPERATION_SET_ACT = "Set activity",
-			OPERATION_SET_DATE = "Set date",
-			OPERATION_SET_HOURS = "Set hours",
-			MSG_NEG_HOURS = "Hours must be positive.",
-			MSG_NULL_ACT = "Activity can't be null.",
-			MSG_NULL_DATE = "Date can't be null.";
+	private static final double MILISECONDS_TO_HOURS = 1./(1000 * 60 * 60);
 
-	private Date date;
-	private double hours;
+	public static final String
+			MSG_NULL_ACT = "Activity can't be null.",
+			MSG_NULL_DATE = "Date can't be null.",
+			MSG_EARLY_TO_DATE = "To date must be after from date.",
+			MSG_LATE_FROM_DATE = "from date must be before to date.";
+
+	private Date fromDate, toDate;
 	private Activity activity;
 
-	public Work(Date date, double hours, Activity activity) {
+	public Work(Date fromDate, Date toDate, Activity activity) {
 		try {
-			setDate(date);
-			setHours(hours);
+			setFromDate(fromDate);
+			setToDate(toDate);
 			setActivity(activity);
 		} catch (OperationNotAllowedException e) {
 			e.printStackTrace();
-//			switch(e.getOperation()) {
-//				case(OPERATION_SET_ACT):
-//					activity = ConstantActivities.NONE.getActivity();
-//				case(OPERATION_SET_DATE):
-//					//Set date to todays date (need dateserver)
-//				case(OPERATION_SET_HOURS):
-//					this.hours = 0;
-//			}
+			switch(e.getOperation()) {
+				case WORK_SET_ACT:
+					activity = ConstantActivities.NONE.getActivity();
+					break;
+				case WORK_SET_NULL_FROM_DATE:
+					//Set date to todays date
+					break;
+				case WORK_SET_LATE_FROM_DATE:
+					//Set date to before to date
+					break;
+				case WORK_SET_NULL_TO_DATE:
+					//set date to tomorrow date
+					break;
+				case WORK_SET_EARLY_TO_DATE:
+					//Set date to after from date
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
@@ -38,46 +48,47 @@ public class Work {
 		if(activity != null)
 			this.activity = activity;
 		else
-			throw new OperationNotAllowedException(OPERATION_SET_ACT, MSG_NULL_ACT);
+			throw new OperationNotAllowedException(Operation.WORK_SET_ACT, MSG_NULL_ACT);
 	}
 
-	public void setDate(Date date) throws OperationNotAllowedException {
-		if(date != null)
-			this.date = date;
+	public void setFromDate(Date fromDate) throws OperationNotAllowedException {
+		if(fromDate != null)
+			if(toDate != null && toDate.before(fromDate))
+				throw new OperationNotAllowedException(Operation.WORK_SET_LATE_FROM_DATE, MSG_LATE_FROM_DATE);
+			else
+				this.fromDate = fromDate;
 		else
-			throw new OperationNotAllowedException(OPERATION_SET_DATE, MSG_NULL_DATE);
+			throw new OperationNotAllowedException(Operation.WORK_SET_NULL_FROM_DATE, MSG_NULL_DATE);
 	}
 
-	public void setHours(double hours) throws OperationNotAllowedException {
-		if(hours >= 0)
-			this.hours = hours;
+	public void setToDate(Date toDate) throws OperationNotAllowedException {
+		if(toDate != null)
+			if(fromDate != null && fromDate.after(toDate))
+				throw new OperationNotAllowedException(Operation.WORK_SET_EARLY_TO_DATE, MSG_EARLY_TO_DATE);
+			else
+				this.toDate = toDate;
 		else
-			throw new OperationNotAllowedException(OPERATION_SET_HOURS, MSG_NEG_HOURS);
+			throw new OperationNotAllowedException(Operation.WORK_SET_NULL_TO_DATE, MSG_NULL_DATE);
 	}
 
 	public Activity getActivity() {
 		return activity;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	public Date getToDate() {
+		return toDate;
 	}
 
 	public double getHours() {
-		return hours;
+		return (toDate.getTime() - fromDate.getTime()) * MILISECONDS_TO_HOURS;
 	}
 
 	public int compareTo(Work work) {
-		int compare = date.compareTo(work.getDate());
-		if(compare == 0) {
-			if(hours > work.getHours())
-				return 1;
-			else if(hours < work.getHours())
-				return -1;
-			else
-				return 0;
-		} else
-			return compare;
+		return fromDate.compareTo(work.getFromDate());
 	}
 
 }
