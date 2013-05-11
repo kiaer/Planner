@@ -5,25 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import org.junit.Test;
 
-public class TestWorkSet {
-
-	private static GregorianCalendar calendar = new GregorianCalendar();
-
-	public User createTempUser() {
-		return new User("Adam", "1234", "mail@Mail.dk");
-	}
-
-	public Work createTempWork() {
-		Date fromDate = calendar.getTime();
-		Date toDate = new Date();
-		toDate.setTime(calendar.getTime().getTime() + 1);
-		return new Work(fromDate, toDate, ConstantActivities.NONE.getActivity());
-	}
+public class TestWorkSet extends SampleData {
 
 	@Test
 	public void testRegisterWork() {

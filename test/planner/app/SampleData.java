@@ -1,12 +1,15 @@
 package planner.app;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Before;
 
 public class SampleData {
 
+	GregorianCalendar calendar = new GregorianCalendar();
 	Planner planner = new Planner();
 
 	@Before
@@ -26,6 +29,17 @@ public class SampleData {
 
 		// planner.setProjects(projects);
 
+	}
+
+	public User createTempUser() {
+		return new User("Adam", "1234", "mail@Mail.dk");
+	}
+
+	public Work createTempWork() {
+		Date fromDate = calendar.getTime();
+		Date toDate = new Date();
+		toDate.setTime(calendar.getTime().getTime() + 1);
+		return new Work(fromDate, toDate, ConstantActivities.NONE.getActivity());
 	}
 
 }
