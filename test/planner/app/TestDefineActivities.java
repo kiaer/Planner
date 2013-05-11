@@ -260,4 +260,15 @@ public class TestDefineActivities extends SampleData {
 		assertEquals(name, activity.getName());
 
 	}
+	@Test
+	public void testActivitiesNullName() {
+
+		String name = null;
+
+		Activity activity = new Activity(name);
+
+		assertEquals(activity.getName(),"Unnamed");
+
+	}
+	
 }

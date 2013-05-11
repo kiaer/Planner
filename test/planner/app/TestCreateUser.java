@@ -100,7 +100,7 @@ public class TestCreateUser {
 	}
 
 	@Test
-	public void testAssignProject() throws Exception {
+	public void testAssignActivity() throws Exception {
 		Planner planner = new Planner();
 		planner.adminLogIn("admin");
 		assertTrue(planner.adminLoggedIn());
