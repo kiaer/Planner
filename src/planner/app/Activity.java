@@ -8,6 +8,8 @@ public class Activity {
 
 	public static final double DEFAULT_ALL_WORK_HOURS = 0;
 	public static final String
+			DEFAULT_NAME = "Unnamed",
+			MSG_NULL_NAME = "Name must not be null",
 			MSG_EARLY_END_DATE = "End date must be after start date.",
 			MSG_LATE_START_DATE = "Start date must be before end date.",
 			MSG_NEG_WORK_HOURS = "Work hours must be positive.";
@@ -18,8 +20,13 @@ public class Activity {
 	private List<User> users = new ArrayList<User>();
 
 	public Activity(String name, String description, double allocatedWorkHours) {
+		try {
+			setName(name);
+		} catch (OperationNotAllowedException e) {
+			e.printStackTrace();
+			this.name = DEFAULT_NAME;
+		}
 		setDescription(description);
-		setName(name);
 		setAllocatedWorkHours(allocatedWorkHours);
 	}
 
@@ -110,9 +117,11 @@ public class Activity {
 	}
 
 	//Should this throw an exception?
-	public void setName(String name) {
+	public void setName(String name) throws OperationNotAllowedException {
 		if(name != null)
 			this.name = name;
+		else
+			throw new OperationNotAllowedException(Operation.ACT_SET_NAME, MSG_NULL_NAME);
 	}
 
 	//Untested
