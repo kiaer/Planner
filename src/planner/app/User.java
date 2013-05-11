@@ -61,7 +61,7 @@ public class User {
 			border = workSet.ceiling(work);
 			if (border != null && border.getFromDate().before(toDate))
 				return true;
-			else
+			else 
 				return false;
 		}
 	}

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 
 public class testActivity {
-
+ 
 	  
 		@Test
 		public void testAssignActivity() throws Exception {

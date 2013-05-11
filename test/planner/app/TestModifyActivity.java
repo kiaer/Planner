@@ -9,11 +9,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-
 public class TestModifyActivity {
 
 	@Test
-	public void testChangeDescription() { 
+	public void testChangeDescription() {
 
 		String descript1 = "Description";
 		String descript2 = "Description2";
@@ -28,7 +27,7 @@ public class TestModifyActivity {
 		assertEquals(descript2, activity.getDescription());
 		assertFalse(descript1 == activity.getDescription());
 
-	} 
+	}
 
 	@Test
 	public void testChangeName() throws OperationNotAllowedException {
@@ -68,50 +67,97 @@ public class TestModifyActivity {
 
 	@Test
 	public void testSetActualWorkHours() throws OperationNotAllowedException {
-		
+
 		String name = "Red Kevin";
 		String description = "Kevin skal reddes";
 		double AllocatedWorkHours = 10.0;
-		
+
 		Activity activity = new Activity(name, description, AllocatedWorkHours);
-		
+
 		assertEquals(name, activity.getName());
 		assertEquals(description, activity.getDescription());
-		assertEquals(AllocatedWorkHours, activity.getAllocatedWorkHours(), 1e-15);
-		
+		assertEquals(AllocatedWorkHours, activity.getAllocatedWorkHours(),
+				1e-15);
+
 		double actualWorkHours = 100.0;
-		
+
 		activity.setWorkHours(actualWorkHours);
-		
+
 		assertEquals(actualWorkHours, activity.getWorkHours(), 1e-15);
-		
-		
+
 	}
-	
+
 	@Test
 	public void testSetActualWorkHoursNeg() throws OperationNotAllowedException {
-		
+
 		String name = "Red Kevin";
 		String description = "Kevin skal reddes";
 		double allocatedWorkHours = 10.0;
-		
+
 		Activity activity = new Activity(name, description, allocatedWorkHours);
-		
+
 		assertEquals(name, activity.getName());
 		assertEquals(description, activity.getDescription());
-		assertEquals(allocatedWorkHours, activity.getAllocatedWorkHours(), 1e-15);
-		
+		assertEquals(allocatedWorkHours, activity.getAllocatedWorkHours(),
+				1e-15);
+
 		double actualWorkHours = -10.0;
-		
-		try{
+
+		try {
 			activity.setWorkHours(actualWorkHours);
 			fail("OperationNotAllowedException should've been thrown");
-		} catch(OperationNotAllowedException e){
+		} catch (OperationNotAllowedException e) {
 			assertEquals(activity.MSG_NEG_WORK_HOURS, e.getMessage());
 			assertEquals(0, activity.getWorkHours(), 1e-15);
 		}
-		
-		
+
 	}
 
+	@Test
+	public void testAddActualWorkHours() throws OperationNotAllowedException {
+
+		String name = "Red Kevin";
+		String description = "Kevin skal reddes";
+		double AllocatedWorkHours = 10.0;
+
+		Activity activity = new Activity(name, description, AllocatedWorkHours);
+
+		assertEquals(name, activity.getName());
+		assertEquals(description, activity.getDescription());
+		assertEquals(AllocatedWorkHours, activity.getAllocatedWorkHours(),
+				1e-15);
+
+		double addActualWorkHours = 100.0;
+
+		activity.registerWorkHours(addActualWorkHours);
+
+		assertEquals(addActualWorkHours, activity.getWorkHours(), 1e-15);
+
+	}
+
+	@Test
+	public void testAddActualWorkHoursNeg() throws OperationNotAllowedException {
+
+		String name = "Red Kevin";
+		String description = "Kevin skal reddes";
+		double allocatedWorkHours = 10.0;
+
+		Activity activity = new Activity(name, description, allocatedWorkHours);
+
+		assertEquals(name, activity.getName());
+		assertEquals(description, activity.getDescription());
+		assertEquals(allocatedWorkHours, activity.getAllocatedWorkHours(),
+				1e-15);
+
+		double addActualWorkHours = -10.0;
+
+		try {
+			activity.registerWorkHours(addActualWorkHours);
+			fail("OperationNotAllowedException should've been thrown");
+		} catch (OperationNotAllowedException e) {
+			assertEquals(activity.MSG_NON_POS_HOURS, e.getMessage());
+			assertEquals(0, activity.getWorkHours(), 1e-15);
+		}
+
+	}
 }
