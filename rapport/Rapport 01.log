@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  11 MAY 2013 16:20
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  12 MAY 2013 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1103,26 +1103,57 @@ eady used, duplicate ignored
 <to be read again> 
                    \relax 
 l.116 \newpage
-               [1.2] (./Rapport 01.toc)
+               [1.2] (./Rapport 01.toc
+LaTeX Font Info:    Try loading font information for OT1+pxr on input line 3.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pxfonts/ot1pxr.fd
+File: ot1pxr.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Try loading font information for U+esvect on input line 3.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/esvect/uesvect.fd
+File: uesvect.fd 
+)
+LaTeX Font Info:    Try loading font information for U+pxsya on input line 3.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pxfonts/upxsya.fd
+File: upxsya.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Try loading font information for U+pxsyb on input line 3.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pxfonts/upxsyb.fd
+File: utxsyb.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Try loading font information for U+pxmia on input line 3.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pxfonts/upxmia.fd
+File: upxmia.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Try loading font information for U+pxsyc on input line 3.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pxfonts/upxsyc.fd
+File: upxsyc.fd 2000/12/14 v1.0
+))
 \tf@toc=\write5
 \openout5 = `"Rapport 01.toc"'.
 
  [2.3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
+[3.4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 126.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 126.
  (./Rapport 01.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 119.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 119.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 126.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 126.
 Package rerunfilecheck Info: File `"Rapport 01".out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 119.
+(rerunfilecheck)             Checksum: B21B2199E5A38AF72CBAB824F0979D5E;326.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 126.
  ) 
 Here is how much of TeX's memory you used:
- 17577 strings out of 493488
- 303053 string characters out of 3141326
- 371347 words of memory out of 3000000
- 20520 multiletter control sequences out of 15000+200000
- 23072 words of font info for 40 fonts, out of 3000000 for 9000
+ 17736 strings out of 493488
+ 305438 string characters out of 3141326
+ 373347 words of memory out of 3000000
+ 20628 multiletter control sequences out of 15000+200000
+ 40069 words of font info for 89 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,11n,57p,461b,364s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -1132,10 +1163,10 @@ texmf-dist/fonts/type1/public/pxfonts/rpxsc.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2012/texmf-dist/fo
 nts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
 e1/urw/palatino/uplri8a.pfb>
-Output written on "Rapport 01.pdf" (3 pages, 47813 bytes).
+Output written on "Rapport 01.pdf" (4 pages, 58758 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 90 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

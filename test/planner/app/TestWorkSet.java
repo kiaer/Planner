@@ -23,7 +23,7 @@ public class TestWorkSet extends SampleData {
 		assertTrue(user.getWorkSet().contains(work));
 		//Testing double registering 
 		try {
-			user.registerWork(work);
+			user.registerWork(work); 
 			fail("An OperationNotAllowedException should have been thrown."); 
 		} catch (OperationNotAllowedException e) {
 			assertEquals(e.getOperation(), Operation.USER_REGISTER_WORK);
