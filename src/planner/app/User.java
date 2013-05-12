@@ -7,16 +7,18 @@ import java.util.TreeSet;
 
 public class User {
 
-	public static final String DEFAULT_USERNAME = "Unnamed",
-			MSG_WORK_OVERLAP = "Work is already registered in the desired interval.",
-			MSG_NULL_USERNAME = "Username must not be null.";
+	public static final String
+			DEFAULT_USERNAME = "Unnamed",
+			MSG_DUPE_ACT = "The user is already assigned this activity.",
+			MSG_NULL_ACT = "Activities must not be null",
+			MSG_NULL_USERNAME = "Username must not be null.",
+			MSG_NULL_WORK = "Work must not be null",
+			MSG_WORK_OVERLAP = "Work is already registered in the desired interval.";
+
 
 	private String username, password, email;
 	private List<Activity> activities = new ArrayList<Activity>();
 	private TreeSet<Work> workSet = new TreeSet<Work>();
-
-	// private Calendar startWork;
-	// private Calendar endWork;
 
 	public User(String username, String password, String email) {
 		if (username != null)
@@ -27,8 +29,14 @@ public class User {
 		this.email = email;
 	}
 
-	public void assignActivity(Activity activity) {
-		activities.add(activity);
+	public void assignActivity(Activity activity) throws OperationNotAllowedException {
+		if(activity != null)
+			if(!activities.contains(activity))
+				activities.add(activity);
+			else
+				throw new OperationNotAllowedException(Operation.USER_ASSIGN_ACT, MSG_DUPE_ACT);
+		else
+			throw new OperationNotAllowedException(Operation.USER_ASSIGN_ACT, MSG_NULL_ACT);
 	}
 
 	public List<Activity> getActivities() {
@@ -67,15 +75,17 @@ public class User {
 	}
 
 	public void registerWork(Work work) throws OperationNotAllowedException {
-		if (isWorking(work.getFromDate(), work.getToDate())) {
-			throw new OperationNotAllowedException(
-					Operation.USER_REGISTER_WORK, MSG_WORK_OVERLAP);
+		if(work != null) {
+			if (isWorking(work.getFromDate(), work.getToDate())) {
+				throw new OperationNotAllowedException(
+						Operation.USER_REGISTER_WORK, MSG_WORK_OVERLAP);
+			} else
+				workSet.add(work);
 		} else
-			workSet.add(work);
+			throw new OperationNotAllowedException(Operation.USER_REGISTER_WORK, MSG_NULL_WORK);
 	}
 
-	public void registerWork(Date fromDate, Date toDate, Activity activity)
-			throws OperationNotAllowedException {
+	public void registerWork(Date fromDate, Date toDate, Activity activity) throws OperationNotAllowedException {
 		registerWork(new Work(fromDate, toDate, activity));
 	}
 
@@ -83,44 +93,24 @@ public class User {
 		workSet.remove(work);
 	}
 
-//	public void setActivities(ArrayList<Activity> activities) {
-//		this.activities = activities;
-//	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-	public void setUsername(String username)
-			throws OperationNotAllowedException {
+	public void setUsername(String username) throws OperationNotAllowedException {
 		if (username != null)
 			this.username = username;
 		else
 			throw new OperationNotAllowedException(
-					Operation.USER_NULL_USERNAME, MSG_NULL_USERNAME);
+					Operation.USER_SET_USERNAME, MSG_NULL_USERNAME);
 	}
 
-	// <<<<<<< HEAD
-	// private boolean isWorking() {
-	//
-	// return startWork != null;
-	// }
-	//
-	// void setStartWork(Calendar date) {
-	// startWork = date;
-	//
-	// }
-	//
-	// public Calendar getStartWork() {
-	// return startWork;
-	// }
-	//
-	// public Calendar DaysWorking(int days) {
-	// if (!isWorking()) {
-	// return null;
-	// }
-	// Calendar date = getStartWork();
-	// endWork = new GregorianCalendar();
-	// endWork.setTime(date.getTime());
-	// endWork.add(Calendar.DAY_OF_YEAR, days);
-	// return endWork;
-	// }
-	// =======
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void unassignActivity(Activity activity) {
+		activities.remove(activity);
+	}
 
 }

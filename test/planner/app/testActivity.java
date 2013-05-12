@@ -9,7 +9,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-public class testActivity extends SampleData {
+public class TestActivity extends SampleData {
 
 	@Test
 	public void testAllWorkHours() {
@@ -69,18 +69,20 @@ public class testActivity extends SampleData {
 		try {
 			activity.setStartDate(null);
 			assertTrue(null == activity.getStartDate());
+			assertFalse(activity.hasStartDate());
 			activity.setEndDate(null);
 			assertTrue(null == activity.getEndDate());
-		} catch (OperationNotAllowedException e) {
-			fail(WRONG_EXCEPTION);
-		}
-		try {
-			activity.setStartDate(startDate);
+			assertFalse(activity.hasEndDate());
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
 		try {
 			activity.setEndDate(endDate);
+		} catch (OperationNotAllowedException e) {
+			fail(WRONG_EXCEPTION);
+		}
+		try {
+			activity.setStartDate(startDate);
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
@@ -165,7 +167,7 @@ public class testActivity extends SampleData {
 			fail(NO_EXCEPTION);
 		} catch (OperationNotAllowedException e) {
 			assertEquals(Operation.ACT_ASSIGN_USER, e.getOperation());
-			assertEquals(Activity.MSG_USER_DUPLICATE, e.getMessage());
+			assertEquals(Activity.MSG_DUPE_USER, e.getMessage());
 			assertTrue(1 == activity.getUsers().size());
 		}
 		//Removing user

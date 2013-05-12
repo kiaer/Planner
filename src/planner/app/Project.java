@@ -8,6 +8,7 @@ public class Project {
 
 	public static final String
 			DEFAULT_NAME = "Unnamed",
+			MSG_DUPE_ACT = "This activity is already in the project.",
 			MSG_NULL_ACT = "Activities must not be null.",
 			MSG_NULL_DATE = "Date must not be null.",
 			MSG_NULL_NAME = "Project name must not be null.",
@@ -32,9 +33,12 @@ public class Project {
 	}
 
 	public void addActivity(Activity activity) throws OperationNotAllowedException {
-		if(activity != null)
-			activities.add(activity);
-		else
+		if(activity != null) {
+			if(!activities.contains(activity))
+				activities.add(activity);
+			else
+				throw new OperationNotAllowedException(Operation.PROJ_ADD_ACT, MSG_DUPE_ACT);
+		} else
 			throw new OperationNotAllowedException(Operation.PROJ_ADD_ACT, MSG_NULL_ACT);
 	}
 

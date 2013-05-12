@@ -24,6 +24,15 @@ public class TestProject extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
+		//Duplicate activity error
+		try {
+			project.addActivity(activity);
+			fail(NO_EXCEPTION);
+		} catch (OperationNotAllowedException e) {
+			assertTrue(1 == project.getActivities().size());
+			assertEquals(Operation.PROJ_ADD_ACT, e.getOperation());
+			assertEquals(Project.MSG_DUPE_ACT, e.getMessage());
+		}
 		//Removing activity
 		project.removeActivity(activity);
 		assertFalse(project.getActivities().contains(activity));
