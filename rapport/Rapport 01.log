@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  12 MAY 2013 23:46
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  12 MAY 2013 23:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1165,10 +1165,6 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 155.
 Package rerunfilecheck Info: File `"Rapport 01".out' has not changed.
 (rerunfilecheck)             Checksum: F1BDEDD215BD9E62844DF3200E5C57CF;507.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 155.
  ) 
 Here is how much of TeX's memory you used:
@@ -1187,7 +1183,7 @@ ist/fonts/type1/public/pxfonts/rpxsc.pfb></usr/local/texlive/2012/texmf-dist/fo
 nts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
 e1/urw/palatino/uplr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/
 palatino/uplri8a.pfb>
-Output written on "Rapport 01.pdf" (7 pages, 304074 bytes).
+Output written on "Rapport 01.pdf" (7 pages, 304220 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  112 compressed objects within 2 object streams

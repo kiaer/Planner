@@ -47,7 +47,6 @@
 \addscenario{Main Success Scenario:}{
 	\item Admin assigns project leader.
 	\item Project leader assigns activities to project.
-	\item Project now managed.
 }
 
 %Extensions: Alternate scenarios of success or failure.
@@ -57,29 +56,22 @@
 		\item[1.] Admin changes project leader.
 		\item[2.] Project Leader continues on step 2.
 		\end{enumerate}
-	\item[1.b] Admin assigns invalid project leader:
+	\item[1.b] Admin assigns no project leader:
 		\begin{enumerate}
 		\item[1.] System shows failure message
 		\item[2.] Admin assigns correct project leader
 		\end{enumerate}
-		
-	\item[2.a] Wrong activity data:
+	
+	\item[2.a] Number of activities:
 		\begin{enumerate}
-		\item[1.] Project leader corrects activity data
-		\item[2.] Project leader continues with step 3
+		\item[1.] Project leader gets a list of activities
+
 		\end{enumerate}
-	\item[2.b] Invalid activity data:
-		\begin{enumerate}
-		\item[1.] System shows failure message
-		\item[2.] Project leader returns to step 2 and corrects the errors
-		\end{enumerate}
-	\item[2.c] Wrong activity:
+	\item[2.b] Wrong activity:
 		\begin{enumerate}
 		\item[1.] Project leader removes activity
 		\item[2.] Project leader returns to step 2
 		\end{enumerate}
-	
-	
 }
 
 \end{usecase}
