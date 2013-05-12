@@ -10,24 +10,24 @@ import java.util.List;
 import org.junit.Test;
 
 public class testModifyProject extends SampleData {
-	
+
 	@Test
-	public void testChangeProjectLeader() {
+	public void testChangeProjectLeader() throws OperationNotAllowedException {
 		planner.adminLogIn("admin");
 		assertTrue(planner.adminLoggedIn());
-		
+
 		User projectLeader = new User("Leder", "gammel", "gammel@gammel.dk");
 		User newProjectLeader = new User("Den nye", "ny", "ny@ny.dk");
-		
+
 		String projectName = "Software Eng 1";
-		
+
 		Project project = new Project(projectName, projectLeader);
-		
+
 		assertTrue(project.hasProjectLeader());
 		assertEquals(projectLeader, project.getProjectLeader());
-		
+
 		project.setProjectLeader(newProjectLeader);
-		
+
 		assertFalse(projectLeader == project.getProjectLeader());
 		assertEquals(newProjectLeader, project.getProjectLeader());
 		project.removeProjectLeader();
@@ -36,8 +36,17 @@ public class testModifyProject extends SampleData {
 
 	@Test
 	public void testChangeStartDate() {
-		//TODO: make it possible to change startdate
+		// TODO: make it possible to change startdate
+
+	}
+	
+	@Test
+	public void testChangeEndDate() {
 		
 	}
-
+	
+	@Test
+	public void testChangeEndDateBeforeStart() throws OperationNotAllowedException{
+		
+	}
 }

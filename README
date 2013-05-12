@@ -1,10 +1,19 @@
 TODO:
+
+
+    DATOER TIL PROJEKTER
+    TESTS TIL DATOER TIL PROJEKTER
+    RYDE OP I KODE
+    EVT PUTTE TESTS I RAEKKEFOELGE EFTER USE CASES
+    GIV PROJECTLEADER RET TIL AT AENDRE PROJECTNAME OG DATES
+
+
 	Faste aktiviteter (Sygdom, ferie, kurser, etc.)
 	indtasting af arbejdstimer
-		skal kunne læses af både aktiviteter og users
-		Users skal kunne se hvilke timer går til hvilke aktiviteter
+		skal kunne lï¿½ses af bï¿½de aktiviteter og users
+		Users skal kunne se hvilke timer gï¿½r til hvilke aktiviteter
 		Aktiviteter skal kunne se hvilke timer er fra hvilke Userss
-		skal kunne indskrives på forskellige dage
+		skal kunne indskrives pï¿½ forskellige dage
 		skal kunne checke om ens arbejdstimer stemmer overens med alle aktiviteternes registrerede arbejdstimer
 	Lukning af projekter?
 	Forudsigelser af arbejdstimer

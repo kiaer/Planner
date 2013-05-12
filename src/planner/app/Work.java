@@ -14,7 +14,7 @@ public class Work implements Comparable<Work> {
 	private Date fromDate, toDate;
 	private Activity activity;
 
-	public Work(Date fromDate, Date toDate, Activity activity) {
+	public Work(Date fromDate, Date toDate, Activity activity) { 
 		if (fromDate != null)
 			this.fromDate = fromDate;
 		else {
