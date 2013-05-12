@@ -195,7 +195,7 @@ public class TestDefineActivities extends SampleData {
 
 		activity.setEndDate(cal.getTime());
 
-		GregorianCalendar newcal = new GregorianCalendar();
+		GregorianCalendar newcal = new GregorianCalendar(); 
 		newcal.setTime(cal.getTime());
 		newcal.add(Calendar.DAY_OF_YEAR, -10);
 

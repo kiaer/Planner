@@ -5,6 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Test;
@@ -138,17 +141,98 @@ public class TestCreateProject {
 	
 	
 	@Test
-	public void testCreateProjectWithStartDate() {
+	public void testCreateProjectWithStartDate() throws OperationNotAllowedException {
+		Planner planner = new Planner();
+
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
+
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+
+		String projectName = "Software 1 projekt";
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+		Date startDate = planner.getDate();
+
+		planner.register(projectLeader);
+
+		Project project = new Project(projectName, projectLeader, startDate);
+
+		planner.createProject(project);
+
+		List<Project> projects = planner.getProjects();
+		assertEquals(1, projects.size());
+		assertEquals(projectLeader, projects.get(0).getProjectLeader());
+		assertEquals(projectName, projects.get(0).getName());
+		assertEquals(startDate, projects.get(0).getStartDate());
+	}
+	
+	@Test
+	public void testCreateProjectWithStartEndDate() throws OperationNotAllowedException {
+		
+		Planner planner = new Planner();
+
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
+
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+
+		String projectName = "Software 1 projekt";
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+		GregorianCalendar cal = new GregorianCalendar();
+		GregorianCalendar newCal = new GregorianCalendar();
+		
+		newCal.setTime(cal.getTime());
+		newCal.add(Calendar.DAY_OF_YEAR, 10);
+		
+		planner.register(projectLeader);
+
+		Project project = new Project(projectName, projectLeader, cal.getTime(), newCal.getTime());
+
+		planner.createProject(project);
+
+		List<Project> projects = planner.getProjects();
+		assertEquals(1, projects.size());
+		assertEquals(projectLeader, projects.get(0).getProjectLeader());
+		assertEquals(projectName, projects.get(0).getName());
+		assertEquals(cal.getTime(), projects.get(0).getStartDate());
+		assertEquals(newCal.getTime(), projects.get(0).getEndDate());
+		assertTrue(projects.get(0).getStartDate().before(projects.get(0).getEndDate()));
 		
 	}
 	
 	@Test
-	public void testCreateProjectWithStartEndDate() {
+	public void testCreateProjectEndDateBeforeStart() throws OperationNotAllowedException{
 		
-	}
-	
-	@Test
-	public void testCreateProjectEndDateBeforeStart(){
+		Planner planner = new Planner();
+
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
+
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+
+		String projectName = "Software 1 projekt";
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+		GregorianCalendar cal = new GregorianCalendar();
+		GregorianCalendar newCal = new GregorianCalendar(); 
+		
+		newCal.setTime(cal.getTime());
+		newCal.add(Calendar.DAY_OF_YEAR, -10);
+		
+		planner.register(projectLeader);
+
+		Project project = new Project(projectName, projectLeader, cal.getTime(), newCal.getTime());
+
+		planner.createProject(project);
+
+		List<Project> projects = planner.getProjects();
+		assertEquals(1, projects.size());
+		assertEquals(projectLeader, projects.get(0).getProjectLeader());
+		assertEquals(projectName, projects.get(0).getName());
+		assertEquals(cal.getTime(), projects.get(0).getStartDate());
+		assertTrue(projects.get(0).getEndDate() == null);
 		
 	}
 }
