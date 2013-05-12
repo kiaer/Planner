@@ -103,7 +103,7 @@
 \end{center}
 \begin{flushleft} \large
 \emph{Gruppemedlemmer:}\\
-Carsten Rosenkilde \textsc{Nielsen} s123062\\
+Carsten Michael Rosenkilde \textsc{Nielsen} s123062\\
 Christian Mathias Rohde \textsc{Kiær} s123812\\
 Jonathan Binner \textsc{Becktor} s123094\\
 \end{flushleft}
@@ -113,14 +113,32 @@ Jonathan Binner \textsc{Becktor} s123094\\
 \end{center}
 \end{titlepage}
 \section*{Indledning}
+Til opgave har vi fået stillet, at designe en planlægningsapplikation. Denne applikation skal skabes for et softwarehus, der mangler et system til at planlægge deres projekter. Projekter skal kunne oprettes efter de informationer, der haves på oprettelses tidspunktet. Dette skal kunne inkludere navn, start/sluttidspunkt og projektleder. Alle disse oplysninger skal også kunne tilføjes eller ændres senere hen. Projekter skal kunne tildeles aktiviteter, som tilføjes med et navn, en beskrivelse,en start/slut dato, antal  allokerede timer og det aktuelle timeforbrug. Udviklere skal kunne tildeles aktiviteter, og derfra registrere deres timeforbrug på den pågældende aktivitet. Til løsning af problemerne, har vi opstillet 6 Use Cases som vi vil implementere testdrevent.  \\
+Følgende Use Cases har vi valgt at kigge på: 
+\begin{itemize}
+\item Create projects
+\item Manage projects
+\item Define Activities
+\item Manage developers
+\item Hours worked on project
+\item Seek Assitance
+\end{itemize}
+Vi har implemteret alle Use Cases test drevent, og det er gjort i forbindelse og uden konflikt med opgavebeskrivelsen.
 \newpage
 \tableofcontents
 \newpage
 \section{Kravspecifikation}
 \subsection{Væsentlige begreber}
 \subsection{Use cases}
+\newpage
 \section{Programdesign}
-
+\subsection{Klasser}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.25]{classdiagram.jpg}
+\caption{Klassediagram}
+\label{fig: Klassediagram}
+\end{figure}
 \section{Systematiske test}
 \section{Konklusion}
 \end{document}

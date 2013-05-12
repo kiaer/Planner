@@ -21,38 +21,47 @@
 \addscenario{Main Scenario:}{
 	\item Lets the users create activities.
 	\item The users can create activities, defined by name, description and allocated workhours.
-	\item Let's the users define the expected start and end dates of the activity.
-	\item Lets the developers define the actual hours of work put into the activity.
+	\item Lets the user connect developers to an activity.
+	\item Lets the users define the expected start and end dates of the activity. It's possible to assign an endDate without startDate and vice versa.
+	\item Lets the developers define the actual hours of work put into the activity. It's possible to set the final workhours and add work hours while working.
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarios:}{
-	\item[1.a] Invalid login data:
+	\item[2.a] No name assigned:
 		\begin{enumerate}
-		\item[1.] System shows failure message
-		\item[2.] System returns to step 1
+		\item[1.] The activity will be assigned a default name.
+		\item[2.] The activitys name can be modified at a later time
 		\end{enumerate}
-	\item[2.a] No projectleader assigned:
+	\item[2.b] Description not assigned:
 		\begin{enumerate}
-		\item[1.] If projectleader is not assigned, it will create the proejct with no projectleader.
-		\item[2.] Administrator will be able to set the projectleader by modifying the project
+		\item[1.] The activity will have no description.
+		\item[2.] The description of the activity can be set at a later time.
 		\end{enumerate}
-	\item[2.b] No projectname assigned:
+	\item[3.a] Adding same user twice
 		\begin{enumerate}
-		\item[1.] If projectname is not assigned, a default name will be assigned
-		\item[2.] Administrator or proejctleader will be able to change the name, by modifying the project.
+		\item[1.] System throws an error
+		\item[2.] System returns to 3.
 		\end{enumerate}
-	\item[3.a]  If start date not assigned:
+	\item[4.a]  If start date not assigned:
 		\begin{enumerate}
-		\item[1.] If start are not assigned the project will be created with the current date as start date.
+		\item[1.] If start date is not assigned the activity will have no start date.
+		\item[2.] The start date can be modified later.
 		\end{enumerate}
-	\item[3.b] If end date not assigned:
+	\item[4.b] If end date not assigned:
 		\begin{enumerate}
-		\item[1.] If end date is not assigned, the project will be created with no value as end date.
+		\item[1.] If end date is not assigned, the activity will have no end date.
+		\item[2.] The end date can be modified later.
 		\end{enumerate}
-	\item[3.c] End date is before start date
+	\item[4.c] End date is before start date
 		\begin{enumerate}
-		\item[1] The system automaticly changes the end date to be after the start date.
+		\item[1.] The system will show an error.
+		\item[2.] The system will go back to 4.
+		\end{enumerate}
+	\item[5.a] Define negative hours of work
+		\begin{enumerate}
+		\item[1.] System returns an error
+		\item[2.] System returns user to 5.
 		\end{enumerate}
 }
 \end{usecase}

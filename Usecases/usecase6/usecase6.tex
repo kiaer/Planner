@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}
+\usepackage{usecases}
+\begin{document}
+\begin{usecase}
+
+\addtitle{Use Case 6}{Seek assistence} 
+
+%Scope: the system under design
+\addfield{Scope:}{System-wide}	
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{Developer}
+
+%Stakeholders and Interests: Who cares about this use case and what do they want?
+\additemizedfield{Stakeholders and Interests:}{
+	\item Developer: Needs to be able to see which developers are available, at the given time. 
+	
+}
+\addfield{Description:}{Makes it possible for developers to see which developers is not currently working on an activity}
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Scenario:}{
+	\item Lets the user get a list of developers.
+	\item The user can see which developers is not working on an activity.
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Alternative Scenarios:}{
+	\item[2.a] Requires work to not overlap:
+		\begin{enumerate}
+		\item[1.] If work overlaps, system cast error.
+		\item[2.] Returns to 1.
+		\end{enumerate}
+}
+\end{usecase}
+\end{document}
