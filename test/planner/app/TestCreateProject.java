@@ -28,7 +28,7 @@ public class TestCreateProject {
 
 	@Test
 	public void testFailLogin() {
-		Planner planner = new Planner(); 
+		Planner planner = new Planner();
 
 		boolean login = planner.adminLogIn("hej");
 
@@ -138,10 +138,10 @@ public class TestCreateProject {
 		}
 
 	}
-	
-	
+
 	@Test
-	public void testCreateProjectWithStartDate() throws OperationNotAllowedException {
+	public void testCreateProjectWithStartDate()
+			throws OperationNotAllowedException {
 		Planner planner = new Planner();
 
 		planner.getProjects().isEmpty();
@@ -166,10 +166,11 @@ public class TestCreateProject {
 		assertEquals(projectName, projects.get(0).getName());
 		assertEquals(startDate, projects.get(0).getStartDate());
 	}
-	
+
 	@Test
-	public void testCreateProjectWithStartEndDate() throws OperationNotAllowedException {
-		
+	public void testCreateProjectWithStartEndDate()
+			throws OperationNotAllowedException {
+
 		Planner planner = new Planner();
 
 		planner.getProjects().isEmpty();
@@ -182,13 +183,14 @@ public class TestCreateProject {
 		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
 		GregorianCalendar cal = new GregorianCalendar();
 		GregorianCalendar newCal = new GregorianCalendar();
-		
+
 		newCal.setTime(cal.getTime());
 		newCal.add(Calendar.DAY_OF_YEAR, 10);
-		
+
 		planner.register(projectLeader);
 
-		Project project = new Project(projectName, projectLeader, cal.getTime(), newCal.getTime());
+		Project project = new Project(projectName, projectLeader,
+				cal.getTime(), newCal.getTime());
 
 		planner.createProject(project);
 
@@ -198,13 +200,15 @@ public class TestCreateProject {
 		assertEquals(projectName, projects.get(0).getName());
 		assertEquals(cal.getTime(), projects.get(0).getStartDate());
 		assertEquals(newCal.getTime(), projects.get(0).getEndDate());
-		assertTrue(projects.get(0).getStartDate().before(projects.get(0).getEndDate()));
-		
+		assertTrue(projects.get(0).getStartDate()
+				.before(projects.get(0).getEndDate()));
+
 	}
-	
+
 	@Test
-	public void testCreateProjectEndDateBeforeStart() throws OperationNotAllowedException{
-		
+	public void testCreateProjectEndDateBeforeStart()
+			throws OperationNotAllowedException {
+
 		Planner planner = new Planner();
 
 		planner.getProjects().isEmpty();
@@ -216,14 +220,15 @@ public class TestCreateProject {
 		String projectName = "Software 1 projekt";
 		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
 		GregorianCalendar cal = new GregorianCalendar();
-		GregorianCalendar newCal = new GregorianCalendar(); 
-		
+		GregorianCalendar newCal = new GregorianCalendar();
+
 		newCal.setTime(cal.getTime());
 		newCal.add(Calendar.DAY_OF_YEAR, -10);
-		
+
 		planner.register(projectLeader);
 
-		Project project = new Project(projectName, projectLeader, cal.getTime(), newCal.getTime());
+		Project project = new Project(projectName, projectLeader,
+				cal.getTime(), newCal.getTime());
 
 		planner.createProject(project);
 
@@ -233,37 +238,37 @@ public class TestCreateProject {
 		assertEquals(projectName, projects.get(0).getName());
 		assertEquals(cal.getTime(), projects.get(0).getStartDate());
 		assertTrue(projects.get(0).getEndDate() == null);
-		
+
 	}
-	
-//	@Test
-//	public void testCreateProjectNullStartEndDate() throws OperationNotAllowedException{
-//		
-//		Planner planner = new Planner();
-//
-//		planner.getProjects().isEmpty();
-//		assertFalse(planner.adminLoggedIn());
-//
-//		planner.adminLogIn("admin");
-//		assertTrue(planner.adminLoggedIn());
-//
-//		String projectName = "Software 1 projekt";
-//		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
-//
-//		planner.register(projectLeader);
-//
-//		Project project = new Project(projectName, projectLeader, null, null);
-//
-//		planner.createProject(project);
-//
-//		List<Project> projects = planner.getProjects();
-//		assertEquals(1, projects.size());
-//		assertEquals(projectLeader, projects.get(0).getProjectLeader());
-//		assertEquals(projectName, projects.get(0).getName());
-//		System.out.println(projects.get(0).getStartDate());
-//		assertEquals(Planner.getDate(), projects.get(0).getStartDate());
-//		
-//	}
-		
-	
+
+	@Test
+	public void testCreateProjectNullStartEndDate()
+			throws OperationNotAllowedException {
+
+		Planner planner = new Planner();
+
+		planner.getProjects().isEmpty();
+		assertFalse(planner.adminLoggedIn());
+
+		planner.adminLogIn("admin");
+		assertTrue(planner.adminLoggedIn());
+
+		String projectName = "Software 1 projekt";
+		User projectLeader = new User("Karl", "1234", "fk@mail.dk");
+
+		planner.register(projectLeader);
+
+		Project project = new Project(projectName, projectLeader, null, null);
+
+		planner.createProject(project);
+
+		List<Project> projects = planner.getProjects();
+		assertEquals(1, projects.size());
+		assertEquals(projectLeader, projects.get(0).getProjectLeader());
+		assertEquals(projectName, projects.get(0).getName());
+		System.out.println(projects.get(0).getStartDate());
+		assertEquals(Planner.getDate(), projects.get(0).getStartDate());
+
+	}
+
 }

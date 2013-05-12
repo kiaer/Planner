@@ -22,14 +22,19 @@ public class Project {
 			this.name = name;
 		else
 			this.name = DEFAULT_NAME;
-		if (startDate != null) {
+		if (startDate != null)
 			this.startDate = startDate;
-		} else {
-			this.startDate = Planner.getDate();
+		else {
+			if (endDate != null) {
+				startDate = new Date();
+				startDate
+						.setTime(startDate.getTime() - Work.DAY_TO_MILISECONDS);
+			} else
+				startDate = Planner.getDate();
 		}
-		if (endDate != null && startDate.before(endDate)) {
+		if (endDate != null && endDate.after(startDate))
 			this.endDate = endDate;
-		} else {
+		else {
 			endDate = new Date();
 			endDate.setTime(startDate.getTime() + Work.DAY_TO_MILISECONDS);
 		}
