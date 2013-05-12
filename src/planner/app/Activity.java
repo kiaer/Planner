@@ -47,10 +47,13 @@ public class Activity implements Comparable<Activity> {
 	}
 
 	public void assignUser(User user) throws OperationNotAllowedException {
-		if(!containsUser(user))
-			users.add(user);
-		else
-			throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_DUPE_USER);
+		if(user != null) {
+			if(!containsUser(user))
+				users.add(user);
+			else
+				throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_DUPE_USER);
+		} else
+			throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_NULL_USER);
 	}
 
 	@Override
@@ -121,31 +124,24 @@ public class Activity implements Comparable<Activity> {
 	}
 
 	public void setEndDate(Date endDate) throws OperationNotAllowedException {
-		if(hasStartDate()) {
-			if(getStartDate().before(endDate))
-				this.endDate = endDate;
-			else
-				throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_DATE_MISMATCH);
-		} else 
+		if(endDate == null || startDate == null || endDate.after(startDate))
 			this.endDate = endDate;
+		else
+			throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_DATE_MISMATCH);
 	}
 
-	//Should this throw an exception?
 	public void setName(String name) throws OperationNotAllowedException {
 		if(name != null)
 			this.name = name;
 		else
 			throw new OperationNotAllowedException(Operation.ACT_SET_NAME, MSG_NULL_NAME);
 	}
-  
+
 	public void setStartDate(Date startDate) throws OperationNotAllowedException {
-		if(hasEndDate()) {
-			if (getEndDate().after(startDate))
-				this.startDate = startDate;
-			else
-				throw new OperationNotAllowedException(Operation.ACT_SET_START_DATE, MSG_DATE_MISMATCH);
-		} else
-			this.startDate = startDate; 
+		if (startDate == null || endDate == null || startDate.before(endDate))
+			this.startDate = startDate;
+		else
+			throw new OperationNotAllowedException(Operation.ACT_SET_START_DATE, MSG_DATE_MISMATCH);
 	}
 
 	public void setWorkHours(double workHours) throws OperationNotAllowedException {
