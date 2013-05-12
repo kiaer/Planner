@@ -29,8 +29,8 @@ public class TestAvailableDevelopers extends SampleData {
 
 		assertTrue(planner.adminLoggedIn());
 
-		Activity activity = createTempAct();
-		User user = createTempUser();
+		Activity activity = sampleActivity();
+		User user = sampleUser();
 
 		Work work = new Work(cal.getTime(), toDate, activity);
 		user.registerWork(work);
@@ -44,9 +44,9 @@ public class TestAvailableDevelopers extends SampleData {
 		GregorianCalendar cal = new GregorianCalendar();
 		Date toDate = new Date();
 		toDate.setTime(cal.getTime().getTime() + 100);
-		Activity activity = createTempAct();
+		Activity activity = sampleActivity();
 		Activity activity2 = new Activity("Testes");
-		User user = createTempUser();
+		User user = sampleUser();
 		Work work1 = new Work(cal.getTime(), toDate, activity);
 		Work work2 = new Work(cal.getTime(), toDate, activity2);
 		user.registerWork(work1);
@@ -68,7 +68,7 @@ public class TestAvailableDevelopers extends SampleData {
 		GregorianCalendar cal = new GregorianCalendar();
 		Date toDate = new Date();
 		toDate.setTime(cal.getTime().getTime() + 100);
-		Activity activity = createTempAct();
+		Activity activity = sampleActivity();
 		User Carsten = new User("Carsten", "carsten", "carsten@plannerteam.dk");
 		Carsten.registerWork(cal.getTime(), toDate, activity);
 		assertEquals(1, Carsten.getWorkSet().size());

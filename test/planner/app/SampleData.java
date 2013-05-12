@@ -31,15 +31,19 @@ public class SampleData {
 
 	}
 
-	public Activity createTempAct() {
+	public Activity sampleActivity() {
 		return new Activity("Activity");
 	}
 
-	public User createTempUser() {
-		return new User("Adam", "1234", "mail@Mail.dk");
+	public Project sampleProject() {
+		return new Project("Project");
 	}
 
-	public Work createTempWork() {
+	public User sampleUser() {
+		return new User("Kim", "1234", "kim@Mail.dk");
+	}
+
+	public Work sampleWork() {
 		Date fromDate = calendar.getTime();
 		Date toDate = new Date();
 		toDate.setTime(calendar.getTime().getTime() + 1);

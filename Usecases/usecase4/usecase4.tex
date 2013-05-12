@@ -1,0 +1,84 @@
+%% Use Cases Template File
+%% Created by Tom Desair (http://www.tomdesair.com)
+%% Downloadable at: http://www.tomdesair.com/downloads/use-case-latex-template.zip
+%% Date Modified: 03/04/2012
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+
+\documentclass[a4paper, 10pt, oneside, draft]{article}
+
+%include the usecases package
+\usepackage{usecases}
+
+\begin{document}
+
+%Sometimes it is a good idea to put domain objects in \texttt{}
+%The template and the descriptions are based on the book Applying UML and Patterns: 
+%An Introduction to Object-Oriented Analysis and Design and Iterative Development
+%(3rd Edition) by Craig Larman.
+\begin{usecase}
+
+\addtitle{Use Case 4}{Manage Developers} 
+
+%Scope: the system under design
+\addfield{Scope:}{System-wide}
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{Admin}
+
+%Stakeholders and Interests: Who cares about this use case and what do they want?
+\additemizedfield{\textsl{Administrator}:}{
+	\item Administrator: Create Developers and manage them.
+}
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Description:}{Makes it so admin can manage all information in developers, add and remove new developers.}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+	\item Admin creates developer
+	\item Admin changes developer username
+	\item Admin changes developer email
+	\item Admin changes developer password
+	\item Developer now managed
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Alternative Scenarioes:}{
+	\item[1.a]Admin creates wrong developer
+		\begin{enumerate}
+		\item[1.] Admin removes developer
+		\item[3.] Admin returns to step 1.
+		\end{enumerate}
+	\item[2.a] Admin sets null username:
+		\begin{enumerate}
+		\item[1.] System shows failure message
+		\item[2.] Admin changes developer username properly
+		\item[3.] Admin continues with step 2
+		\end{enumerate}
+	\item[3.a] Admin sets null email:
+		\begin{enumerate}
+		\item[1.] System shows failure message
+		\item[2.] Admin changes developer email properly
+		\item[3.] Admin continues with step 3
+		\end{enumerate}
+	\item[4.a] Admin sets null password:
+		\begin{enumerate}
+		\item[1.] System shows failure message
+		\item[2.] Admin changes developer password properly
+		\item[3.] Admin continues with step 4
+		\end{enumerate}	
+}
+
+\end{usecase}
+
+\end{document}
+

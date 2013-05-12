@@ -115,7 +115,6 @@ public class TestModifyActivity {
 
 	@Test
 	public void testAddActualWorkHours() throws OperationNotAllowedException {
-
 		String name = "Red Kevin";
 		String description = "Kevin skal reddes";
 		double AllocatedWorkHours = 10.0;
