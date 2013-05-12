@@ -33,6 +33,7 @@ public class Project {
 	public List<Activity> getActivities() {
 		return activities;
 	}
+	
 	public void removeActivity(Activity activity){
 		activities.remove(activity);
 	}
