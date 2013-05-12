@@ -13,24 +13,24 @@ public class TestProject extends SampleData {
 
 	@Test
 	public void testActivities() {
-		Project project = sampleProject();
+		Project project = new Project("Project");
 		//Initial values
 		assertTrue(project.getActivities().isEmpty());
-		//Adding activities
+		//Adding activity
 		Activity activity = sampleActivity();
 		try {
 			project.addActivity(activity);
 			assertTrue(project.getActivities().contains(activity));
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
-		//Removing activities
+		//Removing activity
 		project.removeActivity(activity);
 		assertFalse(project.getActivities().contains(activity));
 		//Null activity error
 		try {
 			project.addActivity(null);
-			fail("An OperationNotAllowedException should have been thrown.");
+			fail(NO_EXCEPTION);
 		} catch (OperationNotAllowedException e) {
 			assertEquals(Operation.PROJ_ADD_ACT, e.getOperation());
 			assertEquals(Project.MSG_NULL_ACT, e.getMessage());
@@ -50,14 +50,14 @@ public class TestProject extends SampleData {
 			project.setStartDate(startDate);
 			assertEquals(startDate, project.getStartDate());
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
 		Date endDate = new Date(2);
 		try {
 			project.setEndDate(endDate);
 			assertEquals(endDate, project.getEndDate());
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
 		try {
 			project.setStartDate(null);
@@ -65,24 +65,22 @@ public class TestProject extends SampleData {
 			project.setEndDate(null);
 			assertTrue(project.getEndDate() == null);
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
 		try {
 			project.setEndDate(endDate);
-			assertEquals(endDate, project.getEndDate());
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
 		try {
 			project.setStartDate(startDate);
-			assertEquals(startDate, project.getStartDate());
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
 		//Incompatible date errors
 		try {
 			project.setStartDate(new Date(3));
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(NO_EXCEPTION);
 		} catch (OperationNotAllowedException e) {
 			assertEquals(Operation.PROJ_ASSIGN_START_DATE, e.getOperation());
 			assertEquals(Project.MSG_END_BEFORE_START, e.getMessage());
@@ -90,7 +88,7 @@ public class TestProject extends SampleData {
 		}
 		try {
 			project.setEndDate(new Date(0));
-			fail("An OperationNotAllowedException should have been thrown.");
+			fail(NO_EXCEPTION);
 		} catch (OperationNotAllowedException e) {
 			assertEquals(Operation.PROJ_ASSIGN_END_DATE, e.getOperation());
 			assertEquals(Project.MSG_END_BEFORE_START, e.getMessage());
@@ -100,27 +98,27 @@ public class TestProject extends SampleData {
 
 	@Test
 	public void testName() {
-		String projectName = "Project";
-		Project project = new Project(projectName);
+		String name = "Project";
+		Project project = new Project(name);
 		//Initial values
-		assertEquals(projectName, project.getName());
+		assertEquals(name, project.getName());
 		//Name change
-		String newProjectName = "New name";
+		String newName = "New name";
 		try {
-			project.setName(newProjectName);
-			assertEquals(newProjectName, project.getName());
+			project.setName(newName);
+			assertEquals(newName, project.getName());
 		} catch (OperationNotAllowedException e) {
-			fail("An OperationNotAllowedException should not have been thrown.");
+			fail(WRONG_EXCEPTION);
 		}
 		//Null name error
-		projectName = project.getName();
+		name = project.getName();
 		try {
 			project.setName(null);
-			fail("An OperationNotAllowedException should have been thrown.");
+			fail(NO_EXCEPTION);
 		} catch (OperationNotAllowedException e) {
 			assertEquals(Operation.PROJ_SET_NAME, e.getOperation());
 			assertEquals(Project.MSG_NULL_NAME, e.getMessage());
-			assertEquals(projectName, project.getName());
+			assertEquals(name, project.getName());
 		}
 		//Null name constructor error correction
 		project = new Project(null);

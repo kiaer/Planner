@@ -9,6 +9,10 @@ import org.junit.Before;
 
 public class SampleData {
 
+	public static final String
+		WRONG_EXCEPTION = "An OperationNotAllowedException should not have been thrown.",
+		NO_EXCEPTION = "An OperationNotAllowedException should have been thrown.";
+
 	GregorianCalendar calendar = new GregorianCalendar();
 	Planner planner = new Planner();
 
