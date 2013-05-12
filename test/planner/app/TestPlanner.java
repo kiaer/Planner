@@ -6,7 +6,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Test;
@@ -34,7 +36,18 @@ public class TestPlanner extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		
+	}
+
+	@Test
+	public void testGetDate() {
+		Calendar expected = GregorianCalendar.getInstance();
+		Calendar result = Planner.getCalendar();
+		//Initial values
+		assertEquals(expected.get(Calendar.YEAR), result.get(Calendar.YEAR));
+		assertEquals(expected.get(Calendar.MONTH), result.get(Calendar.MONTH));
+		assertEquals(expected.get(Calendar.DAY_OF_MONTH), result.get(Calendar.DAY_OF_MONTH));
+		//Milisecond test
+		assertEquals(expected.getTime().getTime(), Planner.getDate().getTime(), 100);
 	}
 
 	@Test
