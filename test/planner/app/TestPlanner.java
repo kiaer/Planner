@@ -5,9 +5,37 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.junit.Test;
 
-public class TestPlanner extends SampleData{
+public class TestPlanner extends SampleData {
+
+	@Test
+	public void testAvailableUsers() {
+		Planner planner = new Planner();
+		User user1 = sampleUser(), user2 = sampleUser();
+		Date fromDate = new Date(0), toDate = new Date(1);
+		Work work = new Work(fromDate, toDate, sampleActivity());
+		try {
+			user1.registerWork(work);
+		} catch (OperationNotAllowedException e1) {
+			fail(WRONG_EXCEPTION);
+		}
+		List<User> availableUsers = new ArrayList<User>();
+		availableUsers.add(user2);
+		try {
+			planner.adminLogin(Planner.ADMIN_PASSWORD);
+			planner.registerUser(user1);
+			planner.registerUser(user2);
+			assertEquals(availableUsers, planner.getAvailableUsers(fromDate, toDate));
+		} catch (OperationNotAllowedException e) {
+			fail(WRONG_EXCEPTION);
+		}
+		
+	}
 
 	@Test
 	public void testLogin() {
