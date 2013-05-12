@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class Work implements Comparable<Work> {
 
-	public static final long HOURS_TO_MILISECONDS = 1000 * 60 * 60,
+	public static final long
+			HOURS_TO_MILISECONDS = 1000 * 60 * 60,
 			DAY_TO_MILISECONDS = 1000 * 60 * 60 * 24;
 
 	public static final String MSG_NULL_ACT = "Activity can't be null.",
