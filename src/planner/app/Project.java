@@ -15,6 +15,7 @@ public class Project {
 	private List<Activity> activities = new ArrayList<Activity>();
 	private Date startDate;
 	private Date endDate;
+	
 
 	// Untested catch block
 	public Project(String name, User projectLeader, Date startDate, Date endDate) {
