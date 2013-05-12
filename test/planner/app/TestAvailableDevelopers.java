@@ -22,11 +22,11 @@ public class TestAvailableDevelopers extends SampleData {
 
 	@Test
 	public void testRegisterWork() throws OperationNotAllowedException {
-
+		Planner planner = new Planner();
 		GregorianCalendar cal = new GregorianCalendar();
 		Date toDate = new Date();
 		toDate.setTime(cal.getTime().getTime() + 1);
-
+		planner.adminLogin(Planner.ADMIN_PASSWORD);
 		assertTrue(planner.adminLoggedIn());
 
 		Activity activity = sampleActivity();
@@ -36,7 +36,6 @@ public class TestAvailableDevelopers extends SampleData {
 		user.registerWork(work);
 
 		assertTrue(user.getWorkSet().contains(work));
-
 	}
 
 	@Test
@@ -85,7 +84,7 @@ public class TestAvailableDevelopers extends SampleData {
 
 		Planner planner = new Planner();
 
-		planner.adminLogIn("admin");
+		planner.adminLogin(Planner.ADMIN_PASSWORD);
 
 		assertTrue(planner.adminLoggedIn());
 
@@ -95,9 +94,9 @@ public class TestAvailableDevelopers extends SampleData {
 
 		Activity activity = new Activity("Software 1");
 
-		planner.register(developer1);
-		planner.register(developer2);
-		planner.register(developer3);
+		planner.registerUser(developer1);
+		planner.registerUser(developer2);
+		planner.registerUser(developer3);
 
 		Work work1 = new Work(cal.getTime(), toDate, activity);
 		Work work2 = new Work(cal.getTime(), toDate, activity);
