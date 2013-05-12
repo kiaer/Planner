@@ -8,9 +8,10 @@ public class Project {
 
 	public static final String
 			DEFAULT_NAME = "Unnamed",
-			MSG_NULL_DATE = "Date must not be null",
-			MSG_NULL_NAME = "Project name must not be null",
-			MSG_END_BEFORE_START = "Project enddate must be after startdate";
+			MSG_NULL_ACT = "Activities must not be null.",
+			MSG_NULL_DATE = "Date must not be null.",
+			MSG_NULL_NAME = "Project name must not be null.",
+			MSG_END_BEFORE_START = "Project end date must be after start date.";
 
 	private String name;
 	private User projectLeader;
@@ -18,36 +19,23 @@ public class Project {
 	private Date startDate;
 	private Date endDate;
 
-	public Project(String name, User projectLeader, Date startDate, Date endDate) {
+	public Project(String name, User projectLeader) {
 		if (name != null)
 			this.name = name;
 		else
 			this.name = DEFAULT_NAME;
 		this.projectLeader = projectLeader;
-		if(startDate != null && endDate != null && endDate.before(startDate)) {
-			this.startDate = startDate;
-			this.endDate = new Date();
-			endDate.setTime(startDate.getTime() + Work.DAY_TO_MILISECONDS);
-		} else {
-			this.startDate = startDate;
-			this.endDate = endDate;
-		}
-	}
-
-	public Project(String name, User projectLeader, Date startDate) {
-		this(name, projectLeader, startDate, null);
-	}
-
-	public Project(String name, User projectLeader) {
-		this(name, projectLeader, null);
 	}
 
 	public Project(String name) {
 		this(name, null);
 	}
 
-	public void addActivity(Activity activity) {
-		activities.add(activity);
+	public void addActivity(Activity activity) throws OperationNotAllowedException {
+		if(activity != null)
+			activities.add(activity);
+		else
+			throw new OperationNotAllowedException(Operation.PROJ_ADD_ACT, MSG_NULL_ACT);
 	}
 
 	public List<Activity> getActivities() {
@@ -83,13 +71,10 @@ public class Project {
 	}
 
 	public void setEndDate(Date endDate) throws OperationNotAllowedException {
-		if(endDate != null) {
-			if (startDate == null || endDate.after(startDate)) {
-				this.endDate = endDate;
-			} else
-				throw new OperationNotAllowedException(Operation.PROJECT_ASSIGN_END_DATE, MSG_END_BEFORE_START);
+		if (endDate == null || startDate == null || endDate.after(startDate)) {
+			this.endDate = endDate;
 		} else
-			throw new OperationNotAllowedException(Operation.PROJECT_ASSIGN_END_DATE, MSG_NULL_DATE);
+			throw new OperationNotAllowedException(Operation.PROJ_ASSIGN_END_DATE, MSG_END_BEFORE_START);
 	}
 
 	public void setProjectLeader(User projectLeader) {
@@ -104,13 +89,10 @@ public class Project {
 	}
 
 	public void setStartDate(Date startDate) throws OperationNotAllowedException {
-		if(startDate != null) {
-			if (endDate == null || startDate.before(endDate)) {
-				this.startDate = startDate;
-			} else
-				throw new OperationNotAllowedException(Operation.PROJECT_ASSIGN_END_DATE, MSG_END_BEFORE_START);
+		if (startDate == null || endDate == null || startDate.before(endDate)) {
+			this.startDate = startDate;
 		} else
-			throw new OperationNotAllowedException(Operation.PROJECT_ASSIGN_END_DATE, MSG_NULL_DATE);
+			throw new OperationNotAllowedException(Operation.PROJ_ASSIGN_START_DATE, MSG_END_BEFORE_START);
 	}
 
 }

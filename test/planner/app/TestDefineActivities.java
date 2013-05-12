@@ -76,8 +76,8 @@ public class TestDefineActivities extends SampleData {
 
 	@Test
 	public void testAssignUsers() {
-		Activity activity = createTempAct();
-		User user = createTempUser();
+		Activity activity = sampleActivity();
+		User user = sampleUser();
 		// Tests adding users.
 		assertTrue(activity.getUsers().isEmpty());
 		try {
@@ -239,7 +239,7 @@ public class TestDefineActivities extends SampleData {
 
 	@Test 
 	public void testSetAllocatedWorkHours() {
-		Activity activity = createTempAct();
+		Activity activity = sampleActivity();
 		try {
 			activity.setAllocatedWorkHours(10.0);
 			assertEquals(10.0, activity.getAllocatedWorkHours(), 1e-15);

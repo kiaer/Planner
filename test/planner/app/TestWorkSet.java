@@ -11,8 +11,8 @@ public class TestWorkSet extends SampleData {
 
 	@Test
 	public void testRegisterWork() {
-		User user = createTempUser();
-		Work work = createTempWork();
+		User user = sampleUser();
+		Work work = sampleWork();
 		//Testing registering
 		assertTrue(user.getWorkSet().isEmpty());
 		try {
