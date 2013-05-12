@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{usecases}
+\begin{document}
+\begin{usecase}
+
+\addtitle{Use Case 5}{Hours worked on project} 
+
+%Scope: the system under design
+\addfield{Scope:}{System-wide}	
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{Developer}
+
+%Stakeholders and Interests: Who cares about this use case and what do they want?
+\additemizedfield{Stakeholders and Interests:}{
+	\item Developer: The developers needs to be able to set themselves as working, and register the hours they are working 
+	
+}
+\addfield{Description:}{Makes it possible for a developer to get set himself as working, and register the ammount of hours he is working}
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Scenario:}{
+	\item User finds activity
+	\item User enters hours spent on activity
+	\item Activity registers hours Developer has spent.
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Alternative Scenarios:}{
+
+	\item[1.a] User set to work:
+		\begin{enumerate}
+		\item[1.] Sets himself to working
+		\end{enumerate}
+		
+	\item[1.b] Non existent activity:
+		\begin{enumerate}
+		\item[1.] System casts errormessage.
+		\item[2.] Returns to step 1.
+		\end{enumerate}
+		
+	\item[1.c] null activity:
+		\begin{enumerate}
+		\item[1.] System casts errormessage.
+		\item[2.] Returns to step 1.
+		\end{enumerate}
+		
+	\item[2.a] allocated hours more than actual time on project:
+		\begin{enumerate}
+		\item[1.] System casts errormessage.
+		\item[2.] returns to step 2.
+		\end{enumerate}
+	
+	\item[2.b] negative work hours:
+		\begin{enumerate}
+		\item[1.] System casts errormessage.
+		\item[2.] returns to step 2.
+		\end{enumerate}
+		
+	\item[3.a] allocated hours more than actual time on project:
+		\begin{enumerate}
+		\item[1.] System casts errormessage.
+		\item[2.] returns to step 2.
+		\end{enumerate}
+			
+}
+\end{usecase}
+\end{document}
