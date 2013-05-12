@@ -15,7 +15,6 @@ public class Project {
 	private List<Activity> activities = new ArrayList<Activity>();
 	private Date startDate;
 	private Date endDate;
-	
 
 	// Untested catch block
 	public Project(String name, User projectLeader, Date startDate, Date endDate) {
@@ -66,11 +65,10 @@ public class Project {
 	public List<Activity> getActivities() {
 		return activities;
 	}
-	
-	public void removeActivity(Activity activity){
+
+	public void removeActivity(Activity activity) {
 		activities.remove(activity);
 	}
-	
 
 	public User getProjectLeader() {
 		return projectLeader;

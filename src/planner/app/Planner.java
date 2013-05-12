@@ -15,7 +15,7 @@ public class Planner {
 
 	private boolean adminLoggedIn = false;
 	private List<Project> projects = new ArrayList<Project>();
-	private List<User> users = new ArrayList<User>();
+	private List<User> users = new ArrayList<User>(); 
 
 	public boolean adminLoggedIn() {
 		return adminLoggedIn;

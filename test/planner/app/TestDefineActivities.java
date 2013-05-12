@@ -260,7 +260,7 @@ public class TestDefineActivities extends SampleData {
 	public void testCreateActivitiesWithAllocatedWorkHours() {
 
 		double workhours = 10.0;
-		String name = "Aktivitet";
+		String name = "Aktivitet"; 
 
 		Activity activity = new Activity(name, workhours);
 
@@ -272,7 +272,7 @@ public class TestDefineActivities extends SampleData {
 	public void testActivitiesNullName() {
 
 		String name = null;
-
+		
 		Activity activity = new Activity(name);
 
 		assertEquals(activity.getName(),"Unnamed");
