@@ -6,18 +6,18 @@ import java.util.List;
 
 public class Activity implements Comparable<Activity> {
 
-	public static final double DEFAULT_ALL_WORK_HOURS = 0;
+	public static final double DEFAULT_ALL_WORK_HOURS = 0, DEFAULT_WORK_HOURS = 0;
 	public static final String
 			DEFAULT_NAME = "Unnamed",
-			MSG_EARLY_END_DATE = "End date must be after start date.",
-			MSG_LATE_START_DATE = "Start date must be before end date.",
+			MSG_DATE_MISMATCH = "End date must be after start date.",
+			MSG_DUPE_USER = "The list already contains this user.",
 			MSG_NEG_ALL_HOURS = "Allocated work hours must be non-negative.",
 			MSG_NEG_WORK_HOURS = "Work hours must be non-negative.",
 			MSG_NON_POS_HOURS = "Registered work hours must be positive.",
-			MSG_NULL_NAME = "Name must not be null",
-			MSG_USER_DUPLICATE = "The list already contains this user.";
+			MSG_NULL_NAME = "Name must not be null.",
+			MSG_NULL_USER = "User must not be null.";
 
-	private double allocatedWorkHours, workHours = 0;
+	private double allocatedWorkHours, workHours = DEFAULT_WORK_HOURS;
 	private String name, description;
 	private Date startDate, endDate; 
 	private List<User> users = new ArrayList<User>();
@@ -28,7 +28,10 @@ public class Activity implements Comparable<Activity> {
 		else
 			this.name = DEFAULT_NAME;
 		this.description = description;
-		this.allocatedWorkHours = allocatedWorkHours;
+		if(allocatedWorkHours >= 0)
+			this.allocatedWorkHours = allocatedWorkHours;
+		else
+			this.allocatedWorkHours = DEFAULT_ALL_WORK_HOURS;
 	}
 
 	public Activity(String name, String description) {
@@ -47,7 +50,7 @@ public class Activity implements Comparable<Activity> {
 		if(!containsUser(user))
 			users.add(user);
 		else
-			throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_USER_DUPLICATE);
+			throw new OperationNotAllowedException(Operation.ACT_ASSIGN_USER, MSG_DUPE_USER);
 	}
 
 	@Override
@@ -59,7 +62,6 @@ public class Activity implements Comparable<Activity> {
 		return users.contains(user);
 	}
 
-	//Untested
 	public double getAllocatedWorkHours() {
 		return allocatedWorkHours;
 	}
@@ -123,7 +125,7 @@ public class Activity implements Comparable<Activity> {
 			if(getStartDate().before(endDate))
 				this.endDate = endDate;
 			else
-				throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_EARLY_END_DATE);
+				throw new OperationNotAllowedException(Operation.ACT_SET_END_DATE, MSG_DATE_MISMATCH);
 		} else 
 			this.endDate = endDate;
 	}
@@ -141,7 +143,7 @@ public class Activity implements Comparable<Activity> {
 			if (getEndDate().after(startDate))
 				this.startDate = startDate;
 			else
-				throw new OperationNotAllowedException(Operation.ACT_SET_START_DATE, MSG_LATE_START_DATE);
+				throw new OperationNotAllowedException(Operation.ACT_SET_START_DATE, MSG_DATE_MISMATCH);
 		} else
 			this.startDate = startDate; 
 	}
