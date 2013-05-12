@@ -4,5 +4,7 @@
 \contentsline {subsection}{\numberline {1.2}Use cases}{3}{subsection.1.2}
 \contentsline {section}{\numberline {2}Programdesign}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Klasser}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Sekvensdiagrammer}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Diskussion}{4}{subsection.2.3}
 \contentsline {section}{\numberline {3}Systematiske test}{5}{section.3}
 \contentsline {section}{\numberline {4}Konklusion}{5}{section.4}

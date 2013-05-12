@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.2" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="planner.app.Planner" project="Planner" 
+    file="/Planner/src/planner/app/Planner.java" binary="false" label="planner" type="class" autoSize="false">    
+    <position height="476" width="186" x="0" y="0"/>    
+    <execution id="2">      
+      <position height="104" width="169" x="5" y="78"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="21" width="169" x="5" y="120"/>    
+    </execution>    
+    <execution id="6">      
+      <position height="21" width="7" x="89" y="140"/>    
+    </execution>    
+    <execution id="7">      
+      <position height="63" width="169" x="5" y="202"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="84" width="169" x="5" y="274"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="21" width="169" x="5" y="316"/>    
+    </execution>    
+    <execution id="13">      
+      <position height="85" width="169" x="5" y="371"/>    
+    </execution>  
+  </object>  
+  <object id="18" language="java" name="planner.app.User" project="Planner" file="/Planner/src/planner/app/User.java" 
+    binary="false" label="user" type="class" autoSize="false">    
+    <position height="433" width="210" x="173" y="0"/>    
+    <execution id="9">      
+      <position height="21" width="165" x="178" y="223"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="21" width="165" x="178" y="392"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="21" width="165" x="178" y="414"/>    
+    </execution>    
+    <execution id="19">      
+      <position height="94" width="206" x="191" y="329"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="63" width="206" x="191" y="449"/>    
+    </execution>  
+  </object>  
+  <object id="27" language="java" name="planner.app.Activity" project="Planner" 
+    file="/Planner/src/planner/app/Activity.java" binary="false" label="activity" type="class" autoSize="false">    
+    <position height="98" width="174" x="396" y="0"/>    
+    <execution id="21">      
+      <position height="21" width="170" x="401" y="350"/>    
+    </execution>    
+    <execution id="23">      
+      <position height="21" width="170" x="401" y="381"/>    
+    </execution>    
+    <execution id="26">      
+      <position height="21" width="170" x="401" y="470"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="adminLogIn(java.lang.String):boolean">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="adminLoggedIn():boolean" x="100" y="143">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="8" operation="User(java.lang.String,java.lang.String,java.lang.String)">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="11" operation="register(planner.app.User):void">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="14" operation="setUsername(java.lang.String):void">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="16" operation="isWorking(java.util.Date,java.util.Date):boolean">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="20" operation="assignUser(planner.app.User):void">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>  
+  <message id="22" operation="registerWorkHours(double):void">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="25" operation="getWorkHours():double">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>
+</sequence-diagram>

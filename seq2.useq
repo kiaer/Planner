@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.2" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="planner.app.Planner" project="Planner" 
+    file="/Planner/src/planner/app/Planner.java" binary="false" label="planner" type="class" autoSize="false">    
+    <position height="586" width="177" x="0" y="0"/>    
+    <execution id="2">      
+      <position height="84" width="75" x="5" y="146"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="21" width="75" x="5" y="188"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="21" width="148" x="5" y="281"/>    
+    </execution>    
+    <execution id="6">      
+      <position height="219" width="148" x="5" y="347"/>    
+    </execution>    
+    <execution id="21">      
+      <position height="84" width="148" x="5" y="102"/>    
+    </execution>    
+    <execution id="23">      
+      <position height="21" width="148" x="5" y="144"/>    
+    </execution>  
+  </object>  
+  <object id="24" language="java" name="planner.app.Project" project="Planner" 
+    file="/Planner/src/planner/app/Project.java" binary="false" label="project" type="class" autoSize="false">    
+    <position height="541" width="195" x="152" y="0"/>    
+    <execution id="25">      
+      <position height="63" width="162" x="157" y="260"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="21" width="162" x="157" y="368"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="21" width="162" x="157" y="395"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="21" width="162" x="157" y="423"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="21" width="162" x="157" y="447"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="21" width="162" x="157" y="475"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="21" width="162" x="157" y="500"/>    
+    </execution>    
+    <execution id="20">      
+      <position height="21" width="162" x="157" y="524"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="adminLoggedIn():boolean" x="106" y="148">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="7" operation="setProjectLeader(planner.app.User):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="setName(java.lang.String):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" operation="setEndDate(java.util.Date):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="13" operation="setStartDate(java.util.Date):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="addActivity(planner.app.Activity):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="removeActivity(planner.app.Activity):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="removeProjectLeader():void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="22" operation="adminLogIn(java.lang.String):boolean">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="26" operation="createProject(planner.app.Project):void">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="5"/>  
+  </message>
+</sequence-diagram>

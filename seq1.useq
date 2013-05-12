@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.2" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="planner.app.Project" project="Planner" 
+    file="/Planner/src/planner/app/Project.java" binary="false" label="project" type="class" autoSize="false">    
+    <position height="514" width="150" x="0" y="0"/>    
+    <execution id="2">      
+      <position height="21" width="120" x="5" y="473"/>    
+    </execution>  
+  </object>  
+  <object id="3" language="java" name="planner.app.Activity" project="Planner" 
+    file="/Planner/src/planner/app/Activity.java" binary="false" label="activity" type="class" autoSize="false">    
+    <position height="418" width="140" x="0" y="0"/>    
+    <execution id="4">      
+      <position height="63" width="75" x="5" y="117"/>    
+    </execution>    
+    <execution id="7">      
+      <position height="21" width="75" x="5" y="377"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="63" width="136" x="129" y="452"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="63" width="136" x="155" y="421"/>    
+    </execution>  
+  </object>  
+  <object id="13" language="java" name="planner.app.User" project="Planner" file="/Planner/src/planner/app/User.java" 
+    binary="false" label="user" type="class" autoSize="false">    
+    <position height="439" width="162" x="79" y="0"/>    
+    <execution id="6">      
+      <position height="21" width="63" x="84" y="138"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="196" width="63" x="84" y="177"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="21" width="63" x="84" y="289"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="63" width="63" x="84" y="356"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="21" width="158" x="295" y="442"/>    
+    </execution>  
+  </object>  
+  <object id="20" language="java" name="planner.app.Work" project="Planner" file="/Planner/src/planner/app/Work.java" 
+    binary="false" label="work" type="class" autoSize="false">    
+    <position height="351" width="195" x="146" y="0"/>    
+    <execution id="16">      
+      <position height="154" width="63" x="151" y="198"/>    
+    </execution>    
+    <execution id="22">      
+      <position height="63" width="63" x="151" y="268"/>    
+    </execution>  
+  </object>  
+  <message id="5" operation="assignActivity(planner.app.Activity):void">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="9" operation="addActivity(planner.app.Activity):void">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="2"/>  
+  </message>  
+  <message id="11" operation="registerWork(planner.app.Work):void">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="15" operation="Work(java.util.Date,java.util.Date,planner.app.Activity)" x="391" y="181">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="19" operation="getUsers():java.util.List&lt;User&gt;">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="21" operation="Work(java.util.Date,java.util.Date,planner.app.Activity)">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>  
+  <message id="23" operation="getWorkSet():java.util.TreeSet&lt;Work&gt;">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>
+</sequence-diagram>
