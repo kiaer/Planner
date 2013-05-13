@@ -1,0 +1,212 @@
+\documentclass[a4paper,12pt]{article}
+\begin{document}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+	\hline
+	Partition & Input & Expected \\
+	\hline
+	A & A & A \\
+	\hline
+\end{tabular}
+\end{center}
+
+\subsection{Usecase 1 - Create Project}
+\begin{enumerate}
+	\item[1] Create project \\
+		Vi tester funktionen createProject, hvor vi har partitionerne logged in og not logged in. Vi regner med at det ikke virker hvis vi ikke er logged in, og hvis vi er, så bliver projecet registreres, og kan returneres.
+		\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Input data set & Input & Expected \\
+			\hline
+			Not logged in & someProject & error \\
+			Logged in & someProject & someProject \\
+			\hline
+		\end{tabular}
+		\end{center}
+	\item[2] Instantiation af projekt \\
+		Der testes om hvordan et projekt bliver instantieret, og hvordan den retter eventuelle fejl. Vi har 2 input: navn og projekt leder, hvor vi er intereseret i hvad der sker når enten eller begge er null.
+		\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Input data set & Input & Expected \\
+			\hline
+			A1 & name, user & name, user. \\
+			A2 & name, null & name, nulls. \\
+			A3 & null, user & Default name, user. \\
+			A4 & null, null & Default name, null. \\
+			\hline
+		\end{tabular}
+		\end{center}
+\end{enumerate}
+\subsection{Usecase 2 - Manage Project}
+\begin{enumerate}
+	\item[1] Assigning project leader\\
+		Vi tester at en vilkårlig user virker, og at en null user ikke fejler.
+		\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Input data set & Input & Expected \\
+			\hline
+			A1 & user & user \\
+			A2 & null & null \\
+			\hline
+		\end{tabular}
+		\end{center}
+	\item[2] Modify Project\\
+		Vi har 4 værdier at ændre, og partitionerer vores ændringer i uafhængige partitioner. Dvs. vi har setName, setProjetLeader og setDate, hvor setDate specificerer vi om det er end date eller start date. Inputs til datoer er skrevet som et arbitrært tal for tid, hvor højere numre er senere, istedet for det normale date object det ville være.
+		\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Input data set & Input & Expected \\
+			\hline
+			setName & name & name \\
+			setName & null & error \\
+			setProjectLeader & user & user \\
+			setProjectLeader & null & null \\
+			setDate & setStartDate(0), setEndDate(1) & startDate = 0, endDate = 1 \\
+			setDate & setStartDate(1), setEndDate(0) & startDate = 1, error \\
+			setDate & setEndDate(0), setStartDate(1) & endDate = 0, error \\
+			setDate & setStartDate(null), setEndDate(0) & startDate = null, endDate = 0 \\
+			setDate & setStartDate(0), setEndDate(null) & startDate = 0, endDate = null \\
+			setDate & setStartDate(null), setEndDate(null) & startDate = null, endDate = null \\
+			\hline
+		\end{tabular}
+		\end{center}
+	\item[3] Assign activity\\
+		Her testes hvad der sker hvis vi assigner normalt, samme activity dobbelt, eller null. Hvis vi ikke regner med en error, så burde vi kunne få returneret den assignede aktivitet tilbage.
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				A1 & addActivity(someActivity) & someActivity \\
+				A2 & addActivity(someActivity), addActivity(someActivity) & someActivity, error \\
+				A3 & addActivity(null) & error \\
+				\hline
+			\end{tabular}
+			\end{center}
+\end{enumerate}
+\subsection{Usecase 3 - Create Activities}
+\begin{enumerate}
+	\item[1] Instantiate activity\\
+		Der testes hvilke værdier en aktivity får som resultat af forskelligt input. Inputtet er delt op i name og description
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				Activity & name, description & name, description \\
+				Activity & name, null & name, null \\
+				Activity & null, description & Default name, description \\
+				Activity & null, null & Default name, null \\
+				\hline
+			\end{tabular}
+			\end{center}
+\end{enumerate}
+\subsection{Usecase 4 - Define and Manage Activities}
+\begin{enumerate}
+	\item[1] Modify aktivity\\
+		Vi har 4 værdier at ændre, og partitionerer vores ændringer i uafhængige partitioner. Dvs. vi har setName, setDescription og setDate, hvor setDate specificerer vi om det er end date eller start date. Inputs til datoer er skrevet som et arbitrært tal for tid, hvor højere numre er senere, istedet for det normale date object det ville være.
+		\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Input data set & Input & Expected \\
+			\hline
+			setName & name & name \\
+			setName & null & error \\
+			setDescription & description & description \\
+			setDescription & null & null \\
+			setDate & setStartDate(0), setEndDate(1) & startDate = 0, endDate = 1 \\
+			setDate & setStartDate(1), setEndDate(0) & startDate = 1, error \\
+			setDate & setEndDate(0), setStartDate(1) & endDate = 0, error \\
+			setDate & setStartDate(null), setEndDate(0) & startDate = null, endDate = 0 \\
+			setDate & setStartDate(0), setEndDate(null) & startDate = 0, endDate = null \\
+			setDate & setStartDate(null), setEndDate(null) & startDate = null, endDate = null \\
+			\hline
+		\end{tabular}
+		\end{center}
+	\item[2] Assign users\\
+		Vi tjekker om der sker fejl ved assignment af null users, dupletter, og om det foregår normalt ved assigning af en vilkårlig user.
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				A1 & assignUser(someUser) & someUser \\
+				A2 & assignUser(someUser), assignUser(someUser) & someUser, error \\
+				A3 & assignUser(null) & error \\
+				\hline
+			\end{tabular}
+			\end{center}
+	\item[3] Hour registration \\
+		Det eneste der kunne være galt her, er registrering af ikke-positive timer. Eftersom at double er en primitive i Java, kan der ikke inputtes null, så det skal der ikke testes for.
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				registerHours & 1 & 1 \\
+				registerHours & -1 & error \\
+				\hline
+			\end{tabular}
+			\end{center}
+\end{enumerate}
+\subsection{Usecase 5 - Define Developers}
+\begin{enumerate}
+	\item[1] Instantiation of user \\
+		User kan instantieres med 3 værdier: name, password og email. Vi tester for hvad deres værdier bliver ved vilkårlige strings og null værdier:
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				User & name, password, email & name, password, email \\
+				User & name, password, null & name, password, null \\
+				User & name, null, email & name, null, email \\
+				User & null, password, email & Default name, password, email \\
+				User & name, null, null & name, null, null \\
+				User & null, password, null & Default name, password, null \\
+				User & null, null, email & Default name, null, email \\
+				User & null, null, null & Default name, null, null \\
+				\hline
+			\end{tabular}
+			\end{center}
+	\item[2] Modifying a user \\
+		Vi kan modificere de 3 værdier af user igen, og med antagelsen at de er uafhængige, har vi tre partitioner (setName, setPassword, setEmail) og 6 tests. I de tilfælde hvor der ikke er en fejl, så regner vi med at den returner inputtet ved en get metode.
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				setName & name & name \\
+				setName & null & error \\
+				setPassword & password & password \\
+				setPassword & null & null \\
+				setEmail & email & email \\
+				setEmail & null & null \\
+				\hline
+			\end{tabular}
+			\end{center}
+\end{enumerate}
+\subsection{Usecase 6 - Project Workhours}
+\begin{enumerate}
+	\item[1] Register work \\
+		Vi tjekker om registrering af work, dupletter af work eller null work fungerer. Der testes også om overlappende work giver fejl. I det tilfælde bliver der brugt datoer repræsenteret som tal igen.
+			\begin{center}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				Input data set & Input & Expected \\
+				\hline
+				A1 & work & work \\
+				A2 & null & error \\
+				A3 & registerWork(work), registerWork(work) & work, error \\
+				A4 & registerWork(0, 2, someActivity), registerWork(1, 3, someActivity) & work(0, 2, someActivity), error \\
+				A5 & registerWork(1, 3, someActivity), registerWork(0, 2, someActivity) & work(1, 3, someActivity), error \\
+				\hline
+			\end{tabular}
+			\end{center}
+\end{enumerate}
+
+\end{document}
