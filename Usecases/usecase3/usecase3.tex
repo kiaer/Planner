@@ -3,7 +3,7 @@
 \begin{document}
 \begin{usecase}
 
-\addtitle{Use Case 3}{Define and Manage Activities} 
+\addtitle{Use Case 4}{Define and Manage Activities} 
 
 %Scope: the system under design
 \addfield{Scope:}{System-wide}	
@@ -13,7 +13,7 @@
 %Stakeholders and Interests: Who cares about this use case and what do they want?
 \additemizedfield{Stakeholders and Interests:}{
 	\item Project Leader: Needs to modify activities.
-	\item Project Leader: Needs to add activities to projects and users to activities.
+	\item Project Leader: Needs to assign users to activities.
 	\item Developer: Needs to register hours worked on given activity.
 }
 
@@ -21,37 +21,45 @@
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Scenario:}{
 	\item Project leader modifies activity.
-	\item Project leader adds activity to project.
 	\item Project leader adds developer to activity.
 	\item Developer registers hours on activity.
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarios:}{
-	\item[3.a] Adding same user twice
+	\item[1.a] Project leader sets name to null value
 		\begin{enumerate}
-		\item[1.] System throws an error.
-		\item[2.] System returns to 3.
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 1.
 		\end{enumerate}
-	\item[4.a]  If start date not assigned:
+	\item[1.b] Project leader sets null end date:
 		\begin{enumerate}
-		\item[1.] If start date is not assigned the activity will have no start date.
-		\item[2.] The start date can be modified later.
+		\item[1.] End date is removed, and the value is set to null.
 		\end{enumerate}
-	\item[4.b] If end date not assigned:
+	\item[1.c] Project leader sets start date after end date:
 		\begin{enumerate}
-		\item[1.] If end date is not assigned, the activity will have no end date.
-		\item[2.] The end date can be modified later.
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 1.
 		\end{enumerate}
-	\item[4.c] End date is before start date
+	\item[1.d] Project leader sets end date before start date:
 		\begin{enumerate}
-		\item[1.] The system will show an error.
-		\item[2.] The system will go back to 4.
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 1.
 		\end{enumerate}
-	\item[5.a] Define negative hours of work
+	\item[2.a] Project leader adds null user
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[2.b] Project leader adds duplicate user
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[5.a] Developer registers non-positive work hours
 		\begin{enumerate}
 		\item[1.] System returns an error
-		\item[2.] System returns user to 5.
+		\item[2.] System returns user to 3.
 		\end{enumerate}
 }
 \end{usecase}
