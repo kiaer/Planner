@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  12 MAY 2013 17:07
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  13 MAY 2013 00:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -97,12 +97,12 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
 
-Overfull \hbox (42.5763pt too wide) in alignment at lines 25--85
+Overfull \hbox (42.5763pt too wide) in alignment at lines 25--77
  [] [] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 85
+Underfull \vbox (badness 10000) detected at line 77
  []
 
 [1
@@ -112,7 +112,7 @@ Underfull \vbox (badness 10000) detected at line 85
 Here is how much of TeX's memory you used:
  398 strings out of 493488
  4926 string characters out of 3141326
- 63265 words of memory out of 3000000
+ 61265 words of memory out of 3000000
  3770 multiletter control sequences out of 15000+200000
  4294 words of font info for 16 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -122,7 +122,7 @@ ts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmti10.pfb>
-Output written on Usecase2.pdf (1 page, 50575 bytes).
+Output written on Usecase2.pdf (1 page, 50323 bytes).
 PDF statistics:
  24 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream

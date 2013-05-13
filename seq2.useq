@@ -20,12 +20,15 @@
     </execution>    
     <execution id="23">      
       <position height="21" width="148" x="5" y="144"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="21" width="173" x="5" y="572"/>    
     </execution>  
   </object>  
-  <object id="24" language="java" name="planner.app.Project" project="Planner" 
+  <object id="25" language="java" name="planner.app.Project" project="Planner" 
     file="/Planner/src/planner/app/Project.java" binary="false" label="project" type="class" autoSize="false">    
     <position height="541" width="195" x="152" y="0"/>    
-    <execution id="25">      
+    <execution id="26">      
       <position height="63" width="162" x="157" y="260"/>    
     </execution>    
     <execution id="8">      
@@ -48,6 +51,9 @@
     </execution>    
     <execution id="20">      
       <position height="21" width="162" x="157" y="524"/>    
+    </execution>    
+    <execution id="28">      
+      <position height="63" width="191" x="182" y="551"/>    
     </execution>  
   </object>  
   <message id="3" operation="adminLoggedIn():boolean" x="106" y="148">    
@@ -82,12 +88,16 @@
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="20"/>  
   </message>  
-  <message id="22" operation="adminLogIn(java.lang.String):boolean">    
+  <message id="22">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="23"/>  
   </message>  
-  <message id="26" operation="createProject(planner.app.Project):void">    
-    <end type="SOURCE" refId="25"/>    
+  <message id="27" operation="createProject(planner.app.Project):void">    
+    <end type="SOURCE" refId="26"/>    
     <end type="TARGET" refId="5"/>  
+  </message>  
+  <message id="29" operation="removeProject(planner.app.Project):void">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="24"/>  
   </message>
 </sequence-diagram>

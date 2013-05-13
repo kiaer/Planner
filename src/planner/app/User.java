@@ -15,7 +15,6 @@ public class User {
 			MSG_NULL_WORK = "Work must not be null",
 			MSG_WORK_OVERLAP = "Work is already registered in the desired interval.";
 
-
 	private String username, password, email;
 	private List<Activity> activities = new ArrayList<Activity>();
 	private TreeSet<Work> workSet = new TreeSet<Work>();

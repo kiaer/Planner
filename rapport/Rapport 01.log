@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  13 MAY 2013 01:37
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  13 MAY 2013 02:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1229,18 +1229,18 @@ File: seq1.png Graphic file (type png)
 <use seq1.png>
 Package pdftex.def Info: seq1.png used on input line 192.
 (pdftex.def)             Requested size: 351.31163pt x 262.98184pt.
- <seq2.png, id=140, 383.4325pt x 577.15625pt>
+ <seq2.png, id=140, 383.4325pt x 625.33624pt>
 File: seq2.png Graphic file (type png)
  <use seq2.png>
 Package pdftex.def Info: seq2.png used on input line 200.
-(pdftex.def)             Requested size: 191.71577pt x 288.57741pt.
+(pdftex.def)             Requested size: 191.71577pt x 312.66736pt.
 
-[6.7 <./seq1.png (PNG copy)>] <seq3.png, id=148, 582.175pt x 522.95375pt>
+[6.7 <./seq1.png (PNG copy)>] <seq3.png, id=148, 582.175pt x 555.07375pt>
 File: seq3.png Graphic file (type png)
 
 <use seq3.png>
 Package pdftex.def Info: seq3.png used on input line 208.
-(pdftex.def)             Requested size: 291.08679pt x 261.47623pt.
+(pdftex.def)             Requested size: 291.08679pt x 277.53618pt.
  [7.8 <./seq2.png (PNG copy)>] [8.9 <./seq3.png (PNG copy)>]
 [9.10] [10.11]
 Underfull \vbox (badness 10000) detected at line 289
@@ -1317,7 +1317,7 @@ nts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
 e1/urw/palatino/uplr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/
 palatino/uplr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/palatin
 o/uplri8a.pfb>
-Output written on "Rapport 01.pdf" (24 pages, 457431 bytes).
+Output written on "Rapport 01.pdf" (24 pages, 456275 bytes).
 PDF statistics:
  325 PDF objects out of 1000 (max. 8388607)
  278 compressed objects within 3 object streams

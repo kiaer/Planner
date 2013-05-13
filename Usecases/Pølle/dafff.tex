@@ -1,0 +1,167 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{setspace} % This package is used to control linespacing; With \onehalfspacing for instance
+\usepackage[danish]{babel}
+\renewcommand{\danishhyphenmins}{22} % bedre orddeling
+\usepackage{bm}
+\usepackage{fnbreak}
+\usepackage{sectsty}
+\usepackage{wrapfig}
+\usepackage[scriptsize]{caption}
+\usepackage[danish,textsize=tiny,backgroundcolor=red,bordercolor=blue]{todonotes}
+\usepackage[isbn,issn]{dk-bib}
+\interfootnotelinepenalty=10000
+\usepackage{graphicx}
+
+\addto\captionsdanish{
+\renewcommand\abstractname{Abstract}
+}
+%-----------------------------------------------------
+\newcommand{\doctitle}{Eksaminations projekt}
+\newcommand{\docsubject}{Software Engineering 1(02161)}
+\newcommand{\docauthor}{Christian Kiær s123812, Carsten Rosenkilde Nielsen s123062 og Jonathan Becktor s123094}
+\newcommand{\docdate}{\today}
+\newcommand{\docplace}{Danmarks Tekniske Universitet}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\newcommand{\docsubtitle}{Undertitle}
+%-----------------------------------------------------
+
+%-----------Scientific and mathematical packages begin-----------
+% Math package
+	\usepackage{amsmath}
+
+% Vector symbols and functions (for example \vv)
+	\usepackage{esvect}
+
+% Mathematical symbols
+	\usepackage{amssymb}
+\DeclareMathOperator{\p}{\cdot}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\C}{\mathbb{C}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\newcommand{\nn}{\nonumber}
+% SI Units
+	%\usepackage[output-decimal-marker={,}]{siunitx}		%http://mirrors.dotsrc.org/ctan/macros/latex/begincontrib/siunitx/siunitx.pdf
+	%\sisetup{unitsep= \cdot }
+
+% For Chemistry
+	%\usepackage{chemscheme}		% http://ctan.org/pkg/chemscheme
+	%\usepackage{chemsym}		% http://ctan.org/pkg/chemsym
+	%\usepackage{mhchem}			% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/chemstyle/chemstyle.pdf
+	%\DeclareSIUnit\Molar{\textsc{m}}
+%-----------Scientific and mathematical packages end--------------
+
+% Non-default fonts - has to come _after_ some of the mathematical packages
+\usepackage{pxfonts}
+
+% Page margins
+\usepackage[left=2.0cm, right=1.5cm]{geometry}
+
+% Hyperref
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+%\usepackage[hidelinks]{hyperref}  
+\hypersetup{pdftitle={\doctitle}} 
+\hypersetup{pdfsubject={\docsubject}}
+\hypersetup{pdfauthor={\docauthor}}
+
+% Setspace
+\usepackage{setspace}
+\onehalfspacing
+%\numberwithin{equation}{section}
+
+% Title
+\title{
+\HRule \\
+\textsc{\doctitle} \\
+	 \small{\textsl{\docsubtitle}}
+\HRule
+}
+\author{\docauthor\\\small{\docplace}}
+\date{\docdate}
+
+% Fancyheader : http://mirrors.dotsrc.org/ctan/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+%\fancyhead[RO]{\docauthor \hfill \doctitle \hfill\thepage}
+\fancyhead[RO]{\doctitle \hfill Gruppe 01  \hfill \thepage /\ref{TotPages}}
+% Get rid of annoying error messages
+\setlength{\headheight}{14.5pt}
+\usepackage{totpages}
+\usepackage{sectsty}
+\allsectionsfont{\scshape}
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\textsc{\LARGE Danmarks Tekniske Universitet}\\[1.5cm]
+\textsc{\large Eksaminations Projekt}\\[0.5cm]
+\HRule \\[0.4cm]
+{ \huge \bfseries Project Planner}\\[0.1cm]
+\HRule \\[1.5cm]
+\end{center}
+\begin{flushleft} \large
+\emph{Gruppemedlemmer:}\\
+Carsten Michael Rosenkilde \textsc{Nielsen} s123062\\
+Christian Mathias Rohde \textsc{Kiær} s123812\\
+Jonathan Binner \textsc{Becktor} s123094\\
+\end{flushleft}
+\vfill 
+\begin{center}
+{\large \today}
+\end{center}
+\end{titlepage}
+\section*{Indledning}
+Til opgave har vi fået stillet, at designe en planlægningsapplikation. Denne applikation skal skabes for et softwarehus, der mangler et system til at planlægge deres projekter. Projekter skal kunne oprettes efter de informationer, der haves på oprettelses tidspunktet. Dette skal kunne inkludere navn, start/sluttidspunkt og projektleder. Alle disse oplysninger skal også kunne tilføjes eller ændres senere hen. Projekter skal kunne tildeles aktiviteter, som tilføjes med et navn, en beskrivelse,en start/slut dato, antal  allokerede timer og det aktuelle timeforbrug. Udviklere skal kunne tildeles aktiviteter, og derfra registrere deres timeforbrug på den pågældende aktivitet. Til løsning af problemerne, har vi opstillet 6 Use Cases som vi vil implementere testdrevent.  \\
+Følgende Use Cases har vi valgt at kigge på: 
+\begin{itemize}
+\item Create projects
+\item Manage projects
+\item Define Activities
+\item Manage developers
+\item Hours worked on project
+\item Seek Assistance
+\end{itemize}
+Vi har implementeret alle Use Cases test drevent, og det er gjort i forbindelse og uden konflikt med opgavebeskrivelsen.
+\newpage
+\tableofcontents
+\newpage
+\section{Kravspecifikation}
+\subsection{Væsentlige begreber}
+\subsection{Use cases}
+\newpage
+\section{Programdesign}
+\subsection{Klasser}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.25]{classdiagram.jpg}
+\caption{Klassediagram}
+\label{fig: Klassediagram}
+\end{figure}
+Ovenfor er vores klassediagram opstillet. Vi har valgt kun at vise de public metoder, for alle vores klasser. Derudover viser diagrammerne hvilke funktioner, der kan hente oplysninger fra hvad. 
+\subsection{Sekvensdiagrammer}
+\subsection{Diskussion}
+Vi som gruppe diskuterede vi hvad der skulle lægges fokus på. Til at starte med var vi enige om at der skulle være GUI, persistency og god funktionalitet. Dog da vi var et godt stykke inde valgte vi at fokusere på programmets funktionalitet og de tilhørende tests for at få så god "code coverage" som muligt. Da alle vores use cases kun beskæftiger sig med funktionalitet af programmet, kunne vi derfor opnå at færdiggøre dem alle. Dette medfører også, at vores use cases har tests for de fleste scenarioer.\\
+Oplægget til opgaven skaber en del uklarheder rundt omkring, der dog let kan ændres på. Specielt de forskellige brugers rettigheder i programmet, var vi i tvivl om. Derfor er programmet meget åbent, og kun nogle få metoder kræver brugerrettigheder. 
+\section{Systematiske test}
+Alle vores tests er i bund og grund lavet for at kunne få så høj "code coverage" som muligt. Med dette som bagrund har vi lavet tests til mere eller mindre alt i programmet. Vi har taget brug af EclEmma for at finde hvor vi manglede test og hvad der ikke var covered. Nogle af de oftest funde test er tests for getters \& setters hvilket var forholdsvist let at få testet man laver en værdi som sættes i en setter hvorefter vi bruger assertEquals for at se om den værdi vi har sat i setteren er den samme vi får fra getteren når vi spørger efter den. En anden test der ofte skulle testes var hvis fx. en setter ikke kunne være null og hvis den var skulle kaste en fejl. Her bruger vi try/catch i testsne for at fange de fejl som programmet giver os og sammenligner dem med de ønskede fejlmeddelelser.
+
+\subsection*{Usecase 1. Create Project}
+Vi tester om admin er logget ind. Derefter kan administratoren lave projekter. Hvis administratoren laver et projekt uden navn vil programmet tildele den et. Dette testes ved at lave et program uden navn og derefter teste ved getName metoden om navnet er blevet til "default name". Denne slags test bliver brugt flere gange i denne usecase hvis der ikke skrives start dato bliver den af default sat til dags dato. dette tjækkes på samme måde. Hvis projektet bliver lavet med end date før start date kaster programmet en fejl. Denne fanger vi med en try/catch som tjekker om fejlen og fejlmeddelelsen er det samme.
+
+\subsection*{Usecase 2. Manage Project}
+Vi tester her om Projekt leader kan ændre i projects, vi tester om der kan ændres i navn, startdato, slutdato og hvordan programet håndterer det. Der testes også om projektleder kan skiftes ud. Derudover tester vi om der kan ændres i activities og hvordan det håndteres hvis man skal fjerne en activity.
+
+\subsection*{Usecase 3. Define activities}
+Først testes det om en user kan lave "activities", derefter testes det om users kan skifte navn, beskrivelse og "allocated workhours". Derefter kan vi teste hvad der sker hvis man undlader et navn på activity, hvad der sker hvis man giver negative "workhours" og hvordan vil programmet håndtere at man giver den eksempelvis en startdato uden slut dato eller omvendt. Der skal også testes hvad der sker hvis slut dato er før start dato.
+
+\subsection*{Usecase 4. 	}
+
+\subsection
+
+\section{Konklusion}
+Vi har fået skabt et program, der lever op til de kravspecifikationer vi har fået stillet. Programmet er gennemtestet med mange scenarioer, og derfor har vi prøvet at sikre en høj kvalitet. Der er plads til udvidelse, hvis dette skulle være at ønske. Af egenskaber vi ikke har nået, som dog ikke er en del af kravspecifikationerne, kan nævnes et persistency layer og et UI. Dette er selvfølgelig påkrævet for et fuldt funktionelt program. Vi har dog opnået at få skabt det grundlæggende, for en planlægningsapplikation.\\ 
+Projektet har forløbet fint. Dog har der grundet andre kurser været funktioner vi har måtte udelade. Derfor har vores fokus været på de grundlæggende funktioner, og ting funktioner vi havde tiltænkt, som GUI og persistency, blev udeladt. Dette er dog noget vi i sidste ende har været glade for, da det har givet os bedre tid til at løse vores use cases. I forhold til vores oprindelige projektplan, kom vi forsent igang allerede fra uge 1. Dette medførte de fornævnte fravalg. Dette var dog noget vi blev enige om forholdsvist hurtigt. Ellers vil vi mene at vi har forsøgt at følge planen, og har prøvet at have så få overskridelser af tiden som muligt.\\
+Alt i alt har dette givet os en mulighed, for at prøve at arbejde mod en deadline. Vi har fået indblik i hvilke valg der skal tages, og har indset at ikke alle de ideer man har gjort sig nødvændigvis kan nås.
+\end{document}

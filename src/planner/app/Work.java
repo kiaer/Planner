@@ -16,25 +16,25 @@ public class Work implements Comparable<Work> {
 	private Activity activity;
 
 	public Work(Date fromDate, Date toDate, Activity activity) { 
-		if (fromDate != null)
+		if (fromDate != null) {
 			this.fromDate = fromDate;
-		else {
+			if(toDate != null && fromDate.before(toDate))
+				this.toDate = toDate;
+			else
+				this.toDate = new Date(this.fromDate.getTime() + DAY_TO_MILISECONDS);
+		} else {
 			if (toDate != null) {
-				fromDate = new Date();
-				fromDate.setTime(fromDate.getTime() - DAY_TO_MILISECONDS);
-			} else
-				fromDate = Planner.getDate();
-		}
-		if (toDate != null && toDate.after(fromDate))
-			this.toDate = toDate;
-		else {
-			toDate = new Date();
-			toDate.setTime(fromDate.getTime() + DAY_TO_MILISECONDS);
+				this.toDate = toDate;
+				this.fromDate = new Date(this.toDate.getTime() - DAY_TO_MILISECONDS);
+			} else {
+				this.fromDate = Planner.getDate();
+				this.toDate = new Date(this.fromDate.getTime() + DAY_TO_MILISECONDS);
+			}
 		}
 		if (activity != null)
 			this.activity = activity;
 		else
-			activity = ConstantActivities.NONE.getActivity();
+			this.activity = ConstantActivities.NONE.getActivity();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class Work implements Comparable<Work> {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o.getClass() == Work.class) {
+		if (o != null && o.getClass() == Work.class) {
 			Work work = (Work) o;
 			return fromDate.equals(work.getFromDate())
 					&& toDate.equals(work.getToDate())
@@ -61,33 +61,31 @@ public class Work implements Comparable<Work> {
 			return false;
 	}
 
-	public void setActivity(Activity activity)
-			throws OperationNotAllowedException {
+	public void setActivity(Activity activity) throws OperationNotAllowedException {
 		if (activity != null)
 			this.activity = activity;
 		else
-			throw new OperationNotAllowedException(Operation.WORK_SET_ACT,
-					MSG_NULL_ACT);
+			throw new OperationNotAllowedException(Operation.WORK_SET_ACT, MSG_NULL_ACT);
 	}
 
 	public void setFromDate(Date fromDate) throws OperationNotAllowedException {
-		if (fromDate != null)
-			this.fromDate = fromDate;
-		else
-			throw new OperationNotAllowedException(
-					Operation.WORK_SET_NULL_FROM_DATE, MSG_NULL_DATE);
+		if (fromDate != null) {
+			if(fromDate.before(toDate))
+				this.fromDate = fromDate;
+			else
+				throw new OperationNotAllowedException(Operation.WORK_SET_FROM_DATE, MSG_DATE_MISMATCH);
+		} else
+			throw new OperationNotAllowedException(Operation.WORK_SET_FROM_DATE, MSG_NULL_DATE);
 	}
 
 	public void setToDate(Date toDate) throws OperationNotAllowedException {
 		if (toDate != null)
-			if (fromDate != null && fromDate.after(toDate))
-				throw new OperationNotAllowedException(
-						Operation.WORK_DATE_MISMATCH, MSG_DATE_MISMATCH);
-			else
+			if (toDate.after(fromDate))
 				this.toDate = toDate;
+			else
+				throw new OperationNotAllowedException(Operation.WORK_SET_TO_DATE, MSG_DATE_MISMATCH);
 		else
-			throw new OperationNotAllowedException(
-					Operation.WORK_SET_NULL_TO_DATE, MSG_NULL_DATE);
+			throw new OperationNotAllowedException(Operation.WORK_SET_TO_DATE, MSG_NULL_DATE);
 	}
 
 	public Activity getActivity() {
