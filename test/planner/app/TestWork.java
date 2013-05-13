@@ -142,7 +142,7 @@ public class TestWork extends SampleData {
 		// Unequal activity
 		other = new Work(fromDate, toDate, new Activity("b"));
 		assertFalse(work.equals(other));
-		assertTrue(-1 == work.compareTo(other));
+		assertEquals(-1, work.compareTo(other));
 		// Equal
 		assertTrue(work.equals(work));
 	}
