@@ -14,9 +14,9 @@ public class TestProject extends SampleData {
 	@Test
 	public void testActivities() {
 		Project project = new Project("Project");
-		//Initial values
+		// Initial values
 		assertTrue(project.getActivities().isEmpty());
-		//Adding activity
+		// Adding activity
 		Activity activity = sampleActivity();
 		try {
 			project.addActivity(activity);
@@ -24,7 +24,7 @@ public class TestProject extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Duplicate activity error
+		// Duplicate activity error
 		try {
 			project.addActivity(activity);
 			fail(NO_EXCEPTION);
@@ -33,10 +33,10 @@ public class TestProject extends SampleData {
 			assertEquals(Operation.PROJ_ADD_ACT, e.getOperation());
 			assertEquals(Project.MSG_DUPE_ACT, e.getMessage());
 		}
-		//Removing activity
+		// Removing activity
 		project.removeActivity(activity);
 		assertFalse(project.getActivities().contains(activity));
-		//Null activity error
+		// Null activity error
 		try {
 			project.addActivity(null);
 			fail(NO_EXCEPTION);
@@ -50,10 +50,10 @@ public class TestProject extends SampleData {
 	@Test
 	public void testDates() {
 		Project project = new Project("Project");
-		//Initial values
+		// Initial values
 		assertTrue(project.getStartDate() == null);
 		assertTrue(project.getEndDate() == null);
-		//Date change
+		// Date change
 		Date startDate = new Date(1);
 		try {
 			project.setStartDate(startDate);
@@ -86,7 +86,7 @@ public class TestProject extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Incompatible date errors
+		// Incompatible date errors
 		try {
 			project.setStartDate(new Date(3));
 			fail(NO_EXCEPTION);
@@ -109,9 +109,9 @@ public class TestProject extends SampleData {
 	public void testName() {
 		String name = "Project";
 		Project project = new Project(name);
-		//Initial values
+		// Initial values
 		assertEquals(name, project.getName());
-		//Name change
+		// Name change
 		String newName = "New name";
 		try {
 			project.setName(newName);
@@ -119,7 +119,7 @@ public class TestProject extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Null name error
+		// Null name error
 		name = project.getName();
 		try {
 			project.setName(null);
@@ -129,7 +129,7 @@ public class TestProject extends SampleData {
 			assertEquals(Project.MSG_NULL_NAME, e.getMessage());
 			assertEquals(name, project.getName());
 		}
-		//Null name constructor error correction
+		// Null name constructor error correction
 		project = new Project(null);
 		assertEquals(Project.DEFAULT_NAME, project.getName());
 	}
@@ -137,16 +137,16 @@ public class TestProject extends SampleData {
 	@Test
 	public void testProjectLeader() {
 		Project project = new Project("Project");
-		//Initial values
+		// Initial values
 		assertTrue(project.getProjectLeader() == null);
-		//Project leader change
+		// Project leader change
 		User projectLeader = sampleUser();
 		project.setProjectLeader(projectLeader);
 		assertEquals(projectLeader, project.getProjectLeader());
-		//Project leader remove
+		// Project leader remove
 		project.removeProjectLeader();
 		assertTrue(project.getProjectLeader() == null);
-		//HasProjectLeader test
+		// HasProjectLeader test
 		assertFalse(project.hasProjectLeader());
 		project.setProjectLeader(projectLeader);
 		assertTrue(project.hasProjectLeader());

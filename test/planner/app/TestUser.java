@@ -14,9 +14,9 @@ public class TestUser extends SampleData {
 	@Test
 	public void testActivity() {
 		User user = new User("Username", null, null);
-		//Initial values
+		// Initial values
 		assertTrue(user.getActivities().isEmpty());
-		//Assign activity
+		// Assign activity
 		Activity activity = sampleActivity();
 		try {
 			user.assignActivity(activity);
@@ -24,7 +24,7 @@ public class TestUser extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Duplicate activity error
+		// Duplicate activity error
 		try {
 			user.assignActivity(activity);
 			fail(NO_EXCEPTION);
@@ -33,10 +33,10 @@ public class TestUser extends SampleData {
 			assertEquals(User.MSG_DUPE_ACT, e.getMessage());
 			assertTrue(1 == user.getActivities().size());
 		}
-		//Unassign activity
+		// Unassign activity
 		user.unassignActivity(activity);
 		assertFalse(user.getActivities().contains(activity));
-		//Null activity error
+		// Null activity error
 		try {
 			user.assignActivity(null);
 			fail(NO_EXCEPTION);
@@ -51,9 +51,9 @@ public class TestUser extends SampleData {
 	public void testEmail() {
 		String email = "Email";
 		User user = new User("Username", null, email);
-		//Initial values
+		// Initial values
 		assertEquals(email, user.getEmail());
-		//Change password
+		// Change password
 		String newEmail = "New email";
 		user.setEmail(newEmail);
 		assertEquals(newEmail, user.getEmail());
@@ -64,9 +64,9 @@ public class TestUser extends SampleData {
 		User user = new User("Username", null, null);
 		Date to = new Date(2), from = new Date(4);
 		Work work1 = new Work(to, from, sampleActivity());
-		//Initial values
+		// Initial values
 		assertFalse(user.isWorking(to, from));
-		//Is working
+		// Is working
 		try {
 			user.registerWork(work1);
 			assertFalse(user.isWorking(new Date(0), new Date(1)));
@@ -82,9 +82,9 @@ public class TestUser extends SampleData {
 	public void testPassword() {
 		String password = "Password";
 		User user = new User("Username", password, null);
-		//Initial values
+		// Initial values
 		assertEquals(password, user.getPassword());
-		//Change password
+		// Change password
 		String newPassword = "New password";
 		user.setPassword(newPassword);
 		assertEquals(newPassword, user.getPassword());
@@ -94,9 +94,9 @@ public class TestUser extends SampleData {
 	public void testUsername() {
 		String username = "Username";
 		User user = new User(username, null, null);
-		//Initial values
+		// Initial values
 		assertEquals(username, user.getUsername());
-		//Change username
+		// Change username
 		String newUsername = "New name";
 		try {
 			user.setUsername(newUsername);
@@ -104,7 +104,7 @@ public class TestUser extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Null username error
+		// Null username error
 		username = user.getUsername();
 		try {
 			user.setUsername(null);
@@ -114,7 +114,7 @@ public class TestUser extends SampleData {
 			assertEquals(User.MSG_NULL_USERNAME, e.getMessage());
 			assertEquals(username, user.getUsername());
 		}
-		//Constructor null username error correction
+		// Constructor null username error correction
 		user = new User(null, null, null);
 		assertEquals(User.DEFAULT_USERNAME, user.getUsername());
 	}
@@ -122,9 +122,9 @@ public class TestUser extends SampleData {
 	@Test
 	public void testWork() {
 		User user = new User("Username", null, null);
-		//Initial values
+		// Initial values
 		assertTrue(user.getWorkSet().isEmpty());
-		//Register work
+		// Register work
 		Work work = sampleWork();
 		try {
 			user.registerWork(work);
@@ -132,7 +132,7 @@ public class TestUser extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Duplicate work error
+		// Duplicate work error
 		try {
 			user.registerWork(work); 
 			fail(NO_EXCEPTION); 
@@ -141,10 +141,10 @@ public class TestUser extends SampleData {
 			assertEquals(User.MSG_WORK_OVERLAP, e.getMessage());
 			assertTrue(1 == user.getWorkSet().size());
 		}
-		//Removing work
+		// Removing work
 		user.removeWork(work);
 		assertFalse(user.getWorkSet().contains(work));
-		//Null work error
+		// Null work error
 		try {
 			user.registerWork(null);
 			fail(NO_EXCEPTION);
@@ -153,7 +153,7 @@ public class TestUser extends SampleData {
 			assertEquals(User.MSG_NULL_WORK, e.getMessage());
 			assertTrue(user.getWorkSet().isEmpty());
 		}
-		//Overload method
+		// Overload method
 		try {
 			user.registerWork(work.getFromDate(), work.getToDate(), work.getActivity());
 			assertTrue(user.getWorkSet().contains(work));

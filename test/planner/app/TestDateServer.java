@@ -11,11 +11,12 @@ public class TestDateServer extends SampleData {
 
 	@Test
 	public void testDateServer() {
+		Calendar calendar = new DateServer().getDate();
+		// Initial values
 		Calendar expected = GregorianCalendar.getInstance();
-		Calendar result = new DateServer().getDate();
-		assertEquals(expected.get(Calendar.YEAR), result.get(Calendar.YEAR));
-		assertEquals(expected.get(Calendar.MONTH), result.get(Calendar.MONTH));
-		assertEquals(expected.get(Calendar.DAY_OF_MONTH), result.get(Calendar.DAY_OF_MONTH));
+		assertEquals(expected.get(Calendar.YEAR), calendar.get(Calendar.YEAR));
+		assertEquals(expected.get(Calendar.MONTH), calendar.get(Calendar.MONTH));
+		assertEquals(expected.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 	}
 
 }

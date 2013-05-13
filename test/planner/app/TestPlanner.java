@@ -26,6 +26,7 @@ public class TestPlanner extends SampleData {
 		} catch (OperationNotAllowedException e1) {
 			fail(WRONG_EXCEPTION);
 		}
+		// Initial values
 		List<User> availableUsers = new ArrayList<User>();
 		availableUsers.add(user2);
 		try {
@@ -42,30 +43,30 @@ public class TestPlanner extends SampleData {
 	public void testGetDate() {
 		Calendar expected = GregorianCalendar.getInstance();
 		Calendar result = Planner.getCalendar();
-		//Initial values
+		// Initial values
 		assertEquals(expected.get(Calendar.YEAR), result.get(Calendar.YEAR));
 		assertEquals(expected.get(Calendar.MONTH), result.get(Calendar.MONTH));
 		assertEquals(expected.get(Calendar.DAY_OF_MONTH), result.get(Calendar.DAY_OF_MONTH));
-		//Milisecond test
+		// Millisecond test
 		assertEquals(expected.getTime().getTime(), Planner.getDate().getTime(), 100);
 	}
 
 	@Test
 	public void testLogin() {
 		Planner planner = new Planner();
-		//Initial values
+		// Initial values
 		assertFalse(planner.adminLoggedIn());
-		//Login
+		// Login
 		try {
 			planner.adminLogin(Planner.ADMIN_PASSWORD);
 			assertTrue(planner.adminLoggedIn());
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Logout
+		// Logout
 		planner.adminLogout();
 		assertFalse(planner.adminLoggedIn());
-		//Wrong login error
+		// Wrong login error
 		try {
 			planner.adminLogin("Wrong password");
 			fail(NO_EXCEPTION);
@@ -74,7 +75,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_INVALID_LOGIN, e.getMessage());
 			assertFalse(planner.adminLoggedIn());
 		}
-		//Null password login error
+		// Null password login error
 		try {
 			planner.adminLogin(null);
 			fail(NO_EXCEPTION);
@@ -88,9 +89,9 @@ public class TestPlanner extends SampleData {
 	@Test
 	public void testProjects() {
 		Planner planner = new Planner();
-		//Initial values
+		// Initial values
 		assertTrue(planner.getProjects().isEmpty());
-		//Create project without login error
+		// Create project without login error
 		Project project = sampleProject();
 		try {
 			planner.createProject(project);
@@ -100,7 +101,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_CREATE_PROJECT_AUTH, e.getMessage());
 			assertTrue(planner.getProjects().isEmpty());
 		}
-		//Create project
+		// Create project
 		try {
 			planner.adminLogin(Planner.ADMIN_PASSWORD);
 			planner.createProject(project);
@@ -108,7 +109,7 @@ public class TestPlanner extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Duplicate project error
+		// Duplicate project error
 		try {
 			planner.createProject(project);
 			fail(NO_EXCEPTION);
@@ -117,7 +118,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_DUPE_PROJECT, e.getMessage());
 			assertTrue(1 == planner.getProjects().size());
 		}
-		//Null project error
+		// Null project error
 		try {
 			planner.createProject(null);
 			fail(NO_EXCEPTION);
@@ -126,7 +127,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_NULL_PROJECT, e.getMessage());
 			assertTrue(1 == planner.getProjects().size());
 		}
-		//Remove projects without login error
+		// Remove projects without login error
 		planner.adminLogout();
 		try {
 			planner.removeProject(project);
@@ -136,7 +137,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_REMOVE_PROJ_AUTH, e.getMessage());
 			assertTrue(1 == planner.getProjects().size());
 		}
-		//Remove projects
+		// Remove projects
 		try {
 			planner.adminLogin(Planner.ADMIN_PASSWORD);
 			planner.removeProject(project);
@@ -149,9 +150,9 @@ public class TestPlanner extends SampleData {
 	@Test
 	public void testUsers() {
 		Planner planner = new Planner();
-		//Initial values
+		// Initial values
 		assertTrue(planner.getUsers().isEmpty());
-		//Register user without login error
+		// Register user without login error
 		User user = sampleUser();
 		try {
 			planner.registerUser(user);
@@ -161,7 +162,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_REGISTER_USER_AUTH, e.getMessage());
 			assertTrue(planner.getUsers().isEmpty());
 		}
-		//Register user
+		// Register user
 		try {
 			planner.adminLogin(Planner.ADMIN_PASSWORD);
 			planner.registerUser(user);
@@ -169,7 +170,7 @@ public class TestPlanner extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Duplicate user error
+		// Duplicate user error
 		try {
 			planner.registerUser(user);
 			fail(NO_EXCEPTION);
@@ -178,7 +179,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_DUPE_USER, e.getMessage());
 			assertTrue(1 == planner.getUsers().size());
 		}
-		//Null user error
+		// Null user error
 		try {
 			planner.registerUser(null);
 			fail(NO_EXCEPTION);
@@ -187,7 +188,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_NULL_USER, e.getMessage());
 			assertTrue(1 == planner.getUsers().size());
 		}
-		//Remove users without login error
+		// Remove users without login error
 		planner.adminLogout();
 		try {
 			planner.removeUser(user);
@@ -197,7 +198,7 @@ public class TestPlanner extends SampleData {
 			assertEquals(Planner.MSG_REMOVE_USER_AUTH, e.getMessage());
 			assertTrue(1 == planner.getUsers().size());
 		}
-		//Remove users
+		// Remove users
 		try {
 			planner.adminLogin(Planner.ADMIN_PASSWORD);
 			planner.removeUser(user);

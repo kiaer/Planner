@@ -15,9 +15,9 @@ public class TestActivity extends SampleData {
 	public void testAllWorkHours() {
 		double allHours = 0;
 		Activity activity = new Activity("Activity", allHours);
-		//Initial values
+		// Initial values
 		assertTrue(allHours == activity.getWorkHours());
-		//Allocated work hours change
+		// Allocated work hours change
 		double newAllHours = 5;
 		try {
 			activity.setAllocatedWorkHours(newAllHours);
@@ -25,7 +25,7 @@ public class TestActivity extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Negative allocated work hours error
+		// Negative allocated work hours error
 		allHours = activity.getAllocatedWorkHours();
 		try {
 			activity.setAllocatedWorkHours(-1);
@@ -35,10 +35,10 @@ public class TestActivity extends SampleData {
 			assertEquals(Activity.MSG_NEG_ALL_HOURS, e.getMessage());
 			assertTrue(allHours == activity.getAllocatedWorkHours());
 		}
-		//Constructor negative allocated work hours error correction
+		// Constructor negative allocated work hours error correction
 		activity = new Activity("Activity", -1);
 		assertTrue(Activity.DEFAULT_ALL_WORK_HOURS == activity.getAllocatedWorkHours());
-		//Constructor default value
+		// Constructor default value
 		activity = new Activity("Activtiy");
 		assertTrue(Activity.DEFAULT_ALL_WORK_HOURS == activity.getAllocatedWorkHours());
 	}
@@ -46,10 +46,10 @@ public class TestActivity extends SampleData {
 	@Test
 	public void testDates() {
 		Activity activity = new Activity("Activity");
-		//Initial values
+		// Initial values
 		assertTrue(null == activity.getStartDate());
 		assertTrue(null == activity.getEndDate());
-		//Date change
+		// Date change
 		Date startDate = new Date(1);
 		try {
 			activity.setStartDate(startDate);
@@ -86,7 +86,7 @@ public class TestActivity extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Incompatible date errors
+		// Incompatible date errors
 		try {
 			activity.setStartDate(new Date(3));
 			fail(NO_EXCEPTION);
@@ -108,13 +108,13 @@ public class TestActivity extends SampleData {
 	@Test
 	public void testDescription() {
 		Activity activity = new Activity("Activity");
-		//Initial values
+		// Initial values
 		assertTrue(activity.getDescription() == null);
-		//Description change
+		// Description change
 		String description = "This is an activity";
 		activity.setDescription(description);
 		assertEquals(description, activity.getDescription());
-		//Constructor default value
+		// Constructor default value
 		activity = new Activity("Activity", description);
 		assertEquals(description, activity.getDescription());
 	}
@@ -123,9 +123,9 @@ public class TestActivity extends SampleData {
 	public void testName() {
 		String name = "Activity";
 		Activity activity = new Activity(name);
-		//Initial values
+		// Initial values
 		assertEquals(name, activity.getName());
-		//Name change
+		// Name change
 		String newName = "New name";
 		try {
 			activity.setName(newName);
@@ -133,7 +133,7 @@ public class TestActivity extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Null name error
+		// Null name error
 		name = activity.getName();
 		try {
 			activity.setName(null);
@@ -143,7 +143,7 @@ public class TestActivity extends SampleData {
 			assertEquals(Activity.MSG_NULL_NAME, e.getMessage());
 			assertEquals(name, activity.getName());
 		}
-		//Constructor null name error correction
+		// Constructor null name error correction
 		activity = new Activity(null);
 		assertEquals(Activity.DEFAULT_NAME, activity.getName());
 	}
@@ -151,9 +151,9 @@ public class TestActivity extends SampleData {
 	@Test
 	public void testUsers() {
 		Activity activity = new Activity("Activity");
-		//Initial values
+		// Initial values
 		assertTrue(activity.getUsers().isEmpty());
-		//Assigning user
+		// Assigning user
 		User user = sampleUser();
 		try {
 			activity.assignUser(user);
@@ -161,7 +161,7 @@ public class TestActivity extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Duplicate user error
+		// Duplicate user error
 		try {
 			activity.assignUser(user);
 			fail(NO_EXCEPTION);
@@ -170,10 +170,10 @@ public class TestActivity extends SampleData {
 			assertEquals(Activity.MSG_DUPE_USER, e.getMessage());
 			assertTrue(1 == activity.getUsers().size());
 		}
-		//Removing user
+		// Removing user
 		activity.removeUser(user);
 		assertFalse(activity.getUsers().contains(user));
-		//Null user error
+		// Null user error
 		try {
 			activity.assignUser(null);
 			fail(NO_EXCEPTION);
@@ -187,9 +187,9 @@ public class TestActivity extends SampleData {
 	@Test
 	public void testWorkHours() {
 		Activity activity = new Activity("Activity");
-		//Initial values
+		// Initial values
 		assertTrue(Activity.DEFAULT_WORK_HOURS == activity.getWorkHours());
-		//Change work hours
+		// Change work hours
 		double workHours = 1.0;
 		try {
 			activity.setWorkHours(workHours);
@@ -197,7 +197,7 @@ public class TestActivity extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Negative work hours error
+		// Negative work hours error
 		try {
 			activity.setWorkHours(-1);
 			fail(NO_EXCEPTION);
@@ -206,7 +206,7 @@ public class TestActivity extends SampleData {
 			assertEquals(Activity.MSG_NEG_WORK_HOURS, e.getMessage());
 			assertTrue(workHours == activity.getWorkHours());
 		}
-		//Register work hours
+		// Register work hours
 		double hours = 1;
 		try {
 			activity.registerWorkHours(hours);
@@ -214,7 +214,7 @@ public class TestActivity extends SampleData {
 		} catch (OperationNotAllowedException e) {
 			fail(WRONG_EXCEPTION);
 		}
-		//Register negative work hours error
+		// Register negative work hours error
 		workHours = activity.getWorkHours();
 		try {
 			activity.registerWorkHours(-1);
@@ -225,54 +225,6 @@ public class TestActivity extends SampleData {
 			assertTrue(workHours == activity.getWorkHours());
 		}
 	}
-
-//	@Test
-//	public void testAssignActivity() throws Exception {
-//		Planner planner = new Planner();
-//		planner.adminLogIn("admin");
-//		assertTrue(planner.adminLoggedIn());
-//
-//		// Step 1
-//		User user = new User("Karl", "1234", "fk@mail.dk");
-//		assertEquals(user.getActivities().size(), 0);
-//
-//		// Step 2
-//		Activity activity1 = new Activity("sten", "venstre ben");
-//		user.assignActivity(activity1);
-//		assertEquals(user.getActivities().size(), 1); 
-//		Activity activity2 = user.getActivities().get(0);
-//		assertEquals("sten", activity2.getName());
-//		assertEquals("venstre ben", activity2.getDescription());
-//
-//	}
-
-//		@Test
-//		public void testAssignWork() throws Exception {
-//			Planner planner = new Planner();
-//			planner.adminLogIn("admin");
-//			assertTrue(planner.adminLoggedIn());
-//
-//			// step 1
-//			User user = new User("Karl", "1234", "fk@mail.dk");
-//			assertEquals(user.getWorkList().size(), 0);
-//
-//			// step 2
-//			Date start = new Date();
-//			Date end = new Date();
-//			start.setDate(5);
-//			end.setDate(10);
-//			Activity activity1 = new Activity("sten", "venstre ben");
-//			Work work1 = new Work(start, end, activity1);
-//			user.registerWork(start, end, activity1);
-//			assertEquals(user.getWorkList().size(), 1);
-//			Date startT = new Date();
-//			Date endT = new Date();
-//			startT.setDate(5);
-//			endT.setDate(10);
-//			assertEquals(activity1 ,user.getWorkList().get(0).getActivity());
-//			
-//
-//		}
 
 }
 

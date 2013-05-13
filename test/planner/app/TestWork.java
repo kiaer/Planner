@@ -11,8 +11,6 @@ import static org.junit.Assert.fail;
 
 public class TestWork extends SampleData {
 
-
-
 	@Test
 	public void testActivity() {
 		Activity activity = sampleActivity();
@@ -133,15 +131,15 @@ public class TestWork extends SampleData {
 		// Not a work equal
 		assertFalse(work.equals(sampleActivity()));
 		assertFalse(work.equals(null));
-		// unequal from date
+		// Unequal from date
 		Work other = new Work(new Date(1), new Date(2), sampleActivity());
 		assertFalse(work.equals(other));
 		assertTrue(-1 == work.compareTo(other));
-		// unequal to date
+		// Unequal to date
 		other = new Work(fromDate, new Date(2), sampleActivity());
 		assertFalse(work.equals(other));
 		assertTrue(-1 == work.compareTo(other));
-		// unequal activity
+		// Unequal activity
 		other = new Work(fromDate, toDate, new Activity("b"));
 		assertFalse(work.equals(other));
 		assertTrue(-1 == work.compareTo(other));
@@ -151,34 +149,10 @@ public class TestWork extends SampleData {
 
 	@Test
 	public void testHours() {
-		Date fromDate = new Date(0), toDate = new Date(
-				Work.HOURS_TO_MILISECONDS);
+		Date fromDate = new Date(0), toDate = new Date(Work.HOURS_TO_MILISECONDS);
 		Work work = new Work(fromDate, toDate, sampleActivity());
+		// Initial values
 		assertTrue(1 == work.getHours());
-	}
-
-	@Test
-	public void testWorkEqual() {
-		Planner planner = new Planner();
-		Date toDate1 = new Date(10);
-		Date toDate2 = new Date(10);
-		Date toDate3 = new Date(15);
-		Date fromDat1 = new Date(1);
-		Date fromDat2 = new Date(1);
-		Date fromDat3 = new Date(5);
-		Activity act = new Activity("test", "testDis");
-		Activity act1 = new Activity("test1", "testDis1");
-		Work work1 = new Work(fromDat1, toDate1, act);
-		Work work2 = new Work(fromDat2, toDate2, act);
-		Work work3 = new Work(fromDat3, toDate3, act1);
-		Work work4 = new Work(fromDat3, toDate2, act);
-		assertTrue(work1.equals(work2));
-		assertFalse(work1.equals(work3));
-		assertFalse(work1.equals(act));
-		assertEquals(1, work3.compareTo(work4));
-		assertEquals(0, work1.compareTo(work2));
-		assertEquals(1, work3.compareTo(work1));
-
 	}
 
 }
