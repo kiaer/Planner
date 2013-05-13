@@ -24,7 +24,7 @@
 %(3rd Edition) by Craig Larman.
 \begin{usecase}
 
-\addtitle{Use Case 4}{Manage Developers} 
+\addtitle{Use Case 5}{Define Developers} 
 
 %Scope: the system under design
 \addfield{Scope:}{System-wide}
@@ -34,7 +34,7 @@
 
 %Stakeholders and Interests: Who cares about this use case and what do they want?
 \additemizedfield{\textsl{Administrator}:}{
-	\item Administrator: Create Developers and manage them.
+	\item Administrator: Create and modifies developers.
 }
 
 %Preconditions: What must be true on start and worth telling the reader?
@@ -44,35 +44,37 @@
 
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Success Scenario:}{
-	\item Admin creates developer
-	\item Admin changes developer username
-	\item Admin changes developer email
-	\item Admin changes developer password
-	\item Developer now managed
+	\item Admin creates developer.
+	\item Admin modifies developer.
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarioes:}{
-	\item[1.a]Admin creates wrong developer
+	\item[1.a] Admin instantiates user with null username:
 		\begin{enumerate}
-		\item[1.] Admin removes developer
-		\item[3.] Admin returns to step 1.
+		\item[1.] Username is set to default username.
 		\end{enumerate}
-	\item[2.a] Admin sets null username:
+	\item[1.b] Admin instantiates user with null password:
 		\begin{enumerate}
-		\item[1.] System shows failure message
-		\item[2.] Admin changes developer username properly
-		\item[3.] Admin continues with step 2
+		\item[1.] Password is set to null value.
 		\end{enumerate}
-	\item[4.a] Identical Developers:
+	\item[1.c] Admin instantiates user with null email:
 		\begin{enumerate}
-		\item[1.] System shows failure message
-		\item[3.] Admin continues with step 2
+		\item[1.] Email is set to null value.
 		\end{enumerate}
-
+	\item[2.a] Admin sets username to null:
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[2.b] Admin sets password to null:
+		\begin{enumerate}
+		\item[1.] Password is set to null value.
+		\end{enumerate}
+	\item[2.c] Admin sets email to null:
+		\begin{enumerate}
+		\item[1.] Email is set to null value.
+		\end{enumerate}
 }
-
 \end{usecase}
-
 \end{document}
-
