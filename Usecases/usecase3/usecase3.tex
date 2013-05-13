@@ -3,7 +3,7 @@
 \begin{document}
 \begin{usecase}
 
-\addtitle{Use Case 3}{Define activities} 
+\addtitle{Use Case 3}{Define and Manage Activities} 
 
 %Scope: the system under design
 \addfield{Scope:}{System-wide}	
@@ -12,35 +12,25 @@
 
 %Stakeholders and Interests: Who cares about this use case and what do they want?
 \additemizedfield{Stakeholders and Interests:}{
-	\item Project Leader: Needs add activities to projects and modify them.
-	\item Developer: Needs add activities to projects and modify them. Also needs to register hours worked on given activity.
-	
+	\item Project Leader: Needs to modify activities.
+	\item Project Leader: Needs to add activities to projects and users to activities.
+	\item Developer: Needs to register hours worked on given activity.
 }
+
 \addfield{Description:}{Makes it possible to create an activity connected to a project, add developers to the activity and assign workhours to the activity}
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Scenario:}{
-	\item Lets the users create activities.
-	\item The users can create activities, defined by name, description and allocated workhours.
-	\item Lets the user connect developers to an activity.
-	\item Lets the users define the expected start and end dates of the activity. It's possible to assign an endDate without startDate and vice versa.
-	\item Lets the developers define the actual hours of work put into the activity. It's possible to set the final workhours and add work hours while working.
+	\item Project leader modifies activity.
+	\item Project leader adds activity to project.
+	\item Project leader adds developer to activity.
+	\item Developer registers hours on activity.
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarios:}{
-	\item[2.a] No name assigned:
-		\begin{enumerate}
-		\item[1.] The activity will be assigned a default name.
-		\item[2.] The activitys name can be modified at a later time
-		\end{enumerate}
-	\item[2.b] Description not assigned:
-		\begin{enumerate}
-		\item[1.] The activity will have no description.
-		\item[2.] The description of the activity can be set at a later time.
-		\end{enumerate}
 	\item[3.a] Adding same user twice
 		\begin{enumerate}
-		\item[1.] System throws an error
+		\item[1.] System throws an error.
 		\item[2.] System returns to 3.
 		\end{enumerate}
 	\item[4.a]  If start date not assigned:
