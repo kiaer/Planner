@@ -156,9 +156,14 @@ Vi tester her om Projekt leader kan ændre i projects, vi tester om der kan ænd
 \subsection*{Usecase 3. Define activities}
 Først testes det om en user kan lave "activities", derefter testes det om users kan skifte navn, beskrivelse og "allocated workhours". Derefter kan vi teste hvad der sker hvis man undlader et navn på activity, hvad der sker hvis man giver negative "workhours" og hvordan vil programmet håndtere at man giver den eksempelvis en startdato uden slut dato eller omvendt. Der skal også testes hvad der sker hvis slut dato er før start dato.
 
-\subsection*{Usecase 4. 	}
+\subsection*{Usecase 4. Manage Developers}
+Her tester vi først om admin kan lave "developer", hvorefter der testes om der kan ændres username, email og password. Der testes for hvad der sker hvis man ændrer enten username, email eller pasword til null. Derudover testes der også for identiske users.
 
-\subsection
+\subsection*{Usecase 5.Hours worked on project}
+Først tester vi om User kan finde "activities", derefter tester vi at user kan skrive antal timer brugt på "activity" hvorefter vi tester om de blicer registreret i work. Vi tester også om en Developer kan sætte sig selv som working. Vi bliver også nød til at teste hvis der ikke bliver indsat en activity. Der testes for at hvis user indsætter mere "allocated hours" end hvad der er tid i projektet og der testes for minus tid.
+\subsection*{Usecase 6.}
+Vi laver en test for at en user kan skulle kunne hente en liste af developers. Derudover tester vi om user kan se de andre developers "Work" for at se om de arbejder på en activity.
+
 
 \section{Konklusion}
 Vi har fået skabt et program, der lever op til de kravspecifikationer vi har fået stillet. Programmet er gennemtestet med mange scenarioer, og derfor har vi prøvet at sikre en høj kvalitet. Der er plads til udvidelse, hvis dette skulle være at ønske. Af egenskaber vi ikke har nået, som dog ikke er en del af kravspecifikationerne, kan nævnes et persistency layer og et UI. Dette er selvfølgelig påkrævet for et fuldt funktionelt program. Vi har dog opnået at få skabt det grundlæggende, for en planlægningsapplikation.\\ 
