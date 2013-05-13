@@ -234,11 +234,12 @@ Vi tester her om Project leader kan ændre i projects, vi tester om der kan ænd
 Der testes først om de simple funktionaliteter som navn, beskrivelse, start/slut dato og allokerede arbejds timer (allocated workhours), kan ændres, både ved og efter instantiering. Samtidig bliver det testet om constructorsne sørger for at der ikke er umulige eller ulovlige værdier, og at der altid er et navn. Derefter testes user assignment, søgning og fjernelse.
 
 \subsection*{Usecase 4. Manage Developers}
-Her tester vi først om admin kan lave "developer", hvorefter der testes om der kan ændres username, email og password. Der testes for hvad der sker hvis man ændrer enten username, email eller pasword til null. Derudover testes der også for identiske users.
+De simple funktionaliteter inden for User klassen (developers), som username, email og password instantieringer og ændringer, bliver testet først. Heriblandt tests for ulovlige værdier som mangel på navn, og automatiske rettelser for dette. Derefter testes selve planners evner til at registrere, søge og fjerne user, med tests for at sørge for at dette kun er muligt for admin. Der bliver også testet for fejl som at registrere tomme users eller samme user flere gange (hvor en user er identificeret på sit username, password og email).
 
-\subsection*{Usecase 5.Hours worked on project}
+\subsection*{Usecase 5. Project Work Hours}
 Først tester vi om User kan finde "activities", derefter tester vi at user kan skrive antal timer brugt på "activity" hvorefter vi tester om de blicer registreret i work. Vi tester også om en Developer kan sætte sig selv som working. Vi bliver også nød til at teste hvis der ikke bliver indsat en activity. Der testes for at hvis user indsætter mere "allocated hours" end hvad der er tid i projektet og der testes for minus tid.
-\subsection*{Usecase 6.}
+
+\subsection*{Usecase 6. Seek Assistance}
 Vi laver en test for at en user kan skulle kunne hente en liste af developers. Derudover tester vi om user kan se de andre developers "Work" for at se om de arbejder på en activity.
 
 \section{Konklusion}
