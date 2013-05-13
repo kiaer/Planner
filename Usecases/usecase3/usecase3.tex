@@ -3,63 +3,36 @@
 \begin{document}
 \begin{usecase}
 
-\addtitle{Use Case 4}{Define and Manage Activities} 
+\addtitle{Use Case 3}{Create Activities} 
 
 %Scope: the system under design
 \addfield{Scope:}{System-wide}	
 %Primary Actor: Calls on the system to deliver its services.
-\addfield{Primary Actor:}{Project leader and Developer}
+\addfield{Primary Actor:}{Project Leader}
 
 %Stakeholders and Interests: Who cares about this use case and what do they want?
 \additemizedfield{Stakeholders and Interests:}{
-	\item Project Leader: Needs to modify activities.
-	\item Project Leader: Needs to assign users to activities.
-	\item Developer: Needs to register hours worked on given activity.
+	\item Project Leader: Needs to be able to create new activities for developers
 }
-
-\addfield{Description:}{Makes it possible to create an activity connected to a project, add developers to the activity and assign workhours to the activity}
+\addfield{Description:}{Makes it so Developers and Project leader can create new activities}
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Scenario:}{
-	\item Project leader modifies activity.
-	\item Project leader adds developer to activity.
-	\item Developer registers hours on activity.
+	\item Project Leader creates new activity with name, discription and allocated work hours 
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarios:}{
-	\item[1.a] Project leader sets name to null value
+	\item[1.a] Project leader instantiates activity with null name:
 		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 1.
+		\item[1.] System sets name to default name.
 		\end{enumerate}
-	\item[1.b] Project leader sets null end date:
+	\item[1.b] Project leader instantiates activity with null description:
 		\begin{enumerate}
-		\item[1.] End date is removed, and the value is set to null.
+		\item[1.] Activity created with null discription.
 		\end{enumerate}
-	\item[1.c] Project leader sets start date after end date:
+	\item[1.c] Project leader instantiates activity with non positive allocated work hours:
 		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 1.
-		\end{enumerate}
-	\item[1.d] Project leader sets end date before start date:
-		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 1.
-		\end{enumerate}
-	\item[2.a] Project leader adds null user
-		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 2.
-		\end{enumerate}
-	\item[2.b] Project leader adds duplicate user
-		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 2.
-		\end{enumerate}
-	\item[5.a] Developer registers non-positive work hours
-		\begin{enumerate}
-		\item[1.] System returns an error
-		\item[2.] System returns user to 3.
+		\item[1.] System sets allocatedWorkHours to default allocatedWorkHours.
 		\end{enumerate}
 }
 \end{usecase}

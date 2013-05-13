@@ -1,79 +1,65 @@
-%% Use Cases Template File
-%% Created by Tom Desair (http://www.tomdesair.com)
-%% Downloadable at: http://www.tomdesair.com/downloads/use-case-latex-template.zip
-%% Date Modified: 03/04/2012
-%
-% This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%   http://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-
-\documentclass[a4paper, 10pt, oneside, draft]{article}
-
-%include the usecases package
+\documentclass[12pt]{article}
 \usepackage{usecases}
-
 \begin{document}
-
-%Sometimes it is a good idea to put domain objects in \texttt{}
-%The template and the descriptions are based on the book Applying UML and Patterns: 
-%An Introduction to Object-Oriented Analysis and Design and Iterative Development
-%(3rd Edition) by Craig Larman.
 \begin{usecase}
 
-\addtitle{Use Case 5}{Define Developers} 
+\addtitle{Use Case 4}{Define and Manage Activities} 
 
 %Scope: the system under design
-\addfield{Scope:}{System-wide}
-
+\addfield{Scope:}{System-wide}	
 %Primary Actor: Calls on the system to deliver its services.
-\addfield{Primary Actor:}{Admin}
+\addfield{Primary Actor:}{Project leader and Developer}
 
 %Stakeholders and Interests: Who cares about this use case and what do they want?
-\additemizedfield{\textsl{Administrator}:}{
-	\item Administrator: Create and modifies developers.
+\additemizedfield{Stakeholders and Interests:}{
+	\item Project Leader: Needs to modify activities.
+	\item Project Leader: Needs to assign users to activities.
+	\item Developer: Needs to register hours worked on given activity.
 }
 
-%Preconditions: What must be true on start and worth telling the reader?
-\addfield{Description:}{Makes it so admin can manage all information in developers, add and remove new developers.}
-%when multiple
-%\additemizedfield{Preconditions:}{} 
-
+\addfield{Description:}{Makes it possible to create an activity connected to a project, add developers to the activity and assign workhours to the activity}
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
-\addscenario{Main Success Scenario:}{
-	\item Admin creates developer.
-	\item Admin modifies developer.
+\addscenario{Main Scenario:}{
+	\item Project leader modifies activity.
+	\item Project leader adds developer to activity.
+	\item Developer registers hours on activity.
 }
 
 %Extensions: Alternate scenarios of success or failure.
-\addscenario{Alternative Scenarioes:}{
-	\item[1.a] Admin instantiates user with null username:
+\addscenario{Alternative Scenarios:}{
+	\item[1.a] Project leader sets name to null value
 		\begin{enumerate}
-		\item[1.] Username is set to default username.
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 1.
 		\end{enumerate}
-	\item[1.b] Admin instantiates user with null password:
+	\item[1.b] Project leader sets null end date:
 		\begin{enumerate}
-		\item[1.] Password is set to null value.
+		\item[1.] End date is removed, and the value is set to null.
 		\end{enumerate}
-	\item[1.c] Admin instantiates user with null email:
+	\item[1.c] Project leader sets start date after end date:
 		\begin{enumerate}
-		\item[1.] Email is set to null value.
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 1.
 		\end{enumerate}
-	\item[2.a] Admin sets username to null:
+	\item[1.d] Project leader sets end date before start date:
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 1.
+		\end{enumerate}
+	\item[2.a] Project leader adds null user
 		\begin{enumerate}
 		\item[1.] System shows failure message.
 		\item[2.] System returns to step 2.
 		\end{enumerate}
-	\item[2.b] Admin sets password to null:
+	\item[2.b] Project leader adds duplicate user
 		\begin{enumerate}
-		\item[1.] Password is set to null value.
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
 		\end{enumerate}
-	\item[2.c] Admin sets email to null:
+	\item[5.a] Developer registers non-positive work hours
 		\begin{enumerate}
-		\item[1.] Email is set to null value.
+		\item[1.] System returns an error
+		\item[2.] System returns user to 3.
 		\end{enumerate}
 }
 \end{usecase}

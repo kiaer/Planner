@@ -3,37 +3,53 @@
 \begin{document}
 \begin{usecase}
 
-\addtitle{Use Case 3}{Create Activities} 
+\addtitle{Use Case 6}{Project Work Hours} 
 
 %Scope: the system under design
 \addfield{Scope:}{System-wide}	
 %Primary Actor: Calls on the system to deliver its services.
-\addfield{Primary Actor:}{Project Leader}
+\addfield{Primary Actor:}{Developer}
 
 %Stakeholders and Interests: Who cares about this use case and what do they want?
 \additemizedfield{Stakeholders and Interests:}{
-	\item Project Leader: Needs to be able to create new activities for developers
+	\item Developer: The developers needs to be able to set themselves as working, and register the hours they are working 
+	
 }
-\addfield{Description:}{Makes it so Developers and Project leader can create new activities}
+\addfield{Description:}{Makes it possible for a developer to get set himself as working, and register the ammount of hours he is working}
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Scenario:}{
-	\item Project Leader creates new activity with name, discription and allocated work hours 
+	\item User finds activity
+	\item User enters hours spent on activity
+	\item Activity registers hours Developer has spent.
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarios:}{
-	\item[1.a] Project leader instantiates activity with null name:
+
+	\item[1.a] User set to work:
 		\begin{enumerate}
-		\item[1.] System sets name to default name.
+		\item[1.] Sets himself to working
 		\end{enumerate}
-	\item[1.b] Project leader instantiates activity with null description:
+	
+	\item[1.b] null activity:
 		\begin{enumerate}
-		\item[1.] Activity created with null discription.
+		\item[1.] System casts errormessage.
+		\item[2.] Returns to step 1.
 		\end{enumerate}
-	\item[1.c] Project leader instantiates activity with non positive allocated work hours:
+		
+	\item[2.a] allocated hours more than actual time on project:
 		\begin{enumerate}
-		\item[1.] System sets allocatedWorkHours to default allocatedWorkHours.
+		\item[1.] System casts errormessage.
+		\item[2.] returns to step 2.
 		\end{enumerate}
+	
+	\item[2.b] negative work hours:
+		\begin{enumerate}
+		\item[1.] System casts errormessage.
+		\item[2.] returns to step 2.
+		\end{enumerate}
+		
+			
 }
 \end{usecase}
 \end{document}
