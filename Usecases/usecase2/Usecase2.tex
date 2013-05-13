@@ -46,35 +46,50 @@
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Success Scenario:}{
 	\item Admin assigns project leader.
+	\item Project leader modifies project values.
 	\item Project leader assigns activities to project.
 }
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Alternative Scenarioes:}{
-	\item[1.a] Admin assigns wrong project leader:
+	\item[1.a] Admin assigns no project leader:
 		\begin{enumerate}
-		\item[1.] Admin changes project leader.
-		\item[2.] Project Leader continues on step 2.
+		\item[1.] The project leader is removed, and the project leader value is null
 		\end{enumerate}
-	\item[1.b] Admin assigns no project leader:
+	\item[2.a] Project leader sets empty name:
 		\begin{enumerate}
-		\item[1.] System shows failure message
-		\item[2.] Admin assigns correct project leader
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
 		\end{enumerate}
-	
-	\item[2.a] Number of activities:
+	\item[2.b] Project leader sets null start date:
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[2.c] Project leader sets null end date:
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[2.d] Project leader sets start date after end date:
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[2.e] Project leader sets end date before start date:
+		\begin{enumerate}
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 2.
+		\end{enumerate}
+	\item[3.a] Number of activities:
 		\begin{enumerate}
 		\item[1.] Project leader gets a list of activities
-
 		\end{enumerate}
-	\item[2.b] Wrong activity:
+	\item[3.b] Wrong activity:
 		\begin{enumerate}
 		\item[1.] Project leader removes activity
 		\item[2.] Project leader returns to step 2
 		\end{enumerate}
 }
-
 \end{usecase}
-
 \end{document}
-
