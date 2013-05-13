@@ -63,13 +63,11 @@
 		\end{enumerate}
 	\item[2.b] Project leader sets null start date:
 		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 2.
+			\item[1.] Start date is removed, and the value is set to null.
 		\end{enumerate}
 	\item[2.c] Project leader sets null end date:
 		\begin{enumerate}
-		\item[1.] System shows failure message.
-		\item[2.] System returns to step 2.
+		\item[1.] End date is removed, and the value is set to null.
 		\end{enumerate}
 	\item[2.d] Project leader sets start date after end date:
 		\begin{enumerate}
@@ -81,14 +79,15 @@
 		\item[1.] System shows failure message.
 		\item[2.] System returns to step 2.
 		\end{enumerate}
-	\item[3.a] Number of activities:
+	\item[3.a] Project leader adds null activity:
 		\begin{enumerate}
-		\item[1.] Project leader gets a list of activities
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 3.
 		\end{enumerate}
-	\item[3.b] Wrong activity:
+	\item[3.b] Project leader adds duplicate activity:
 		\begin{enumerate}
-		\item[1.] Project leader removes activity
-		\item[2.] Project leader returns to step 2
+		\item[1.] System shows failure message.
+		\item[2.] System returns to step 3.
 		\end{enumerate}
 }
 \end{usecase}
